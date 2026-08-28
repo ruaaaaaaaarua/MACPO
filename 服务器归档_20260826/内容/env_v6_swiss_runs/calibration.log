@@ -1,0 +1,19 @@
+nohup: ignoring input
+{
+  "feasible": true,
+  "static_summary": {
+    "dataset_case_count": 879,
+    "static_candidate_count": 1712,
+    "shortlist_count": 30
+  },
+  "selection": {
+    "grid_id": "347_1",
+    "pcc_bus_ids": [
+      168,
+      147,
+      160,
+      183
+    ],
+    "controllability_gap": 3.023029468905571
+  }
+}

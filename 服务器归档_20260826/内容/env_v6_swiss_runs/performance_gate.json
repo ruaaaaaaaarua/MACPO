@@ -1,0 +1,55 @@
+{
+  "passed": true,
+  "semantic_parity": true,
+  "speedup": 4.640020599205975,
+  "minimum_speedup": 1.25,
+  "legacy_seconds": 22.175972443073988,
+  "fused_process_seconds": 4.7792831882834435,
+  "rollout_count": 5,
+  "num_envs": 2,
+  "num_steps": 24,
+  "system_transitions_per_rollout": 48,
+  "kernel_parity": {
+    "fields_compared": 10,
+    "field_abs_differences": {
+      "rng": 0.0,
+      "global_obs": 0.0,
+      "actions": 4.887580871582031e-06,
+      "log_probs": 9.655952453613281e-06,
+      "reward_values": 0.00014515221118927002,
+      "cost_values": 8.063018321990967e-05,
+      "actor_hidden": 0.00022518634796142578,
+      "reward_hidden": 5.960464477539063e-08,
+      "cost_hidden": 5.960464477539063e-08,
+      "intents": 0.0
+    },
+    "max_abs_difference": 0.00022518634796142578
+  },
+  "kernel_parity_tolerance": 0.0005,
+  "trajectory_parity": {
+    "fields": {
+      "reset_obs": 0.0,
+      "obs": 0.0,
+      "rewards": 0.0,
+      "terminations": 0.0,
+      "truncations": 0.0,
+      "info.voltage_cost": 0.0,
+      "info.voltage_min_pu": 0.0,
+      "info.voltage_max_pu": 0.0,
+      "info.voltages_pu": 0.0,
+      "info.pcc_p_kw": 0.0,
+      "info.pcc_q_kvar": 0.0,
+      "info.pf_converged": 0.0
+    },
+    "max_abs_difference": 0.0,
+    "passed": true,
+    "action_policy": "nominal_uncontrolled_shared_actions",
+    "seeds": [
+      30,
+      31
+    ]
+  },
+  "trajectory_parity_tolerance": 1e-06,
+  "legacy_transitions_per_second": 10.822524271081376,
+  "fused_process_transitions_per_second": 50.21673555322422
+}

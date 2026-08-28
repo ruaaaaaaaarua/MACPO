@@ -1,0 +1,4319 @@
+{
+  "variant": "v6_nocomm_gru_mappo_penalty",
+  "exploratory": true,
+  "target_updates": 100,
+  "resumed_from_update": 75,
+  "dimensions": {
+    "num_agents": 4,
+    "action_dim": 7,
+    "base_obs_dim": 32,
+    "actor_obs_dim": 39
+  },
+  "metrics": [
+    {
+      "update": 76,
+      "algorithm": "mappo_penalty",
+      "actor_loss": 0.001176985795609653,
+      "reward_critic_loss": 0.05085664987564087,
+      "cost_critic_loss": 2843.27783203125,
+      "daily_voltage_cost": 1.3797364234924316,
+      "daily_voltage_cost_raw": 1.3797364234924316,
+      "daily_voltage_cost_normalized": 68.98682403564453,
+      "daily_economic_return_raw_yuan": -6503521.5,
+      "daily_economic_return_normalized": -2.063493251800537,
+      "daily_economic_cost_raw_yuan": 6503521.5,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.326086956521739,
+      "rollout_wall_seconds": 2.462468110024929,
+      "update_wall_seconds": 5.867756342515349,
+      "total_wall_seconds": 8.330225804820657
+    },
+    {
+      "update": 77,
+      "algorithm": "mappo_penalty",
+      "actor_loss": -0.00015956869174260646,
+      "reward_critic_loss": 0.05388981103897095,
+      "cost_critic_loss": 2646.55126953125,
+      "daily_voltage_cost": 1.9483628273010254,
+      "daily_voltage_cost_raw": 1.9483628273010254,
+      "daily_voltage_cost_normalized": 97.41814422607422,
+      "daily_economic_return_raw_yuan": -6442329.0,
+      "daily_economic_return_normalized": -2.0440776348114014,
+      "daily_economic_cost_raw_yuan": 6442329.0,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.3304347826086955,
+      "rollout_wall_seconds": 1.0039301570504904,
+      "update_wall_seconds": 0.22775186598300934,
+      "total_wall_seconds": 1.231683924794197
+    },
+    {
+      "update": 78,
+      "algorithm": "mappo_penalty",
+      "actor_loss": -0.0020258522126823664,
+      "reward_critic_loss": 0.0393141508102417,
+      "cost_critic_loss": 4301.4990234375,
+      "daily_voltage_cost": 1.938554048538208,
+      "daily_voltage_cost_raw": 1.938554048538208,
+      "daily_voltage_cost_normalized": 96.9277114868164,
+      "daily_economic_return_raw_yuan": -6760605.0,
+      "daily_economic_return_normalized": -2.1450629234313965,
+      "daily_economic_cost_raw_yuan": 6760605.0,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.3347826086956522,
+      "rollout_wall_seconds": 0.9898867961019278,
+      "update_wall_seconds": 0.16722756810486317,
+      "total_wall_seconds": 1.1571160722523928
+    },
+    {
+      "update": 79,
+      "algorithm": "mappo_penalty",
+      "actor_loss": -0.0017694260459393263,
+      "reward_critic_loss": 0.05260494351387024,
+      "cost_critic_loss": 328.66973876953125,
+      "daily_voltage_cost": 0.7398086190223694,
+      "daily_voltage_cost_raw": 0.7398086190223694,
+      "daily_voltage_cost_normalized": 36.99043273925781,
+      "daily_economic_return_raw_yuan": -6297477.5,
+      "daily_economic_return_normalized": -1.9981178045272827,
+      "daily_economic_cost_raw_yuan": 6297477.5,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.3391304347826085,
+      "rollout_wall_seconds": 1.0126780346035957,
+      "update_wall_seconds": 0.157881086692214,
+      "total_wall_seconds": 1.170560697093606
+    },
+    {
+      "update": 80,
+      "algorithm": "mappo_penalty",
+      "actor_loss": -0.0022938265465199947,
+      "reward_critic_loss": 0.03797411546111107,
+      "cost_critic_loss": 24.88483238220215,
+      "daily_voltage_cost": 0.021689703688025475,
+      "daily_voltage_cost_raw": 0.021689703688025475,
+      "daily_voltage_cost_normalized": 1.0844851732254028,
+      "daily_economic_return_raw_yuan": -6459835.0,
+      "daily_economic_return_normalized": -2.0496320724487305,
+      "daily_economic_cost_raw_yuan": 6459835.0,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.3434782608695652,
+      "rollout_wall_seconds": 0.990003602579236,
+      "update_wall_seconds": 0.16184591501951218,
+      "total_wall_seconds": 1.1518511846661568
+    },
+    {
+      "update": 81,
+      "algorithm": "mappo_penalty",
+      "actor_loss": 0.000812706770375371,
+      "reward_critic_loss": 0.04132450371980667,
+      "cost_critic_loss": 1321.550537109375,
+      "daily_voltage_cost": 1.131061315536499,
+      "daily_voltage_cost_raw": 1.131061315536499,
+      "daily_voltage_cost_normalized": 56.55306625366211,
+      "daily_economic_return_raw_yuan": -6493732.5,
+      "daily_economic_return_normalized": -2.060387372970581,
+      "daily_economic_cost_raw_yuan": 6493732.5,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.3478260869565217,
+      "rollout_wall_seconds": 1.0114628560841084,
+      "update_wall_seconds": 0.15779738314449787,
+      "total_wall_seconds": 1.1692620068788528
+    },
+    {
+      "update": 82,
+      "algorithm": "mappo_penalty",
+      "actor_loss": -0.0011595531832426786,
+      "reward_critic_loss": 0.04101952165365219,
+      "cost_critic_loss": 676.7647705078125,
+      "daily_voltage_cost": 0.6844912171363831,
+      "daily_voltage_cost_raw": 0.6844912171363831,
+      "daily_voltage_cost_normalized": 34.22456359863281,
+      "daily_economic_return_raw_yuan": -6826667.5,
+      "daily_economic_return_normalized": -2.1660237312316895,
+      "daily_economic_cost_raw_yuan": 6826667.5,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.3521739130434782,
+      "rollout_wall_seconds": 0.974868506193161,
+      "update_wall_seconds": 0.15502719953656197,
+      "total_wall_seconds": 1.1298976801335812
+    },
+    {
+      "update": 83,
+      "algorithm": "mappo_penalty",
+      "actor_loss": 0.0009350315667688847,
+      "reward_critic_loss": 0.033644162118434906,
+      "cost_critic_loss": 1408.89111328125,
+      "daily_voltage_cost": 1.3719208240509033,
+      "daily_voltage_cost_raw": 1.3719208240509033,
+      "daily_voltage_cost_normalized": 68.59603881835938,
+      "daily_economic_return_raw_yuan": -6435027.5,
+      "daily_economic_return_normalized": -2.0417609214782715,
+      "daily_economic_cost_raw_yuan": 6435027.5,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.3565217391304347,
+      "rollout_wall_seconds": 1.0030684880912304,
+      "update_wall_seconds": 0.15647881478071213,
+      "total_wall_seconds": 1.1595490742474794
+    },
+    {
+      "update": 84,
+      "algorithm": "mappo_penalty",
+      "actor_loss": 0.0024147953372448683,
+      "reward_critic_loss": 0.0340079702436924,
+      "cost_critic_loss": 1853.482421875,
+      "daily_voltage_cost": 1.582749843597412,
+      "daily_voltage_cost_raw": 1.582749843597412,
+      "daily_voltage_cost_normalized": 79.13749694824219,
+      "daily_economic_return_raw_yuan": -6813972.5,
+      "daily_economic_return_normalized": -2.1619958877563477,
+      "daily_economic_cost_raw_yuan": 6813972.5,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.3608695652173912,
+      "rollout_wall_seconds": 1.0136820040643215,
+      "update_wall_seconds": 0.16765492968261242,
+      "total_wall_seconds": 1.181338695809245
+    },
+    {
+      "update": 85,
+      "algorithm": "mappo_penalty",
+      "actor_loss": 0.0008447182481177151,
+      "reward_critic_loss": 0.03744705021381378,
+      "cost_critic_loss": 143.91595458984375,
+      "daily_voltage_cost": 0.34618428349494934,
+      "daily_voltage_cost_raw": 0.34618428349494934,
+      "daily_voltage_cost_normalized": 17.309213638305664,
+      "daily_economic_return_raw_yuan": -6267185.5,
+      "daily_economic_return_normalized": -1.988506555557251,
+      "daily_economic_cost_raw_yuan": 6267185.5,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.3652173913043477,
+      "rollout_wall_seconds": 0.6401726994663477,
+      "update_wall_seconds": 0.1414123810827732,
+      "total_wall_seconds": 0.7815867848694324
+    },
+    {
+      "update": 86,
+      "algorithm": "mappo_penalty",
+      "actor_loss": 0.004251417703926563,
+      "reward_critic_loss": 0.03755837306380272,
+      "cost_critic_loss": 680.70361328125,
+      "daily_voltage_cost": 0.6837579607963562,
+      "daily_voltage_cost_raw": 0.6837579607963562,
+      "daily_voltage_cost_normalized": 34.18790054321289,
+      "daily_economic_return_raw_yuan": -6435362.5,
+      "daily_economic_return_normalized": -2.041867256164551,
+      "daily_economic_cost_raw_yuan": 6435362.5,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.3695652173913042,
+      "rollout_wall_seconds": 0.9146688338369131,
+      "update_wall_seconds": 0.16056952811777592,
+      "total_wall_seconds": 1.0752415843307972
+    },
+    {
+      "update": 87,
+      "algorithm": "mappo_penalty",
+      "actor_loss": 0.0024967174977064133,
+      "reward_critic_loss": 0.04057059437036514,
+      "cost_critic_loss": 889.1334838867188,
+      "daily_voltage_cost": 0.8112045526504517,
+      "daily_voltage_cost_raw": 0.8112045526504517,
+      "daily_voltage_cost_normalized": 40.56023025512695,
+      "daily_economic_return_raw_yuan": -6643440.0,
+      "daily_economic_return_normalized": -2.1078877449035645,
+      "daily_economic_cost_raw_yuan": 6643440.0,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.3739130434782607,
+      "rollout_wall_seconds": 0.995631504803896,
+      "update_wall_seconds": 0.15044163167476654,
+      "total_wall_seconds": 1.1460750568658113
+    },
+    {
+      "update": 88,
+      "algorithm": "mappo_penalty",
+      "actor_loss": 0.002028487157076597,
+      "reward_critic_loss": 0.03342266380786896,
+      "cost_critic_loss": 2786.123779296875,
+      "daily_voltage_cost": 1.4687038660049438,
+      "daily_voltage_cost_raw": 1.4687038660049438,
+      "daily_voltage_cost_normalized": 73.43519592285156,
+      "daily_economic_return_raw_yuan": -6402524.0,
+      "daily_economic_return_normalized": -2.0314478874206543,
+      "daily_economic_cost_raw_yuan": 6402524.0,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.3782608695652172,
+      "rollout_wall_seconds": 0.9955490715801716,
+      "update_wall_seconds": 0.14961438439786434,
+      "total_wall_seconds": 1.1451658084988594
+    },
+    {
+      "update": 89,
+      "algorithm": "mappo_penalty",
+      "actor_loss": 0.001370960962958634,
+      "reward_critic_loss": 0.03779814764857292,
+      "cost_critic_loss": 2290.72314453125,
+      "daily_voltage_cost": 1.864553451538086,
+      "daily_voltage_cost_raw": 1.864553451538086,
+      "daily_voltage_cost_normalized": 93.22766876220703,
+      "daily_economic_return_raw_yuan": -6617601.5,
+      "daily_economic_return_normalized": -2.099689483642578,
+      "daily_economic_cost_raw_yuan": 6617601.5,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.382608695652174,
+      "rollout_wall_seconds": 1.0350506696850061,
+      "update_wall_seconds": 0.14349518716335297,
+      "total_wall_seconds": 1.1785476971417665
+    },
+    {
+      "update": 90,
+      "algorithm": "mappo_penalty",
+      "actor_loss": 0.00310698919929564,
+      "reward_critic_loss": 0.036977317184209824,
+      "cost_critic_loss": 5505.52880859375,
+      "daily_voltage_cost": 2.728476047515869,
+      "daily_voltage_cost_raw": 2.728476047515869,
+      "daily_voltage_cost_normalized": 136.42379760742188,
+      "daily_economic_return_raw_yuan": -6501017.5,
+      "daily_economic_return_normalized": -2.0626988410949707,
+      "daily_economic_cost_raw_yuan": 6501017.5,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.3869565217391304,
+      "rollout_wall_seconds": 0.775061571970582,
+      "update_wall_seconds": 0.151015292853117,
+      "total_wall_seconds": 0.9260785467922688
+    },
+    {
+      "update": 91,
+      "algorithm": "mappo_penalty",
+      "actor_loss": -0.00013277788821142167,
+      "reward_critic_loss": 0.04146318882703781,
+      "cost_critic_loss": 2899.5712890625,
+      "daily_voltage_cost": 1.50656259059906,
+      "daily_voltage_cost_raw": 1.50656259059906,
+      "daily_voltage_cost_normalized": 75.32813262939453,
+      "daily_economic_return_raw_yuan": -6431393.5,
+      "daily_economic_return_normalized": -2.0406079292297363,
+      "daily_economic_cost_raw_yuan": 6431393.5,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.391304347826087,
+      "rollout_wall_seconds": 0.9480921197682619,
+      "update_wall_seconds": 0.14741628803312778,
+      "total_wall_seconds": 1.0955101065337658
+    },
+    {
+      "update": 92,
+      "algorithm": "mappo_penalty",
+      "actor_loss": 0.0025478608440607786,
+      "reward_critic_loss": 0.04533451050519943,
+      "cost_critic_loss": 1152.0360107421875,
+      "daily_voltage_cost": 0.9846329689025879,
+      "daily_voltage_cost_raw": 0.9846329689025879,
+      "daily_voltage_cost_normalized": 49.23164749145508,
+      "daily_economic_return_raw_yuan": -6961685.5,
+      "daily_economic_return_normalized": -2.2088634967803955,
+      "daily_economic_cost_raw_yuan": 6961685.5,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.3956521739130434,
+      "rollout_wall_seconds": 0.9969245214015245,
+      "update_wall_seconds": 0.14804399572312832,
+      "total_wall_seconds": 1.1449702568352222
+    },
+    {
+      "update": 93,
+      "algorithm": "mappo_penalty",
+      "actor_loss": 0.003869093721732497,
+      "reward_critic_loss": 0.04247497022151947,
+      "cost_critic_loss": 2636.033203125,
+      "daily_voltage_cost": 1.5252857208251953,
+      "daily_voltage_cost_raw": 1.5252857208251953,
+      "daily_voltage_cost_normalized": 76.26428985595703,
+      "daily_economic_return_raw_yuan": -6434737.5,
+      "daily_economic_return_normalized": -2.0416688919067383,
+      "daily_economic_cost_raw_yuan": 6434737.5,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.4,
+      "rollout_wall_seconds": 1.0765370856970549,
+      "update_wall_seconds": 0.13178167305886745,
+      "total_wall_seconds": 1.2083203792572021
+    },
+    {
+      "update": 94,
+      "algorithm": "mappo_penalty",
+      "actor_loss": 0.0032577933743596077,
+      "reward_critic_loss": 0.04132048785686493,
+      "cost_critic_loss": 2720.897216796875,
+      "daily_voltage_cost": 2.0632731914520264,
+      "daily_voltage_cost_raw": 2.0632731914520264,
+      "daily_voltage_cost_normalized": 103.16366577148438,
+      "daily_economic_return_raw_yuan": -6649782.0,
+      "daily_economic_return_normalized": -2.1098999977111816,
+      "daily_economic_cost_raw_yuan": 6649782.0,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.4043478260869564,
+      "rollout_wall_seconds": 1.032017882913351,
+      "update_wall_seconds": 0.1580894235521555,
+      "total_wall_seconds": 1.1901093758642673
+    },
+    {
+      "update": 95,
+      "algorithm": "mappo_penalty",
+      "actor_loss": 0.004979434423148632,
+      "reward_critic_loss": 0.044813986867666245,
+      "cost_critic_loss": 1466.5732421875,
+      "daily_voltage_cost": 1.439105749130249,
+      "daily_voltage_cost_raw": 1.439105749130249,
+      "daily_voltage_cost_normalized": 71.95528411865234,
+      "daily_economic_return_raw_yuan": -6673766.0,
+      "daily_economic_return_normalized": -2.1175098419189453,
+      "daily_economic_cost_raw_yuan": 6673766.0,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.408695652173913,
+      "rollout_wall_seconds": 1.0013054199516773,
+      "update_wall_seconds": 0.15237690694630146,
+      "total_wall_seconds": 1.1536844801157713
+    },
+    {
+      "update": 96,
+      "algorithm": "mappo_penalty",
+      "actor_loss": 0.004280214663594961,
+      "reward_critic_loss": 0.04491635411977768,
+      "cost_critic_loss": 5179.0322265625,
+      "daily_voltage_cost": 2.1788580417633057,
+      "daily_voltage_cost_raw": 2.1788580417633057,
+      "daily_voltage_cost_normalized": 108.94290161132812,
+      "daily_economic_return_raw_yuan": -6708600.5,
+      "daily_economic_return_normalized": -2.1285624504089355,
+      "daily_economic_cost_raw_yuan": 6708600.5,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.4130434782608696,
+      "rollout_wall_seconds": 0.9967345613986254,
+      "update_wall_seconds": 0.16016817279160023,
+      "total_wall_seconds": 1.1569045428186655
+    },
+    {
+      "update": 97,
+      "algorithm": "mappo_penalty",
+      "actor_loss": 0.0004941730876453221,
+      "reward_critic_loss": 0.029631804674863815,
+      "cost_critic_loss": 636.0014038085938,
+      "daily_voltage_cost": 0.9472306370735168,
+      "daily_voltage_cost_raw": 0.9472306370735168,
+      "daily_voltage_cost_normalized": 47.361534118652344,
+      "daily_economic_return_raw_yuan": -6602502.0,
+      "daily_economic_return_normalized": -2.0948987007141113,
+      "daily_economic_cost_raw_yuan": 6602502.0,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.4173913043478261,
+      "rollout_wall_seconds": 0.9769180957227945,
+      "update_wall_seconds": 0.1448260173201561,
+      "total_wall_seconds": 1.1217458341270685
+    },
+    {
+      "update": 98,
+      "algorithm": "mappo_penalty",
+      "actor_loss": 0.002971154637634754,
+      "reward_critic_loss": 0.039345867931842804,
+      "cost_critic_loss": 5027.59716796875,
+      "daily_voltage_cost": 1.791977047920227,
+      "daily_voltage_cost_raw": 1.791977047920227,
+      "daily_voltage_cost_normalized": 89.59886169433594,
+      "daily_economic_return_raw_yuan": -6833488.5,
+      "daily_economic_return_normalized": -2.1681880950927734,
+      "daily_economic_cost_raw_yuan": 6833488.5,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.4217391304347826,
+      "rollout_wall_seconds": 1.0378560591489077,
+      "update_wall_seconds": 0.15473178587853909,
+      "total_wall_seconds": 1.1925895791500807
+    },
+    {
+      "update": 99,
+      "algorithm": "mappo_penalty",
+      "actor_loss": 0.004805597010999918,
+      "reward_critic_loss": 0.0380435474216938,
+      "cost_critic_loss": 755.2623291015625,
+      "daily_voltage_cost": 0.9013744592666626,
+      "daily_voltage_cost_raw": 0.9013744592666626,
+      "daily_voltage_cost_normalized": 45.06871795654297,
+      "daily_economic_return_raw_yuan": -6772302.5,
+      "daily_economic_return_normalized": -2.1487743854522705,
+      "daily_economic_cost_raw_yuan": 6772302.5,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.4260869565217391,
+      "rollout_wall_seconds": 1.0060348771512508,
+      "update_wall_seconds": 0.14098498784005642,
+      "total_wall_seconds": 1.147021709010005
+    },
+    {
+      "update": 100,
+      "algorithm": "mappo_penalty",
+      "actor_loss": 0.0065372721292078495,
+      "reward_critic_loss": 0.03759252652525902,
+      "cost_critic_loss": 1306.437255859375,
+      "daily_voltage_cost": 1.3670554161071777,
+      "daily_voltage_cost_raw": 1.3670554161071777,
+      "daily_voltage_cost_normalized": 68.35277557373047,
+      "daily_economic_return_raw_yuan": -7003420.5,
+      "daily_economic_return_normalized": -2.2221055030822754,
+      "daily_economic_cost_raw_yuan": 7003420.5,
+      "economic_reward_scale_yuan": 3151704.8194007874,
+      "lagrange_multiplier": 0.0,
+      "cost_budget": 1.0,
+      "cost_budget_raw": 0.02,
+      "cost_budget_normalized": 1.0,
+      "algorithm_cost_mode": "fixed_penalty",
+      "fixed_cost_penalty_coef": 1.0,
+      "log_std_max": -1.4304347826086956,
+      "rollout_wall_seconds": 0.9462528340518475,
+      "update_wall_seconds": 0.15197313763201237,
+      "total_wall_seconds": 1.0982278231531382
+    }
+  ],
+  "deterministic_rollout": {
+    "summary": {
+      "seed": 30,
+      "steps": 24,
+      "economic_cost": 7462783.915823767,
+      "total_cost": 7128270.7046928005,
+      "terminal_settlement_cost": -334513.21113096725,
+      "terminal_battery_asset_value": 1633.5627602244494,
+      "terminal_h2_asset_value": 894503.671875,
+      "terminal_undelivered_h2_energy": 59825.4377993164,
+      "daily_voltage_cost": 0.0,
+      "voltage_violation_area": 0.0,
+      "voltage_min_pu": 0.9695658552202928,
+      "voltage_max_pu": 1.02346605257473,
+      "pf_failure_rate": 0.0,
+      "safe_step_rate": 1.0,
+      "emergency_h2_buy": 45670.99739074707,
+      "planned_h2_order": 169271.96044921875,
+      "late_h2_order": 73801.21728515625,
+      "pending_h2_energy": 59825.4375,
+      "history_off": false,
+      "gru_hidden_off": false,
+      "previous_action_off": false,
+      "cross_agent_off": false,
+      "eta_delay_hours": 0,
+      "intent_action_mae": null,
+      "intent_action_correlation": null,
+      "intent_residual_max": null,
+      "intent_residual_utilization_mean": null
+    },
+    "steps": [
+      {
+        "step": 0,
+        "actions": [
+          [
+            -0.0030085574835538864,
+            -0.011001617647707462,
+            0.027968302369117737,
+            0.00025855080457404256,
+            -0.027777446433901787,
+            0.004490092862397432,
+            0.02545400708913803
+          ],
+          [
+            -0.026898963376879692,
+            -0.02040855400264263,
+            -0.0018976988503709435,
+            0.047292061150074005,
+            -0.025479363277554512,
+            -0.037681035697460175,
+            0.03302304446697235
+          ],
+          [
+            -0.01028366107493639,
+            -0.012820634990930557,
+            -0.024317292496562004,
+            0.01884985901415348,
+            -0.010516831651329994,
+            0.017960576340556145,
+            0.0032702521421015263
+          ],
+          [
+            -0.02397705242037773,
+            -0.038200538605451584,
+            -0.01188480481505394,
+            0.004052009899169207,
+            -0.018358785659074783,
+            -0.038441240787506104,
+            0.025958865880966187
+          ]
+        ],
+        "intents": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "economic_cost": 303064.7911148071,
+        "step_total_cost": 303064.7911148071,
+        "terminal_settlement_cost": 0.0,
+        "terminal_battery_asset_value": 1657.328093200049,
+        "terminal_h2_asset_value": 556558.125,
+        "terminal_undelivered_h2_energy": 6871.809216552734,
+        "voltage_cost": 0.0,
+        "voltage_violation_area": 0.0,
+        "voltage_min_pu": 0.9775946007394375,
+        "voltage_max_pu": 1.0,
+        "pf_converged": true,
+        "pcc_p_kw": [
+          1287.7845458984375,
+          -1970.606689453125,
+          215.105712890625,
+          629.0858154296875
+        ],
+        "pcc_q_kvar": [
+          168.18515014648438,
+          100.76287078857422,
+          171.62081909179688,
+          164.73863220214844
+        ],
+        "p_el": [
+          996.991455078125,
+          1459.651611328125,
+          247.4290771484375,
+          390.4091796875
+        ],
+        "p_bat": [
+          -22.00323486328125,
+          -0.0,
+          -19.230953216552734,
+          -30.5604305267334
+        ],
+        "soc": [
+          0.49536773562431335,
+          0.5,
+          0.4949392080307007,
+          0.4839155673980713
+        ],
+        "p_ht": [
+          -0.0,
+          -0.0,
+          -35.75722885131836,
+          -77.10690307617188
+        ],
+        "h2_emergency_buy_energy": [
+          0.0,
+          0.0,
+          741.18310546875,
+          950.9092407226562
+        ],
+        "h2_planned_external_order_energy": [
+          0.0,
+          0.0,
+          2882.036865234375,
+          3906.33251953125
+        ],
+        "h2_late_order_energy": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "h2_level": [
+          200.0,
+          200.0,
+          118.92717742919922,
+          117.68656158447266
+        ],
+        "e_h2_load": [
+          271.5590515136719,
+          194.55198669433594,
+          925.3977661132812,
+          1281.7821044921875
+        ],
+        "pending_h2_energy_total": 6871.8095703125,
+        "pending_h2_energy_agent": [
+          0.0,
+          0.0,
+          3152.980712890625,
+          3718.82861328125
+        ],
+        "external_min_eta": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "step": 1,
+        "actions": [
+          [
+            0.0023513780906796455,
+            -0.0052616167813539505,
+            0.03188711777329445,
+            -0.004873079713433981,
+            -0.04222524166107178,
+            0.01905588060617447,
+            0.03926025331020355
+          ],
+          [
+            -0.03909734636545181,
+            -0.024162592366337776,
+            -0.002572831464931369,
+            0.06782900542020798,
+            -0.034098558127880096,
+            -0.04656423628330231,
+            0.04976159334182739
+          ],
+          [
+            -0.02236652746796608,
+            -0.019733747467398643,
+            -0.043594155460596085,
+            0.025805015116930008,
+            -0.014009127393364906,
+            0.02644755132496357,
+            0.0090034119784832
+          ],
+          [
+            -0.046939667314291,
+            -0.06457401067018509,
+            -0.019545618444681168,
+            -0.002147702733054757,
+            -0.029844122007489204,
+            -0.051355089992284775,
+            0.045337170362472534
+          ]
+        ],
+        "intents": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "economic_cost": 264217.80672073364,
+        "step_total_cost": 264217.80672073364,
+        "terminal_settlement_cost": 0.0,
+        "terminal_battery_asset_value": 1628.343961188948,
+        "terminal_h2_asset_value": 551368.828125,
+        "terminal_undelivered_h2_energy": 13720.49919213867,
+        "voltage_cost": 0.0,
+        "voltage_violation_area": 0.0,
+        "voltage_min_pu": 0.980058155171207,
+        "voltage_max_pu": 1.0,
+        "pf_converged": true,
+        "pcc_p_kw": [
+          1214.1728515625,
+          -1906.142822265625,
+          101.11166381835938,
+          487.0570068359375
+        ],
+        "pcc_q_kvar": [
+          134.76329040527344,
+          80.25499725341797,
+          129.68362426757812,
+          135.57305908203125
+        ],
+        "p_el": [
+          1002.3513793945312,
+          1441.35400390625,
+          244.4083709716797,
+          381.22412109375
+        ],
+        "p_bat": [
+          -10.523233413696289,
+          -0.0,
+          -29.60062026977539,
+          -51.659210205078125
+        ],
+        "soc": [
+          0.49315232038497925,
+          0.5,
+          0.48714956641197205,
+          0.4567265212535858
+        ],
+        "p_ht": [
+          -0.0,
+          -0.0,
+          -47.63103485107422,
+          -125.3453140258789
+        ],
+        "h2_emergency_buy_energy": [
+          0.0,
+          0.0,
+          479.683349609375,
+          615.7499389648438
+        ],
+        "h2_planned_external_order_energy": [
+          0.0,
+          0.0,
+          2838.84765625,
+          3853.8701171875
+        ],
+        "h2_late_order_energy": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "h2_level": [
+          200.0,
+          200.0,
+          117.49810028076172,
+          113.92582702636719
+        ],
+        "e_h2_load": [
+          204.53912353515625,
+          149.4183349609375,
+          673.9594116210938,
+          988.8909301757812
+        ],
+        "pending_h2_energy_total": 13720.5,
+        "pending_h2_energy_agent": [
+          0.0,
+          0.0,
+          6332.78662109375,
+          7387.712890625
+        ],
+        "external_min_eta": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "step": 2,
+        "actions": [
+          [
+            0.010560461319983006,
+            0.006843251641839743,
+            0.0268254354596138,
+            -0.009725086390972137,
+            -0.05473215505480766,
+            0.03679380193352699,
+            0.04857524484395981
+          ],
+          [
+            -0.042966581881046295,
+            -0.022718602791428566,
+            -0.00291210925206542,
+            0.07794105261564255,
+            -0.03488659858703613,
+            -0.044577471911907196,
+            0.05848867446184158
+          ],
+          [
+            -0.03375891596078873,
+            -0.023950012400746346,
+            -0.06473023444414139,
+            0.02778003178536892,
+            -0.013481730595231056,
+            0.03477611765265465,
+            0.02115863561630249
+          ],
+          [
+            -0.0665488988161087,
+            -0.08484210819005966,
+            -0.024628635495901108,
+            -0.010261479765176773,
+            -0.036911483854055405,
+            -0.05269598215818405,
+            0.05829855427145958
+          ]
+        ],
+        "intents": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "economic_cost": 242434.67554950714,
+        "step_total_cost": 242434.67554950714,
+        "terminal_settlement_cost": 0.0,
+        "terminal_battery_asset_value": 1599.4658838695614,
+        "terminal_h2_asset_value": 545342.8125,
+        "terminal_undelivered_h2_energy": 20590.09959155273,
+        "voltage_cost": 0.0,
+        "voltage_violation_area": 0.0,
+        "voltage_min_pu": 0.9813639081542078,
+        "voltage_max_pu": 1.0,
+        "pf_converged": true,
+        "pcc_p_kw": [
+          1185.0556640625,
+          -1878.8021240234375,
+          45.759521484375,
+          405.19659423828125
+        ],
+        "pcc_q_kvar": [
+          114.36552429199219,
+          71.43276977539062,
+          111.55115509033203,
+          113.30429077148438
+        ],
+        "p_el": [
+          1010.5604858398438,
+          1435.5501708984375,
+          241.56027221679688,
+          373.38043212890625
+        ],
+        "p_bat": [
+          13.686503410339355,
+          -0.0,
+          -35.925018310546875,
+          -67.87368774414062
+        ],
+        "soc": [
+          0.49575275182724,
+          0.5,
+          0.47769561409950256,
+          0.421003520488739
+        ],
+        "p_ht": [
+          -0.0,
+          -0.0,
+          -45.83788299560547,
+          -155.02822875976562
+        ],
+        "h2_emergency_buy_energy": [
+          0.0,
+          0.0,
+          365.4849853515625,
+          378.1715393066406
+        ],
+        "h2_planned_external_order_energy": [
+          0.0,
+          0.0,
+          2824.90625,
+          3848.422607421875
+        ],
+        "h2_late_order_energy": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "h2_level": [
+          200.0,
+          200.0,
+          116.1228256225586,
+          109.2745132446289
+        ],
+        "e_h2_load": [
+          169.27647399902344,
+          127.83780670166016,
+          556.259033203125,
+          775.8970336914062
+        ],
+        "pending_h2_energy_total": 20590.099609375,
+        "pending_h2_energy_agent": [
+          0.0,
+          0.0,
+          9538.6884765625,
+          11051.4111328125
+        ],
+        "external_min_eta": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "step": 3,
+        "actions": [
+          [
+            0.019606228917837143,
+            0.02184375189244747,
+            0.017887776717543602,
+            -0.012795165181159973,
+            -0.06615626811981201,
+            0.055124085396528244,
+            0.055221520364284515
+          ],
+          [
+            -0.041931018233299255,
+            -0.020243048667907715,
+            -0.003407716518267989,
+            0.08283711969852448,
+            -0.031116165220737457,
+            -0.037065714597702026,
+            0.062499649822711945
+          ],
+          [
+            -0.04308103770017624,
+            -0.026360465213656425,
+            -0.08631712943315506,
+            0.027721693739295006,
+            -0.011508176103234291,
+            0.04171958565711975,
+            0.03694140911102295
+          ],
+          [
+            -0.08083457499742508,
+            -0.09890961647033691,
+            -0.02638367936015129,
+            -0.01590031199157238,
+            -0.040967751294374466,
+            -0.047578439116477966,
+            0.06991000473499298
+          ]
+        ],
+        "intents": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "economic_cost": 230193.23419094086,
+        "step_total_cost": 230193.23419094086,
+        "terminal_settlement_cost": 0.0,
+        "terminal_battery_asset_value": 1574.4428360002348,
+        "terminal_h2_asset_value": 539007.0703125,
+        "terminal_undelivered_h2_energy": 27470.20975219726,
+        "voltage_cost": 0.0,
+        "voltage_violation_area": 0.0,
+        "voltage_min_pu": 0.9828888142860355,
+        "voltage_max_pu": 1.0,
+        "pf_converged": true,
+        "pcc_p_kw": [
+          1195.0657958984375,
+          -2034.6982421875,
+          17.144390106201172,
+          366.634033203125
+        ],
+        "pcc_q_kvar": [
+          102.93247985839844,
+          65.50762176513672,
+          102.62113189697266,
+          97.21234130859375
+        ],
+        "p_el": [
+          1019.606201171875,
+          1437.103515625,
+          239.229736328125,
+          367.6661682128906
+        ],
+        "p_bat": [
+          43.687503814697266,
+          -0.0,
+          -39.54069900512695,
+          -79.12769317626953
+        ],
+        "soc": [
+          0.5040533542633057,
+          0.5,
+          0.46729016304016113,
+          0.37935736775398254
+        ],
+        "p_ht": [
+          -0.0,
+          -0.0,
+          -39.12779998779297,
+          -172.06455993652344
+        ],
+        "h2_emergency_buy_energy": [
+          0.0,
+          0.0,
+          310.9512939453125,
+          220.1798553466797
+        ],
+        "h2_planned_external_order_energy": [
+          0.0,
+          0.0,
+          2823.95703125,
+          3869.212646484375
+        ],
+        "h2_late_order_energy": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "h2_level": [
+          200.0,
+          200.0,
+          114.9488754272461,
+          104.112060546875
+        ],
+        "e_h2_load": [
+          152.0926513671875,
+          114.47989654541016,
+          493.616943359375,
+          631.2274169921875
+        ],
+        "pending_h2_energy_total": 27470.2109375,
+        "pending_h2_energy_agent": [
+          0.0,
+          0.0,
+          12766.26171875,
+          14703.9482421875
+        ],
+        "external_min_eta": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "step": 4,
+        "actions": [
+          [
+            0.028185924515128136,
+            0.037328965961933136,
+            0.007918553426861763,
+            -0.013738603331148624,
+            -0.07637517154216766,
+            0.07192041724920273,
+            0.06016859784722328
+          ],
+          [
+            -0.037741322070360184,
+            -0.01758621819317341,
+            -0.003886374644935131,
+            0.08376502990722656,
+            -0.024936949834227562,
+            -0.02655196562409401,
+            0.06263706833124161
+          ],
+          [
+            -0.0506158210337162,
+            -0.027054717764258385,
+            -0.10358947515487671,
+            0.024617988616228104,
+            -0.009474760852754116,
+            0.04776214808225632,
+            0.0517335943877697
+          ],
+          [
+            -0.08849916607141495,
+            -0.10585380345582962,
+            -0.029245339334011078,
+            -0.016749419271945953,
+            -0.03941553086042404,
+            -0.038198959082365036,
+            0.0747610554099083
+          ]
+        ],
+        "intents": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "economic_cost": 238818.31508636475,
+        "step_total_cost": 238818.31508636475,
+        "terminal_settlement_cost": 0.0,
+        "terminal_battery_asset_value": 1556.1629036332306,
+        "terminal_h2_asset_value": 545352.71484375,
+        "terminal_undelivered_h2_energy": 33933.333832275384,
+        "voltage_cost": 0.0,
+        "voltage_violation_area": 0.0,
+        "voltage_min_pu": 0.9795773934117229,
+        "voltage_max_pu": 1.0,
+        "pf_converged": true,
+        "pcc_p_kw": [
+          1232.869140625,
+          -1625.3671875,
+          77.36805725097656,
+          394.40472412109375
+        ],
+        "pcc_q_kvar": [
+          97.69182586669922,
+          60.88589859008789,
+          98.24508666992188,
+          103.45084381103516
+        ],
+        "p_el": [
+          1028.1859130859375,
+          1443.3880615234375,
+          237.34603881835938,
+          364.600341796875
+        ],
+        "p_bat": [
+          74.65792846679688,
+          -0.0,
+          -40.58207702636719,
+          -84.68304443359375
+        ],
+        "soc": [
+          0.518238365650177,
+          0.5,
+          0.45661067962646484,
+          0.3347873389720917
+        ],
+        "p_ht": [
+          -0.0,
+          -0.0,
+          -32.21418762207031,
+          -165.54522705078125
+        ],
+        "h2_emergency_buy_energy": [
+          0.0,
+          0.0,
+          313.91168212890625,
+          340.5386962890625
+        ],
+        "h2_planned_external_order_energy": [
+          0.0,
+          0.0,
+          2825.30419921875,
+          3907.31689453125
+        ],
+        "h2_late_order_energy": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "h2_level": [
+          200.0,
+          200.0,
+          126.26202392578125,
+          99.14521026611328
+        ],
+        "e_h2_load": [
+          139.80723571777344,
+          101.53614807128906,
+          488.53350830078125,
+          743.0741577148438
+        ],
+        "pending_h2_energy_total": 33933.33203125,
+        "pending_h2_energy_agent": [
+          0.0,
+          0.0,
+          15603.3955078125,
+          18329.9375
+        ],
+        "external_min_eta": [
+          0.0,
+          0.0,
+          0.16666666666666666,
+          0.0
+        ]
+      },
+      {
+        "step": 5,
+        "actions": [
+          [
+            0.03529512137174606,
+            0.05146739259362221,
+            -0.0015368571039289236,
+            -0.012628534808754921,
+            -0.08486909419298172,
+            0.08569177985191345,
+            0.06391511857509613
+          ],
+          [
+            -0.03226151689887047,
+            -0.01584407314658165,
+            -0.0045681181363761425,
+            0.08188236504793167,
+            -0.017770931124687195,
+            -0.015537134371697903,
+            0.06049235537648201
+          ],
+          [
+            -0.0557384118437767,
+            -0.026377331465482712,
+            -0.11716442555189133,
+            0.021570943295955658,
+            -0.006223971024155617,
+            0.053048212081193924,
+            0.0665605366230011
+          ],
+          [
+            -0.09411740303039551,
+            -0.10800130665302277,
+            -0.03212665766477585,
+            -0.014181903563439846,
+            -0.03754710778594017,
+            -0.030586300417780876,
+            0.08256372064352036
+          ]
+        ],
+        "intents": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "economic_cost": 245071.45765209198,
+        "step_total_cost": 245071.45765209198,
+        "terminal_settlement_cost": 0.0,
+        "terminal_battery_asset_value": 1545.720178608899,
+        "terminal_h2_asset_value": 748179.4921875,
+        "terminal_undelivered_h2_energy": 33879.509921386714,
+        "voltage_cost": 0.0,
+        "voltage_violation_area": 0.0,
+        "voltage_min_pu": 0.9766831843218108,
+        "voltage_max_pu": 1.0,
+        "pf_converged": true,
+        "pcc_p_kw": [
+          1292.6728515625,
+          -1331.4532470703125,
+          156.92723083496094,
+          410.5330505371094
+        ],
+        "pcc_q_kvar": [
+          99.50672149658203,
+          61.202430725097656,
+          102.30384826660156,
+          106.69063568115234
+        ],
+        "p_el": [
+          1035.295166015625,
+          1451.607666015625,
+          236.06539916992188,
+          362.35302734375
+        ],
+        "p_bat": [
+          102.93478393554688,
+          -0.0,
+          -39.56599807739258,
+          -86.40104675292969
+        ],
+        "soc": [
+          0.5377959609031677,
+          0.5,
+          0.44619858264923096,
+          0.28931310772895813
+        ],
+        "p_ht": [
+          -0.0,
+          -0.0,
+          -21.161500930786133,
+          -157.69784545898438
+        ],
+        "h2_emergency_buy_energy": [
+          0.0,
+          0.0,
+          372.0435485839844,
+          359.75811767578125
+        ],
+        "h2_planned_external_order_energy": [
+          0.0,
+          0.0,
+          2845.9833984375,
+          3938.2431640625
+        ],
+        "h2_late_order_energy": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "h2_level": [
+          200.0,
+          200.0,
+          222.26443481445312,
+          205.9898223876953
+        ],
+        "e_h2_load": [
+          148.28335571289062,
+          100.92308044433594,
+          534.8442993164062,
+          752.9854125976562
+        ],
+        "pending_h2_energy_total": 33879.5078125,
+        "pending_h2_energy_agent": [
+          0.0,
+          0.0,
+          15645.2158203125,
+          18234.29296875
+        ],
+        "external_min_eta": [
+          0.0,
+          0.0,
+          0.16666666666666666,
+          0.0
+        ]
+      },
+      {
+        "step": 6,
+        "actions": [
+          [
+            0.040767401456832886,
+            0.06310578435659409,
+            -0.009225522167980671,
+            -0.009623571299016476,
+            -0.09158843755722046,
+            0.09548179805278778,
+            0.06642719358205795
+          ],
+          [
+            -0.026039913296699524,
+            -0.016757145524024963,
+            -0.0058752670884132385,
+            0.07908984273672104,
+            -0.009880960918962955,
+            -0.00572886411100626,
+            0.05685877799987793
+          ],
+          [
+            -0.05678969994187355,
+            -0.022073790431022644,
+            -0.12740372121334076,
+            0.016249366104602814,
+            -0.003326267236843705,
+            0.05657314881682396,
+            0.07700159400701523
+          ],
+          [
+            -0.0958450436592102,
+            -0.10762055963277817,
+            -0.03770739957690239,
+            -0.012659084051847458,
+            -0.03795577585697174,
+            -0.019896430894732475,
+            0.0799187421798706
+          ]
+        ],
+        "intents": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "economic_cost": 232191.41298084258,
+        "step_total_cost": 232191.41298084258,
+        "terminal_settlement_cost": 0.0,
+        "terminal_battery_asset_value": 1544.0461551048793,
+        "terminal_h2_asset_value": 889911.09375,
+        "terminal_undelivered_h2_energy": 33905.82968017578,
+        "voltage_cost": 0.0,
+        "voltage_violation_area": 0.0,
+        "voltage_min_pu": 0.9797433236461296,
+        "voltage_max_pu": 1.0,
+        "pf_converged": true,
+        "pcc_p_kw": [
+          1191.1328125,
+          -1392.4945068359375,
+          52.4847412109375,
+          255.36669921875
+        ],
+        "pcc_q_kvar": [
+          86.741943359375,
+          61.340118408203125,
+          105.5375747680664,
+          92.03866577148438
+        ],
+        "p_el": [
+          1040.7674560546875,
+          1460.940185546875,
+          235.80258178710938,
+          361.6619873046875
+        ],
+        "p_bat": [
+          126.2115707397461,
+          -0.0,
+          -33.110687255859375,
+          -86.09645080566406
+        ],
+        "soc": [
+          0.5617761611938477,
+          0.5,
+          0.4374852478504181,
+          0.243999183177948
+        ],
+        "p_ht": [
+          -0.0,
+          -0.0,
+          -11.309309005737305,
+          -159.4142608642578
+        ],
+        "h2_emergency_buy_energy": [
+          0.0,
+          0.0,
+          403.1616516113281,
+          199.30819702148438
+        ],
+        "h2_planned_external_order_energy": [
+          0.0,
+          0.0,
+          2829.1796875,
+          3981.670654296875
+        ],
+        "h2_late_order_energy": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "h2_level": [
+          200.0,
+          200.0,
+          285.0,
+          285.0
+        ],
+        "e_h2_load": [
+          123.8542709350586,
+          101.52264404296875,
+          555.9525146484375,
+          593.802734375
+        ],
+        "pending_h2_energy_total": 33905.828125,
+        "pending_h2_energy_agent": [
+          0.0,
+          0.0,
+          15677.2841796875,
+          18228.544921875
+        ],
+        "external_min_eta": [
+          0.0,
+          0.0,
+          0.16666666666666666,
+          0.0
+        ]
+      },
+      {
+        "step": 7,
+        "actions": [
+          [
+            0.04508894681930542,
+            0.0723692998290062,
+            -0.01147322729229927,
+            -0.003835448995232582,
+            -0.10028590261936188,
+            0.10205990821123123,
+            0.07251016050577164
+          ],
+          [
+            -0.02047821134328842,
+            -0.02403446100652218,
+            -0.008918913081288338,
+            0.07903965562582016,
+            -0.0024678583722561598,
+            -0.0003560098120942712,
+            0.0523352175951004
+          ],
+          [
+            -0.054416362196207047,
+            -0.017094997689127922,
+            -0.137530118227005,
+            0.014645393006503582,
+            0.0007273087394423783,
+            0.06265541166067123,
+            0.08796056360006332
+          ],
+          [
+            -0.09562487155199051,
+            -0.10561562329530716,
+            -0.04360470920801163,
+            -0.005037712398916483,
+            -0.041721705347299576,
+            -0.018711969256401062,
+            0.08875229209661484
+          ]
+        ],
+        "intents": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "economic_cost": 233005.14360949708,
+        "step_total_cost": 233005.14360949708,
+        "terminal_settlement_cost": 0.0,
+        "terminal_battery_asset_value": 1563.8799937836302,
+        "terminal_h2_asset_value": 889911.09375,
+        "terminal_undelivered_h2_energy": 33936.66049169922,
+        "voltage_cost": 0.0,
+        "voltage_violation_area": 0.0,
+        "voltage_min_pu": 0.9845189169692297,
+        "voltage_max_pu": 1.0,
+        "pf_converged": true,
+        "pcc_p_kw": [
+          609.0952758789062,
+          -1209.4305419921875,
+          1.52587890625e-05,
+          0.0
+        ],
+        "pcc_q_kvar": [
+          102.457275390625,
+          59.53741455078125,
+          97.49222564697266,
+          122.86869049072266
+        ],
+        "p_el": [
+          1045.0889892578125,
+          1469.28271484375,
+          236.39590454101562,
+          361.75006103515625
+        ],
+        "p_bat": [
+          144.7386016845703,
+          -0.0,
+          -8.511383056640625,
+          -59.30816650390625
+        ],
+        "soc": [
+          0.5892764925956726,
+          0.5,
+          0.43524542450904846,
+          0.21278436481952667
+        ],
+        "p_ht": [
+          -0.0,
+          -0.0,
+          0.0,
+          -175.2311553955078
+        ],
+        "h2_emergency_buy_energy": [
+          0.0,
+          0.0,
+          334.425048828125,
+          498.8462829589844
+        ],
+        "h2_planned_external_order_energy": [
+          0.0,
+          0.0,
+          2872.95166015625,
+          3986.482666015625
+        ],
+        "h2_late_order_energy": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "h2_level": [
+          200.0,
+          200.0,
+          285.0,
+          285.0
+        ],
+        "e_h2_load": [
+          150.88369750976562,
+          99.87191009521484,
+          476.2626037597656,
+          909.2149658203125
+        ],
+        "pending_h2_energy_total": 33936.66015625,
+        "pending_h2_energy_agent": [
+          0.0,
+          0.0,
+          15672.3564453125,
+          18264.302734375
+        ],
+        "external_min_eta": [
+          0.0,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.0
+        ]
+      },
+      {
+        "step": 8,
+        "actions": [
+          [
+            0.04717465490102768,
+            0.077926866710186,
+            -0.010654496029019356,
+            0.002928598551079631,
+            -0.10629266500473022,
+            0.1030610203742981,
+            0.0766008272767067
+          ],
+          [
+            -0.01315333042293787,
+            -0.03377656266093254,
+            -0.011351259425282478,
+            0.0789274051785469,
+            0.004846382420510054,
+            0.002602108521386981,
+            0.045902226120233536
+          ],
+          [
+            -0.05186649039387703,
+            -0.014177058823406696,
+            -0.14310240745544434,
+            0.012327260337769985,
+            0.004446543287485838,
+            0.06577382981777191,
+            0.09696802496910095
+          ],
+          [
+            -0.0918782502412796,
+            -0.09894226491451263,
+            -0.05096542462706566,
+            0.0035495341289788485,
+            -0.04383615031838417,
+            -0.016555925831198692,
+            0.09570334106683731
+          ]
+        ],
+        "intents": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "economic_cost": 284888.7858249245,
+        "step_total_cost": 284888.7858249245,
+        "terminal_settlement_cost": 0.0,
+        "terminal_battery_asset_value": 1608.2981596111495,
+        "terminal_h2_asset_value": 884678.4375,
+        "terminal_undelivered_h2_energy": 37606.68976953125,
+        "voltage_cost": 0.0,
+        "voltage_violation_area": 0.0,
+        "voltage_min_pu": 0.9917564894420497,
+        "voltage_max_pu": 1.0,
+        "pf_converged": true,
+        "pcc_p_kw": [
+          -264.3743896484375,
+          -1248.455322265625,
+          -14.884124755859375,
+          -274.6943359375
+        ],
+        "pcc_q_kvar": [
+          134.6057891845703,
+          75.7667007446289,
+          135.98667907714844,
+          178.7315216064453
+        ],
+        "p_el": [
+          1047.1746826171875,
+          1480.27001953125,
+          237.0333709716797,
+          363.2486877441406
+        ],
+        "p_bat": [
+          155.85372924804688,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "soc": [
+          0.6188886761665344,
+          0.5,
+          0.43524542450904846,
+          0.21278436481952667
+        ],
+        "p_ht": [
+          -0.0,
+          9.692765235900879,
+          0.0,
+          -184.11183166503906
+        ],
+        "h2_emergency_buy_energy": [
+          0.0,
+          0.0,
+          562.228271484375,
+          931.3317260742188
+        ],
+        "h2_planned_external_order_energy": [
+          0.0,
+          0.0,
+          2940.90869140625,
+          3995.24169921875
+        ],
+        "h2_late_order_energy": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "h2_level": [
+          200.0,
+          200.2908172607422,
+          285.0,
+          279.4761047363281
+        ],
+        "e_h2_load": [
+          210.1659698486328,
+          138.1246337890625,
+          704.4483032226562,
+          1351.55517578125
+        ],
+        "pending_h2_energy_total": 37606.6875,
+        "pending_h2_energy_agent": [
+          0.0,
+          0.0,
+          15634.8017578125,
+          21971.88671875
+        ],
+        "external_min_eta": [
+          0.0,
+          0.16666666666666666,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "step": 9,
+        "actions": [
+          [
+            0.04732474684715271,
+            0.07957292348146439,
+            -0.006912386044859886,
+            0.0108206020668149,
+            -0.11041463911533356,
+            0.0986039936542511,
+            0.07938182353973389
+          ],
+          [
+            -0.006107905879616737,
+            -0.047822561115026474,
+            -0.014392589218914509,
+            0.08013223856687546,
+            0.010881837457418442,
+            0.001713242963887751,
+            0.03849111124873161
+          ],
+          [
+            -0.04729533940553665,
+            -0.012535619549453259,
+            -0.1490103304386139,
+            0.010443335399031639,
+            0.007481043692678213,
+            0.07181873172521591,
+            0.1067795604467392
+          ],
+          [
+            -0.08210549503564835,
+            -0.08918556571006775,
+            -0.05422476306557655,
+            0.007494896184653044,
+            -0.04391090199351311,
+            -0.0074229552410542965,
+            0.09300065785646439
+          ]
+        ],
+        "intents": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "economic_cost": 323037.30481298827,
+        "step_total_cost": 323037.30481298827,
+        "terminal_settlement_cost": 0.0,
+        "terminal_battery_asset_value": 1653.6547043822065,
+        "terminal_h2_asset_value": 890854.8046875,
+        "terminal_undelivered_h2_energy": 37625.591861328125,
+        "voltage_cost": 0.0,
+        "voltage_violation_area": 0.0,
+        "voltage_min_pu": 0.9983269628882622,
+        "voltage_max_pu": 1.0011511227098246,
+        "pf_converged": true,
+        "pcc_p_kw": [
+          -1118.90283203125,
+          -1490.1329345703125,
+          -188.6484375,
+          -546.06787109375
+        ],
+        "pcc_q_kvar": [
+          186.23731994628906,
+          111.4747543334961,
+          177.931640625,
+          211.30429077148438
+        ],
+        "p_el": [
+          1047.32470703125,
+          1490.838134765625,
+          238.17616271972656,
+          367.1578063964844
+        ],
+        "p_bat": [
+          159.14584350585938,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "soc": [
+          0.649126410484314,
+          0.5,
+          0.43524542450904846,
+          0.21278436481952667
+        ],
+        "p_ht": [
+          -0.0,
+          21.763675689697266,
+          0.0,
+          -184.42578125
+        ],
+        "h2_emergency_buy_energy": [
+          0.0,
+          0.0,
+          772.6730346679688,
+          1257.917236328125
+        ],
+        "h2_planned_external_order_energy": [
+          0.0,
+          0.0,
+          3483.410888671875,
+          4032.34423828125
+        ],
+        "h2_late_order_energy": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "h2_level": [
+          200.0,
+          200.94378662109375,
+          285.0,
+          285.0
+        ],
+        "e_h2_load": [
+          284.35107421875,
+          222.96273803710938,
+          915.5787353515625,
+          1680.99560546875
+        ],
+        "pending_h2_energy_total": 37625.59375,
+        "pending_h2_energy_agent": [
+          0.0,
+          0.0,
+          15596.484375,
+          22029.107421875
+        ],
+        "external_min_eta": [
+          0.16666666666666666,
+          0.16666666666666666,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "step": 10,
+        "actions": [
+          [
+            0.04533751681447029,
+            0.0774352177977562,
+            0.002263844944536686,
+            0.01971200294792652,
+            -0.1143428161740303,
+            0.09127833694219589,
+            0.0847942978143692
+          ],
+          [
+            -0.0020688348449766636,
+            -0.06595783680677414,
+            -0.018453022465109825,
+            0.08438592404127121,
+            0.0139124421402812,
+            -0.005181378219276667,
+            0.03206861391663551
+          ],
+          [
+            -0.04187802970409393,
+            -0.013472960330545902,
+            -0.15668641030788422,
+            0.016443096101284027,
+            0.01285074558109045,
+            0.08008435368537903,
+            0.12164919823408127
+          ],
+          [
+            -0.06899598240852356,
+            -0.07781626284122467,
+            -0.05348462238907814,
+            0.011081311851739883,
+            -0.04426806792616844,
+            0.0028419839218258858,
+            0.09435245394706726
+          ]
+        ],
+        "intents": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "economic_cost": 348228.5616550293,
+        "step_total_cost": 348228.5616550293,
+        "terminal_settlement_cost": 0.0,
+        "terminal_battery_asset_value": 1697.7927920735965,
+        "terminal_h2_asset_value": 886111.7578125,
+        "terminal_undelivered_h2_energy": 41313.29389941407,
+        "voltage_cost": 0.0,
+        "voltage_violation_area": 0.0,
+        "voltage_min_pu": 0.998779958792526,
+        "voltage_max_pu": 1.009473861673734,
+        "pf_converged": true,
+        "pcc_p_kw": [
+          -2109.002197265625,
+          -1462.531494140625,
+          -329.2369384765625,
+          -803.3114624023438
+        ],
+        "pcc_q_kvar": [
+          226.39675903320312,
+          130.18096923828125,
+          207.85218811035156,
+          207.26272583007812
+        ],
+        "p_el": [
+          1045.3375244140625,
+          1496.896728515625,
+          239.53048706054688,
+          372.401611328125
+        ],
+        "p_bat": [
+          154.8704376220703,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "soc": [
+          0.6785517930984497,
+          0.5,
+          0.43524542450904846,
+          0.21278436481952667
+        ],
+        "p_ht": [
+          -0.0,
+          27.82488441467285,
+          0.0,
+          -185.92588806152344
+        ],
+        "h2_emergency_buy_energy": [
+          0.0,
+          0.0,
+          997.587890625,
+          1274.193603515625
+        ],
+        "h2_planned_external_order_energy": [
+          0.0,
+          0.0,
+          3510.274169921875,
+          4074.04541015625
+        ],
+        "h2_late_order_energy": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "h2_level": [
+          200.0,
+          201.7786102294922,
+          285.0,
+          279.4216613769531
+        ],
+        "e_h2_load": [
+          365.4271545410156,
+          261.11541748046875,
+          1141.30615234375,
+          1702.1805419921875
+        ],
+        "pending_h2_energy_total": 41313.29296875,
+        "pending_h2_energy_agent": [
+          0.0,
+          0.0,
+          15536.064453125,
+          25777.228515625
+        ],
+        "external_min_eta": [
+          0.16666666666666666,
+          0.0,
+          0.0,
+          0.16666666666666666
+        ]
+      },
+      {
+        "step": 11,
+        "actions": [
+          [
+            0.04084325209259987,
+            0.07172466069459915,
+            0.012641928158700466,
+            0.027680110186338425,
+            -0.11479698866605759,
+            0.0791792944073677,
+            0.08682932704687119
+          ],
+          [
+            0.00040037656435742974,
+            -0.08390624076128006,
+            -0.022447915747761726,
+            0.08796082437038422,
+            0.01494678109884262,
+            -0.014134159311652184,
+            0.02571270242333412
+          ],
+          [
+            -0.039140623062849045,
+            -0.017257975414395332,
+            -0.16200299561023712,
+            0.0192046407610178,
+            0.014718372374773026,
+            0.08505970239639282,
+            0.1333736628293991
+          ],
+          [
+            -0.06249410659074783,
+            -0.06730268150568008,
+            -0.05682067200541496,
+            0.01820780150592327,
+            -0.041512761265039444,
+            0.005171627271920443,
+            0.09626246243715286
+          ]
+        ],
+        "intents": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "economic_cost": 386406.3468969727,
+        "step_total_cost": 386406.3468969727,
+        "terminal_settlement_cost": 0.0,
+        "terminal_battery_asset_value": 1738.675996823149,
+        "terminal_h2_asset_value": 881777.9296875,
+        "terminal_undelivered_h2_energy": 47756.99977832032,
+        "voltage_cost": 0.0,
+        "voltage_violation_area": 0.0,
+        "voltage_min_pu": 0.9991987422336954,
+        "voltage_max_pu": 1.0170189360467252,
+        "pf_converged": true,
+        "pcc_p_kw": [
+          -3038.79833984375,
+          -1640.5447998046875,
+          -281.53485107421875,
+          -1050.3233642578125
+        ],
+        "pcc_q_kvar": [
+          224.59326171875,
+          150.51528930664062,
+          282.99908447265625,
+          217.0943145751953
+        ],
+        "p_el": [
+          1040.84326171875,
+          1500.6005859375,
+          240.21484375,
+          375.0023498535156
+        ],
+        "p_bat": [
+          143.44932556152344,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "soc": [
+          0.7058071494102478,
+          0.5,
+          0.43524542450904846,
+          0.21278436481952667
+        ],
+        "p_ht": [
+          -0.0,
+          29.89356231689453,
+          0.0,
+          -174.3535919189453
+        ],
+        "h2_emergency_buy_energy": [
+          0.0,
+          0.0,
+          1389.7393798828125,
+          1378.8302001953125
+        ],
+        "h2_planned_external_order_energy": [
+          0.0,
+          0.0,
+          3526.44384765625,
+          4083.509765625
+        ],
+        "h2_late_order_energy": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "h2_level": [
+          200.0,
+          202.67550659179688,
+          285.0,
+          274.1905212402344
+        ],
+        "e_h2_load": [
+          357.302001953125,
+          307.4789123535156,
+          1533.8682861328125,
+          1796.935302734375
+        ],
+        "pending_h2_energy_total": 47757.0,
+        "pending_h2_energy_agent": [
+          0.0,
+          0.0,
+          18222.94140625,
+          29534.056640625
+        ],
+        "external_min_eta": [
+          0.16666666666666666,
+          0.0,
+          0.0,
+          0.3333333333333333
+        ]
+      },
+      {
+        "step": 12,
+        "actions": [
+          [
+            0.03518228232860565,
+            0.06315194070339203,
+            0.024158552289009094,
+            0.03502263128757477,
+            -0.11279761046171188,
+            0.0640195906162262,
+            0.08717980235815048
+          ],
+          [
+            0.0011168899945914745,
+            -0.100394107401371,
+            -0.02636212669312954,
+            0.09085211902856827,
+            0.014061380177736282,
+            -0.025041626766324043,
+            0.020215114578604698
+          ],
+          [
+            -0.03598659113049507,
+            -0.024430016055703163,
+            -0.16823044419288635,
+            0.029398726299405098,
+            0.017476730048656464,
+            0.09396476298570633,
+            0.14939193427562714
+          ],
+          [
+            -0.05909974128007889,
+            -0.06140822172164917,
+            -0.05961766466498375,
+            0.024260731413960457,
+            -0.03836249187588692,
+            0.0036569295916706324,
+            0.09703201055526733
+          ]
+        ],
+        "intents": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "economic_cost": 396874.8521033325,
+        "step_total_cost": 396874.8521033325,
+        "terminal_settlement_cost": 0.0,
+        "terminal_battery_asset_value": 1774.6724826285208,
+        "terminal_h2_asset_value": 893430.0,
+        "terminal_undelivered_h2_energy": 47980.44470214844,
+        "voltage_cost": 0.0,
+        "voltage_violation_area": 0.0,
+        "voltage_min_pu": 0.9993991063106656,
+        "voltage_max_pu": 1.0206284582852736,
+        "pf_converged": true,
+        "pcc_p_kw": [
+          -3429.928466796875,
+          -1855.812744140625,
+          -275.387451171875,
+          -1128.9593505859375
+        ],
+        "pcc_q_kvar": [
+          229.09454345703125,
+          161.2832489013672,
+          357.8376770019531,
+          227.9199676513672
+        ],
+        "p_el": [
+          1035.1822509765625,
+          1501.67529296875,
+          241.00335693359375,
+          376.360107421875
+        ],
+        "p_bat": [
+          126.30387878417969,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "soc": [
+          0.7298048734664917,
+          0.5,
+          0.43524542450904846,
+          0.21278436481952667
+        ],
+        "p_ht": [
+          -0.0,
+          28.122760772705078,
+          0.0,
+          -161.12246704101562
+        ],
+        "h2_emergency_buy_energy": [
+          0.0,
+          0.0,
+          1806.4873046875,
+          1415.75390625
+        ],
+        "h2_planned_external_order_energy": [
+          0.0,
+          0.0,
+          3555.3857421875,
+          4077.3564453125
+        ],
+        "h2_late_order_energy": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "h2_level": [
+          200.0,
+          203.51927185058594,
+          285.0,
+          285.0
+        ],
+        "e_h2_load": [
+          358.834716796875,
+          336.9229431152344,
+          1951.08935546875,
+          1821.5103759765625
+        ],
+        "pending_h2_energy_total": 47980.44140625,
+        "pending_h2_energy_agent": [
+          0.0,
+          0.0,
+          18321.20703125,
+          29659.234375
+        ],
+        "external_min_eta": [
+          0.16666666666666666,
+          0.0,
+          0.0,
+          0.16666666666666666
+        ]
+      },
+      {
+        "step": 13,
+        "actions": [
+          [
+            0.02855454385280609,
+            0.05185168609023094,
+            0.036143429577350616,
+            0.04101913794875145,
+            -0.1086486279964447,
+            0.04690510779619217,
+            0.08627907186746597
+          ],
+          [
+            -9.269919246435165e-06,
+            -0.11446850001811981,
+            -0.029869839549064636,
+            0.0937061756849289,
+            0.011034894734621048,
+            -0.036897674202919006,
+            0.01617329567670822
+          ],
+          [
+            -0.03416841849684715,
+            -0.030518122017383575,
+            -0.16903065145015717,
+            0.037748418748378754,
+            0.018358947709202766,
+            0.09564661234617233,
+            0.1585603952407837
+          ],
+          [
+            -0.05405787378549576,
+            -0.05494013801217079,
+            -0.062131598591804504,
+            0.03303047642111778,
+            -0.031795743852853775,
+            -0.0013418880989775062,
+            0.10017456114292145
+          ]
+        ],
+        "intents": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "economic_cost": 393610.84115600586,
+        "step_total_cost": 393610.84115600586,
+        "terminal_settlement_cost": 0.0,
+        "terminal_battery_asset_value": 1804.2280502092035,
+        "terminal_h2_asset_value": 890085.8203125,
+        "terminal_undelivered_h2_energy": 54988.91283691406,
+        "voltage_cost": 0.0,
+        "voltage_violation_area": 0.0,
+        "voltage_min_pu": 0.999559988011893,
+        "voltage_max_pu": 1.0234246810866143,
+        "pf_converged": true,
+        "pcc_p_kw": [
+          -3531.191650390625,
+          -1919.9857177734375,
+          -366.80670166015625,
+          -1244.1832275390625
+        ],
+        "pcc_q_kvar": [
+          198.31002807617188,
+          133.93861389160156,
+          309.83123779296875,
+          206.71144104003906
+        ],
+        "p_el": [
+          1028.5545654296875,
+          1499.986083984375,
+          241.45790100097656,
+          378.3768615722656
+        ],
+        "p_bat": [
+          103.703369140625,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "soc": [
+          0.7495085000991821,
+          0.5,
+          0.43524542450904846,
+          0.21278436481952667
+        ],
+        "p_ht": [
+          -0.0,
+          22.06978988647461,
+          0.0,
+          -133.54212951660156
+        ],
+        "h2_emergency_buy_energy": [
+          0.0,
+          0.0,
+          1567.7294921875,
+          1301.6650390625
+        ],
+        "h2_planned_external_order_energy": [
+          0.0,
+          0.0,
+          3560.8515625,
+          4057.048583984375
+        ],
+        "h2_late_order_energy": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "h2_level": [
+          200.0,
+          204.18142700195312,
+          285.0,
+          280.99334716796875
+        ],
+        "e_h2_load": [
+          332.7169494628906,
+          271.6446838378906,
+          1712.604248046875,
+          1681.152099609375
+        ],
+        "pending_h2_energy_total": 54988.91015625,
+        "pending_h2_energy_agent": [
+          0.0,
+          0.0,
+          21597.19140625,
+          33391.71875
+        ],
+        "external_min_eta": [
+          0.16666666666666666,
+          0.0,
+          0.0,
+          0.16666666666666666
+        ]
+      },
+      {
+        "step": 14,
+        "actions": [
+          [
+            0.021234093233942986,
+            0.038396790623664856,
+            0.04906238988041878,
+            0.045664262026548386,
+            -0.10328847914934158,
+            0.02875271625816822,
+            0.08523815870285034
+          ],
+          [
+            -0.002880532993003726,
+            -0.12582366168498993,
+            -0.032863546162843704,
+            0.0973655954003334,
+            0.0062116580083966255,
+            -0.04882240295410156,
+            0.014307158999145031
+          ],
+          [
+            -0.035402506589889526,
+            -0.0385272279381752,
+            -0.1678844839334488,
+            0.04592064395546913,
+            0.019782746210694313,
+            0.09578926116228104,
+            0.16512972116470337
+          ],
+          [
+            -0.05266845226287842,
+            -0.05165936425328255,
+            -0.0660790354013443,
+            0.04183141514658928,
+            -0.025941789150238037,
+            -0.007008234038949013,
+            0.1073436588048935
+          ]
+        ],
+        "intents": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "economic_cost": 306749.07268218993,
+        "step_total_cost": 306749.07268218993,
+        "terminal_settlement_cost": 0.0,
+        "terminal_battery_asset_value": 1826.1139885788725,
+        "terminal_h2_asset_value": 894464.765625,
+        "terminal_undelivered_h2_energy": 58356.57763208008,
+        "voltage_cost": 0.0,
+        "voltage_violation_area": 0.0,
+        "voltage_min_pu": 0.9995825791433453,
+        "voltage_max_pu": 1.02346605257473,
+        "pf_converged": true,
+        "pcc_p_kw": [
+          -3292.307861328125,
+          -2143.2919921875,
+          -231.25192260742188,
+          -1305.5272216796875
+        ],
+        "pcc_q_kvar": [
+          204.09439086914062,
+          100.85406494140625,
+          193.32383728027344,
+          167.1547088623047
+        ],
+        "p_el": [
+          1021.2340698242188,
+          1495.67919921875,
+          241.1493682861328,
+          378.9326171875
+        ],
+        "p_bat": [
+          76.7935791015625,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "soc": [
+          0.7640992999076843,
+          0.5,
+          0.43524542450904846,
+          0.21278436481952667
+        ],
+        "p_ht": [
+          -0.0,
+          12.42331600189209,
+          0.0,
+          -108.95551300048828
+        ],
+        "h2_emergency_buy_energy": [
+          0.0,
+          0.0,
+          847.3206176757812,
+          934.61669921875
+        ],
+        "h2_planned_external_order_energy": [
+          0.0,
+          0.0,
+          3169.83935546875,
+          4034.029052734375
+        ],
+        "h2_late_order_energy": [
+          0.0,
+          0.0,
+          3561.315185546875,
+          4034.029052734375
+        ],
+        "h2_level": [
+          200.0,
+          204.55416870117188,
+          285.0,
+          285.0
+        ],
+        "e_h2_load": [
+          323.3879699707031,
+          190.98684692382812,
+          992.01025390625,
+          1289.87841796875
+        ],
+        "pending_h2_energy_total": 58356.578125,
+        "pending_h2_energy_agent": [
+          0.0,
+          0.0,
+          24876.732421875,
+          33479.84375
+        ],
+        "external_min_eta": [
+          0.16666666666666666,
+          0.0,
+          0.0,
+          0.16666666666666666
+        ]
+      },
+      {
+        "step": 15,
+        "actions": [
+          [
+            0.012750768102705479,
+            0.022820070385932922,
+            0.06020943447947502,
+            0.04772370308637619,
+            -0.09442682564258575,
+            0.007696525193750858,
+            0.08038541674613953
+          ],
+          [
+            -0.005599512718617916,
+            -0.1318543404340744,
+            -0.03404129296541214,
+            0.09958827495574951,
+            0.0006482464959844947,
+            -0.059332117438316345,
+            0.013324454426765442
+          ],
+          [
+            -0.036709368228912354,
+            -0.047693125903606415,
+            -0.16477349400520325,
+            0.0568864643573761,
+            0.019682805985212326,
+            0.09558828175067902,
+            0.17026790976524353
+          ],
+          [
+            -0.05150487646460533,
+            -0.048663899302482605,
+            -0.07093854993581772,
+            0.04938458651304245,
+            -0.021778805181384087,
+            -0.015410684049129486,
+            0.10859223455190659
+          ]
+        ],
+        "intents": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "economic_cost": 270790.1273699951,
+        "step_total_cost": 270790.1273699951,
+        "terminal_settlement_cost": 0.0,
+        "terminal_battery_asset_value": 1839.121508626995,
+        "terminal_h2_asset_value": 894503.671875,
+        "terminal_undelivered_h2_energy": 55286.88419262695,
+        "voltage_cost": 0.0,
+        "voltage_violation_area": 0.0,
+        "voltage_min_pu": 0.9995159442615433,
+        "voltage_max_pu": 1.0220268799150245,
+        "pf_converged": true,
+        "pcc_p_kw": [
+          -3079.7724609375,
+          -2211.30078125,
+          -312.2633056640625,
+          -1109.83251953125
+        ],
+        "pcc_q_kvar": [
+          189.4739532470703,
+          98.28485870361328,
+          143.54005432128906,
+          163.76986694335938
+        ],
+        "p_el": [
+          1012.7507934570312,
+          1491.6007080078125,
+          240.82266235351562,
+          379.3980407714844
+        ],
+        "p_bat": [
+          45.640140533447266,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "soc": [
+          0.7727709412574768,
+          0.5,
+          0.43524542450904846,
+          0.21278436481952667
+        ],
+        "p_ht": [
+          -0.0,
+          1.2964929342269897,
+          0.0,
+          -91.47098541259766
+        ],
+        "h2_emergency_buy_energy": [
+          0.0,
+          0.0,
+          593.4171142578125,
+          919.7392578125
+        ],
+        "h2_planned_external_order_energy": [
+          0.0,
+          0.0,
+          3149.834716796875,
+          3999.894287109375
+        ],
+        "h2_late_order_energy": [
+          0.0,
+          0.0,
+          3560.662109375,
+          3999.894287109375
+        ],
+        "h2_level": [
+          200.0,
+          204.5930633544922,
+          285.0,
+          285.0
+        ],
+        "e_h2_load": [
+          298.09814453125,
+          191.62567138671875,
+          737.9107055664062,
+          1257.8189697265625
+        ],
+        "pending_h2_energy_total": 55286.8828125,
+        "pending_h2_energy_agent": [
+          0.0,
+          0.0,
+          25489.73046875,
+          29797.15234375
+        ],
+        "external_min_eta": [
+          0.16666666666666666,
+          0.0,
+          0.0,
+          0.3333333333333333
+        ]
+      },
+      {
+        "step": 16,
+        "actions": [
+          [
+            0.005689424928277731,
+            0.006875681225210428,
+            0.07115647196769714,
+            0.04836868494749069,
+            -0.08603814989328384,
+            -0.011041311547160149,
+            0.07700209319591522
+          ],
+          [
+            -0.011864020489156246,
+            -0.13680881261825562,
+            -0.03537837043404579,
+            0.10238480567932129,
+            -0.007132049184292555,
+            -0.07061304152011871,
+            0.014641444198787212
+          ],
+          [
+            -0.03928356245160103,
+            -0.05645816773176193,
+            -0.1633445769548416,
+            0.06452877074480057,
+            0.01714496500790119,
+            0.09501547366380692,
+            0.171530619263649
+          ],
+          [
+            -0.052363719791173935,
+            -0.05057336762547493,
+            -0.0741858184337616,
+            0.054542284458875656,
+            -0.02143743820488453,
+            -0.029105249792337418,
+            0.11295638978481293
+          ]
+        ],
+        "intents": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "economic_cost": 303543.3366421509,
+        "step_total_cost": 303543.3366421509,
+        "terminal_settlement_cost": 0.0,
+        "terminal_battery_asset_value": 1843.0408447202353,
+        "terminal_h2_asset_value": 894503.671875,
+        "terminal_undelivered_h2_energy": 58488.6212770996,
+        "voltage_cost": 0.0,
+        "voltage_violation_area": 0.0,
+        "voltage_min_pu": 0.9991036627748193,
+        "voltage_max_pu": 1.0148365857237767,
+        "pf_converged": true,
+        "pcc_p_kw": [
+          -2362.6845703125,
+          -1914.8792724609375,
+          -548.9066772460938,
+          -688.8722534179688
+        ],
+        "pcc_q_kvar": [
+          183.17694091796875,
+          95.19117736816406,
+          162.30584716796875,
+          176.4013214111328
+        ],
+        "p_el": [
+          1005.689453125,
+          1482.2039794921875,
+          240.17910766601562,
+          379.05450439453125
+        ],
+        "p_bat": [
+          13.751362800598145,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "soc": [
+          0.775383710861206,
+          0.5,
+          0.43524542450904846,
+          0.21278436481952667
+        ],
+        "p_ht": [
+          -0.0,
+          -0.0,
+          0.0,
+          -90.03723907470703
+        ],
+        "h2_emergency_buy_energy": [
+          0.0,
+          0.0,
+          727.2720336914062,
+          1035.8282470703125
+        ],
+        "h2_planned_external_order_energy": [
+          0.0,
+          0.0,
+          3152.195556640625,
+          3944.260009765625
+        ],
+        "h2_late_order_energy": [
+          0.0,
+          0.0,
+          3558.800537109375,
+          3944.260009765625
+        ],
+        "h2_level": [
+          200.0,
+          204.5930633544922,
+          285.0,
+          285.0
+        ],
+        "e_h2_load": [
+          297.3777160644531,
+          178.9867706298828,
+          871.3795166015625,
+          1372.2508544921875
+        ],
+        "pending_h2_energy_total": 58488.6171875,
+        "pending_h2_energy_agent": [
+          0.0,
+          0.0,
+          28770.33203125,
+          29718.287109375
+        ],
+        "external_min_eta": [
+          0.3333333333333333,
+          0.16666666666666666,
+          0.0,
+          0.3333333333333333
+        ]
+      },
+      {
+        "step": 17,
+        "actions": [
+          [
+            -0.0014208636712282896,
+            -0.00858274009078741,
+            0.08289484679698944,
+            0.047583386301994324,
+            -0.07768408209085464,
+            -0.026832444593310356,
+            0.07493921369314194
+          ],
+          [
+            -0.021952394396066666,
+            -0.140256866812706,
+            -0.0368209183216095,
+            0.1062851995229721,
+            -0.017032058909535408,
+            -0.08341390639543533,
+            0.018676290288567543
+          ],
+          [
+            -0.043427009135484695,
+            -0.06544601172208786,
+            -0.16475601494312286,
+            0.0732177346944809,
+            0.013715734705328941,
+            0.09696442633867264,
+            0.1736859381198883
+          ],
+          [
+            -0.05914382264018059,
+            -0.05711502209305763,
+            -0.07824132591485977,
+            0.05809006094932556,
+            -0.020259803161025047,
+            -0.04471174627542496,
+            0.1185322031378746
+          ]
+        ],
+        "intents": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "economic_cost": 322738.38734680176,
+        "step_total_cost": 322738.38734680176,
+        "terminal_settlement_cost": 0.0,
+        "terminal_battery_asset_value": 1843.0408447202353,
+        "terminal_h2_asset_value": 891950.91796875,
+        "terminal_undelivered_h2_energy": 62646.438268310536,
+        "voltage_cost": 0.0,
+        "voltage_violation_area": 0.0,
+        "voltage_min_pu": 0.9984744216558378,
+        "voltage_max_pu": 1.0041531939621704,
+        "pf_converged": true,
+        "pcc_p_kw": [
+          -1168.2567138671875,
+          -1558.268310546875,
+          -718.8353881835938,
+          -294.67254638671875
+        ],
+        "pcc_q_kvar": [
+          185.91783142089844,
+          93.11912536621094,
+          177.32940673828125,
+          204.5642852783203
+        ],
+        "p_el": [
+          998.5791625976562,
+          1467.0714111328125,
+          239.14324951171875,
+          376.34246826171875
+        ],
+        "p_bat": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "soc": [
+          0.775383710861206,
+          0.5,
+          0.43524542450904846,
+          0.21278436481952667
+        ],
+        "p_ht": [
+          -0.0,
+          -0.0,
+          0.0,
+          -85.09117126464844
+        ],
+        "h2_emergency_buy_energy": [
+          0.0,
+          0.0,
+          771.2077026367188,
+          1286.12158203125
+        ],
+        "h2_planned_external_order_energy": [
+          0.0,
+          0.0,
+          3154.528564453125,
+          3880.8583984375
+        ],
+        "h2_late_order_energy": [
+          0.0,
+          0.0,
+          3565.134521484375,
+          3880.8583984375
+        ],
+        "h2_level": [
+          200.0,
+          204.5930633544922,
+          285.0,
+          282.447021484375
+        ],
+        "e_h2_load": [
+          288.3995361328125,
+          174.5757598876953,
+          914.6936645507812,
+          1615.8353271484375
+        ],
+        "pending_h2_energy_total": 62646.43359375,
+        "pending_h2_energy_agent": [
+          0.0,
+          0.0,
+          29357.7578125,
+          33288.67578125
+        ],
+        "external_min_eta": [
+          0.16666666666666666,
+          0.3333333333333333,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "step": 18,
+        "actions": [
+          [
+            -0.006930058356374502,
+            -0.020642906427383423,
+            0.09451095014810562,
+            0.04548672214150429,
+            -0.07355736196041107,
+            -0.03518074005842209,
+            0.07778484374284744
+          ],
+          [
+            -0.0354321151971817,
+            -0.14446508884429932,
+            -0.03913033753633499,
+            0.11429378390312195,
+            -0.028399880975484848,
+            -0.09873738884925842,
+            0.0263412743806839
+          ],
+          [
+            -0.04813476651906967,
+            -0.07258525490760803,
+            -0.1692253053188324,
+            0.08109334856271744,
+            0.010376214049756527,
+            0.0997006818652153,
+            0.17411132156848907
+          ],
+          [
+            -0.06933464854955673,
+            -0.07085877656936646,
+            -0.08178242295980453,
+            0.05909409373998642,
+            -0.021476013585925102,
+            -0.060616374015808105,
+            0.12639625370502472
+          ]
+        ],
+        "intents": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "economic_cost": 307632.2239996338,
+        "step_total_cost": 307632.2239996338,
+        "terminal_settlement_cost": 0.0,
+        "terminal_battery_asset_value": 1812.1020251314621,
+        "terminal_h2_asset_value": 894503.671875,
+        "terminal_undelivered_h2_energy": 62577.055037597645,
+        "voltage_cost": 0.0,
+        "voltage_violation_area": 0.0,
+        "voltage_min_pu": 0.9931852611480013,
+        "voltage_max_pu": 1.0,
+        "pf_converged": true,
+        "pcc_p_kw": [
+          156.87315368652344,
+          -1423.5928955078125,
+          -986.0263061523438,
+          125.93157196044922
+        ],
+        "pcc_q_kvar": [
+          187.6407470703125,
+          105.96337890625,
+          169.53065490722656,
+          204.98516845703125
+        ],
+        "p_el": [
+          993.0699462890625,
+          1446.851806640625,
+          237.96630859375,
+          372.2661437988281
+        ],
+        "p_bat": [
+          -41.28581237792969,
+          -0.0,
+          -0.0,
+          -56.68701934814453
+        ],
+        "soc": [
+          0.7666919827461243,
+          0.5,
+          0.43524542450904846,
+          0.18294909596443176
+        ],
+        "p_ht": [
+          -0.0,
+          -0.0,
+          0.0,
+          -90.19925689697266
+        ],
+        "h2_emergency_buy_energy": [
+          0.0,
+          0.0,
+          741.0488891601562,
+          1277.921630859375
+        ],
+        "h2_planned_external_order_energy": [
+          0.0,
+          0.0,
+          3185.778564453125,
+          3816.24609375
+        ],
+        "h2_late_order_energy": [
+          0.0,
+          0.0,
+          3574.02734375,
+          3816.24609375
+        ],
+        "h2_level": [
+          200.0,
+          204.5930633544922,
+          285.0,
+          285.0
+        ],
+        "e_h2_load": [
+          306.9000549316406,
+          213.99221801757812,
+          883.8286743164062,
+          1610.0938720703125
+        ],
+        "pending_h2_energy_total": 62577.0546875,
+        "pending_h2_energy_agent": [
+          0.0,
+          0.0,
+          29456.654296875,
+          33120.3984375
+        ],
+        "external_min_eta": [
+          0.0,
+          0.16666666666666666,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "step": 19,
+        "actions": [
+          [
+            -0.01300769206136465,
+            -0.03336157649755478,
+            0.10402548313140869,
+            0.04215594008564949,
+            -0.07288121432065964,
+            -0.0435795858502388,
+            0.0808778777718544
+          ],
+          [
+            -0.04925176501274109,
+            -0.14911219477653503,
+            -0.04069874435663223,
+            0.12472362816333771,
+            -0.03943434730172157,
+            -0.11824434995651245,
+            0.036111220717430115
+          ],
+          [
+            -0.0524321123957634,
+            -0.07885681092739105,
+            -0.17453178763389587,
+            0.0857885405421257,
+            0.006703728344291449,
+            0.10529470443725586,
+            0.17509494721889496
+          ],
+          [
+            -0.08130048960447311,
+            -0.08881979435682297,
+            -0.08447443693876266,
+            0.062116317451000214,
+            -0.02392921969294548,
+            -0.08392086625099182,
+            0.13734164834022522
+          ]
+        ],
+        "intents": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "economic_cost": 331324.9720903015,
+        "step_total_cost": 331324.9720903015,
+        "terminal_settlement_cost": 0.0,
+        "terminal_battery_asset_value": 1768.592648402555,
+        "terminal_h2_asset_value": 894503.671875,
+        "terminal_undelivered_h2_energy": 62400.99916284178,
+        "voltage_cost": 0.0,
+        "voltage_violation_area": 0.0,
+        "voltage_min_pu": 0.9831709177204725,
+        "voltage_max_pu": 1.0,
+        "pf_converged": true,
+        "pcc_p_kw": [
+          1148.5848388671875,
+          -1220.902099609375,
+          -1054.5411376953125,
+          495.94305419921875
+        ],
+        "pcc_q_kvar": [
+          221.3323516845703,
+          130.55357360839844,
+          213.4951171875,
+          214.97802734375
+        ],
+        "p_el": [
+          986.9923095703125,
+          1426.122314453125,
+          236.8919677734375,
+          367.47979736328125
+        ],
+        "p_bat": [
+          -66.72315216064453,
+          -0.0,
+          -0.0,
+          -71.05583190917969
+        ],
+        "soc": [
+          0.7526450157165527,
+          0.5,
+          0.43524542450904846,
+          0.14555129408836365
+        ],
+        "p_ht": [
+          -0.0,
+          -0.0,
+          0.0,
+          -100.50272369384766
+        ],
+        "h2_emergency_buy_energy": [
+          0.0,
+          0.0,
+          1015.0835571289062,
+          1398.8321533203125
+        ],
+        "h2_planned_external_order_energy": [
+          0.0,
+          0.0,
+          3259.806640625,
+          3721.571533203125
+        ],
+        "h2_late_order_energy": [
+          0.0,
+          0.0,
+          3592.207763671875,
+          3721.571533203125
+        ],
+        "h2_level": [
+          200.0,
+          204.5930633544922,
+          285.0,
+          285.0
+        ],
+        "e_h2_load": [
+          358.4935607910156,
+          269.2809143066406,
+          1157.21875,
+          1738.19677734375
+        ],
+        "pending_h2_energy_total": 62401.0,
+        "pending_h2_energy_agent": [
+          0.0,
+          0.0,
+          29545.330078125,
+          32855.66796875
+        ],
+        "external_min_eta": [
+          0.0,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.0
+        ]
+      },
+      {
+        "step": 20,
+        "actions": [
+          [
+            -0.016019979491829872,
+            -0.04085438698530197,
+            0.1091969832777977,
+            0.037175700068473816,
+            -0.07253161817789078,
+            -0.04603156819939613,
+            0.08373149484395981
+          ],
+          [
+            -0.06101742759346962,
+            -0.14925168454647064,
+            -0.0396348275244236,
+            0.13174861669540405,
+            -0.049435000866651535,
+            -0.13136741518974304,
+            0.045419689267873764
+          ],
+          [
+            -0.05620404705405235,
+            -0.08421353250741959,
+            -0.17917871475219727,
+            0.09060106426477432,
+            0.001917194458656013,
+            0.10851980745792389,
+            0.1738746017217636
+          ],
+          [
+            -0.08919860422611237,
+            -0.10336598008871078,
+            -0.08233235776424408,
+            0.057547297328710556,
+            -0.027614165097475052,
+            -0.09245318174362183,
+            0.1409442275762558
+          ]
+        ],
+        "intents": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "economic_cost": 400935.0361682129,
+        "step_total_cost": 400935.0361682129,
+        "terminal_settlement_cost": 0.0,
+        "terminal_battery_asset_value": 1716.676533058344,
+        "terminal_h2_asset_value": 894503.671875,
+        "terminal_undelivered_h2_energy": 62226.3636467285,
+        "voltage_cost": 0.0,
+        "voltage_violation_area": 0.0,
+        "voltage_min_pu": 0.9725187849109581,
+        "voltage_max_pu": 1.0,
+        "pf_converged": true,
+        "pcc_p_kw": [
+          1569.4248046875,
+          -1092.6131591796875,
+          -428.3863220214844,
+          753.35791015625
+        ],
+        "pcc_q_kvar": [
+          268.53009033203125,
+          175.3095245361328,
+          348.1011657714844,
+          256.47076416015625
+        ],
+        "p_el": [
+          983.9800415039062,
+          1408.473876953125,
+          235.94898986816406,
+          364.320556640625
+        ],
+        "p_bat": [
+          -81.70877075195312,
+          -0.0,
+          -0.0,
+          -82.69278717041016
+        ],
+        "soc": [
+          0.7354431748390198,
+          0.5,
+          0.43524542450904846,
+          0.10202877223491669
+        ],
+        "p_ht": [
+          -0.0,
+          -0.0,
+          0.0,
+          -115.9794921875
+        ],
+        "h2_emergency_buy_energy": [
+          0.0,
+          0.0,
+          1807.618896484375,
+          1717.68017578125
+        ],
+        "h2_planned_external_order_energy": [
+          0.0,
+          0.0,
+          3344.457763671875,
+          3686.908935546875
+        ],
+        "h2_late_order_energy": [
+          0.0,
+          0.0,
+          3602.689208984375,
+          3686.908935546875
+        ],
+        "h2_level": [
+          200.0,
+          204.5930633544922,
+          285.0,
+          285.0
+        ],
+        "e_h2_load": [
+          430.5545959472656,
+          358.79022216796875,
+          1949.1883544921875,
+          2070.468017578125
+        ],
+        "pending_h2_energy_total": 62226.36328125,
+        "pending_h2_energy_agent": [
+          0.0,
+          0.0,
+          29706.072265625,
+          32520.291015625
+        ],
+        "external_min_eta": [
+          0.0,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.0
+        ]
+      },
+      {
+        "step": 21,
+        "actions": [
+          [
+            -0.017254654318094254,
+            -0.0454629547894001,
+            0.10946140438318253,
+            0.030405906960368156,
+            -0.0703740045428276,
+            -0.04651472344994545,
+            0.08265271782875061
+          ],
+          [
+            -0.0671224519610405,
+            -0.14114157855510712,
+            -0.035715457051992416,
+            0.1342361718416214,
+            -0.05571052059531212,
+            -0.13638298213481903,
+            0.05260021239519119
+          ],
+          [
+            -0.060200035572052,
+            -0.08714611083269119,
+            -0.17676644027233124,
+            0.09241877496242523,
+            -0.003118370659649372,
+            0.10738539695739746,
+            0.16845211386680603
+          ],
+          [
+            -0.09340206533670425,
+            -0.10736868530511856,
+            -0.07606426626443863,
+            0.05465012788772583,
+            -0.02561444602906704,
+            -0.10153736919164658,
+            0.14091216027736664
+          ]
+        ],
+        "intents": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "economic_cost": 418886.502628479,
+        "step_total_cost": 418886.502628479,
+        "terminal_settlement_cost": 0.0,
+        "terminal_battery_asset_value": 1686.74596546276,
+        "terminal_h2_asset_value": 894503.671875,
+        "terminal_undelivered_h2_energy": 61991.84649633788,
+        "voltage_cost": 0.0,
+        "voltage_violation_area": 0.0,
+        "voltage_min_pu": 0.9695658552202928,
+        "voltage_max_pu": 1.0,
+        "pf_converged": true,
+        "pcc_p_kw": [
+          1664.8883056640625,
+          -1161.7469482421875,
+          -285.9737548828125,
+          935.4650268554688
+        ],
+        "pcc_q_kvar": [
+          303.43988037109375,
+          187.2261962890625,
+          344.73284912109375,
+          290.5249328613281
+        ],
+        "p_el": [
+          982.745361328125,
+          1399.3162841796875,
+          234.9499969482422,
+          362.63916015625
+        ],
+        "p_bat": [
+          -90.92591094970703,
+          -0.0,
+          -0.0,
+          -3.8546671867370605
+        ],
+        "soc": [
+          0.716300904750824,
+          0.5,
+          0.43524542450904846,
+          0.10000000149011612
+        ],
+        "p_ht": [
+          -0.0,
+          -0.0,
+          -10.602459907531738,
+          -107.58067321777344
+        ],
+        "h2_emergency_buy_energy": [
+          0.0,
+          0.0,
+          1680.462158203125,
+          2127.7041015625
+        ],
+        "h2_planned_external_order_energy": [
+          0.0,
+          0.0,
+          3415.0615234375,
+          3650.004638671875
+        ],
+        "h2_late_order_energy": [
+          0.0,
+          0.0,
+          3599.00244140625,
+          3650.004638671875
+        ],
+        "h2_level": [
+          200.0,
+          204.5930633544922,
+          285.0,
+          285.0
+        ],
+        "e_h2_load": [
+          503.98095703125,
+          397.8164978027344,
+          1832.03466796875,
+          2471.000244140625
+        ],
+        "pending_h2_energy_total": 61991.84375,
+        "pending_h2_energy_agent": [
+          0.0,
+          0.0,
+          29835.51953125,
+          32156.326171875
+        ],
+        "external_min_eta": [
+          0.0,
+          0.0,
+          0.16666666666666666,
+          0.0
+        ]
+      },
+      {
+        "step": 22,
+        "actions": [
+          [
+            -0.014592415653169155,
+            -0.044218819588422775,
+            0.10459957271814346,
+            0.021962173283100128,
+            -0.06821032613515854,
+            -0.039072200655937195,
+            0.08107881247997284
+          ],
+          [
+            -0.07080144435167313,
+            -0.12720897793769836,
+            -0.030637184157967567,
+            0.13266712427139282,
+            -0.05961446464061737,
+            -0.13145340979099274,
+            0.05856453999876976
+          ],
+          [
+            -0.06523241847753525,
+            -0.08600873500108719,
+            -0.1718692183494568,
+            0.09014000743627548,
+            -0.00725984713062644,
+            0.10124212503433228,
+            0.15741463005542755
+          ],
+          [
+            -0.10067684203386307,
+            -0.11302628368139267,
+            -0.06924261897802353,
+            0.04562656953930855,
+            -0.02938050590455532,
+            -0.10119353979825974,
+            0.14051495492458344
+          ]
+        ],
+        "intents": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "economic_cost": 362597.6620883789,
+        "step_total_cost": 362597.6620883789,
+        "terminal_settlement_cost": 0.0,
+        "terminal_battery_asset_value": 1658.8181323217577,
+        "terminal_h2_asset_value": 894503.671875,
+        "terminal_undelivered_h2_energy": 60683.77617041015,
+        "voltage_cost": 0.0,
+        "voltage_violation_area": 0.0,
+        "voltage_min_pu": 0.9738793210825389,
+        "voltage_max_pu": 1.0,
+        "pf_converged": true,
+        "pcc_p_kw": [
+          1514.634033203125,
+          -1340.9326171875,
+          -361.4237060546875,
+          819.2158813476562
+        ],
+        "pcc_q_kvar": [
+          247.55226135253906,
+          149.86093139648438,
+          265.66278076171875,
+          254.04881286621094
+        ],
+        "p_el": [
+          985.4075927734375,
+          1393.7978515625,
+          233.69189453125,
+          359.729248046875
+        ],
+        "p_bat": [
+          -88.43763732910156,
+          -0.0,
+          -0.0,
+          -2.8312206268310547e-06
+        ],
+        "soc": [
+          0.6976824402809143,
+          0.5,
+          0.43524542450904846,
+          0.10000000149011612
+        ],
+        "p_ht": [
+          -0.0,
+          -0.0,
+          -24.68347930908203,
+          -123.39812469482422
+        ],
+        "h2_emergency_buy_energy": [
+          0.0,
+          0.0,
+          1251.2559814453125,
+          1746.31640625
+        ],
+        "h2_planned_external_order_energy": [
+          0.0,
+          0.0,
+          3285.433837890625,
+          3651.401123046875
+        ],
+        "h2_late_order_energy": [
+          0.0,
+          0.0,
+          3579.03662109375,
+          3651.401123046875
+        ],
+        "h2_level": [
+          200.0,
+          204.5930633544922,
+          285.0,
+          285.0
+        ],
+        "e_h2_load": [
+          396.1825256347656,
+          313.05194091796875,
+          1416.1546630859375,
+          2103.53857421875
+        ],
+        "pending_h2_energy_total": 60683.77734375,
+        "pending_h2_energy_agent": [
+          0.0,
+          0.0,
+          28842.224609375,
+          31841.552734375
+        ],
+        "external_min_eta": [
+          0.0,
+          0.0,
+          0.16666666666666666,
+          0.0
+        ]
+      },
+      {
+        "step": 23,
+        "actions": [
+          [
+            -0.010916625149548054,
+            -0.03998761251568794,
+            0.09380561113357544,
+            0.012130334042012691,
+            -0.06508029997348785,
+            -0.028325490653514862,
+            0.07592616230249405
+          ],
+          [
+            -0.07038644701242447,
+            -0.10797706991434097,
+            -0.024692842736840248,
+            0.12766894698143005,
+            -0.059853918850421906,
+            -0.1208251416683197,
+            0.06318100541830063
+          ],
+          [
+            -0.06987234205007553,
+            -0.08213860541582108,
+            -0.1648929864168167,
+            0.08259125053882599,
+            -0.00923105701804161,
+            0.09256032109260559,
+            0.14381158351898193
+          ],
+          [
+            -0.10272479057312012,
+            -0.11610235273838043,
+            -0.061345309019088745,
+            0.03343471512198448,
+            -0.02840994857251644,
+            -0.09603778272867203,
+            0.12652994692325592
+          ]
+        ],
+        "intents": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "economic_cost": 315543.0654535866,
+        "step_total_cost": -18970.14567738067,
+        "terminal_settlement_cost": -334513.21113096725,
+        "terminal_battery_asset_value": 1633.5627602244494,
+        "terminal_h2_asset_value": 894503.671875,
+        "terminal_undelivered_h2_energy": 59825.4377993164,
+        "voltage_cost": 0.0,
+        "voltage_violation_area": 0.0,
+        "voltage_min_pu": 0.979603055898424,
+        "voltage_max_pu": 1.0,
+        "pf_converged": true,
+        "pcc_p_kw": [
+          1380.1015625,
+          -1491.51123046875,
+          -648.4009399414062,
+          672.9947509765625
+        ],
+        "pcc_q_kvar": [
+          194.33518981933594,
+          120.79095458984375,
+          199.77978515625,
+          204.21383666992188
+        ],
+        "p_el": [
+          989.0833740234375,
+          1394.4202880859375,
+          232.53192138671875,
+          358.91009521484375
+        ],
+        "p_bat": [
+          -79.97522735595703,
+          -0.0,
+          -0.0,
+          -2.8312206268310547e-06
+        ],
+        "soc": [
+          0.6808455586433411,
+          0.5,
+          0.43524542450904846,
+          0.10000000149011612
+        ],
+        "p_ht": [
+          -0.0,
+          -0.0,
+          -31.38559341430664,
+          -119.32178497314453
+        ],
+        "h2_emergency_buy_energy": [
+          0.0,
+          0.0,
+          909.562255859375,
+          1341.5443115234375
+        ],
+        "h2_planned_external_order_energy": [
+          0.0,
+          0.0,
+          3165.96435546875,
+          3672.346435546875
+        ],
+        "h2_late_order_energy": [
+          0.0,
+          0.0,
+          3550.821044921875,
+          3672.346435546875
+        ],
+        "h2_level": [
+          200.0,
+          204.5930633544922,
+          285.0,
+          285.0
+        ],
+        "e_h2_load": [
+          307.501708984375,
+          243.0540771484375,
+          1080.467041015625,
+          1694.1575927734375
+        ],
+        "pending_h2_energy_total": 59825.4375,
+        "pending_h2_energy_agent": [
+          0.0,
+          0.0,
+          28228.498046875,
+          31596.94140625
+        ],
+        "external_min_eta": [
+          0.0,
+          0.0,
+          0.16666666666666666,
+          0.0
+        ]
+      }
+    ]
+  }
+}
