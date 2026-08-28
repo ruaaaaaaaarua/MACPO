@@ -1,0 +1,4 @@
+# Dependencies introduced by the opt-in env-v3-safe experiment line.
+# Install into the existing JAX/Flax environment; this file intentionally does
+# not pin the historical training stack.
+pypower==5.1.19

@@ -1,0 +1,4 @@
+ENV_NAME: "microgrid"
+ENV_KWARGS:
+  continuous_actions: True
+  auto_reset: True

@@ -1,0 +1,412 @@
+# 微电网环境说明
+
+本文档对应当前代码版本：
+
+- 环境主文件：`envs/microgrid/microgrid_env.py`
+- 市场撮合：`envs/microgrid/cda_market.py`
+- 参数文件：`envs/microgrid/config.py`
+- MATRPO baseline 算法：`HyperMARL-main/baselines/MATRPO/`
+
+## 1. 环境总体设置
+
+- 智能体数量：`num_agents = 4`
+- 单回合步数：`episode_length = 24`
+- 时间步长：`dt = 1.0`
+- 单智能体观测维度：`obs_dim = 11`
+- 单智能体动作维度：`action_dim = 6`
+- 智能体类型：`agent_types = ["producer", "producer", "consumer", "consumer"]`
+
+其中：
+
+- `agent_id = 0, 1` 为产氢型微网 `producer`
+- `agent_id = 2, 3` 为用氢型微网 `consumer`
+
+## 2. 单个智能体状态空间
+
+`_get_obs()` 返回第 `i` 个智能体的局部观测：
+
+```text
+o_i(t) = [
+    pv_now[i] / pv_cap_safe[i],
+    wt_now[i] / wt_cap_safe[i],
+    le_now[i] / load_e_peak_safe[i],
+    lh_now[i] / load_h_peak_safe[i],
+    soc[i],
+    h2_level[i] / h2_tank_cap_safe[i],
+    elec_clearing_norm,
+    h2_clearing_norm,
+    sin(2πt / T),
+    cos(2πt / T),
+    tou_buy_norm
+]
+```
+
+各维定义如下：
+
+| 索引 | 代码符号 | 含义 | 缩放方式 |
+| --- | --- | --- | --- |
+| 0 | `pv_now[i] / pv_cap_safe[i]` | 当前光伏输出 | `pv_cap_safe[i] = max(pv_cap[i], 1.0)` |
+| 1 | `wt_now[i] / wt_cap_safe[i]` | 当前风电输出 | `wt_cap_safe[i] = max(wt_cap[i], 1.0)` |
+| 2 | `le_now[i] / load_e_peak_safe[i]` | 当前电负荷 | `load_e_peak_safe[i] = max(load_e_peak[i], 1.0)` |
+| 3 | `lh_now[i] / load_h_peak_safe[i]` | 当前热负荷 | `load_h_peak_safe[i] = max(load_h_peak[i], 1.0)` |
+| 4 | `soc[i]` | 电池荷电状态 | 由环境约束在 `[soc_min, soc_max] = [0.1, 0.9]` |
+| 5 | `h2_level[i] / h2_tank_cap_safe[i]` | 储氢罐液位 | `h2_tank_cap_safe[i] = max(h2_tank_cap[i], 1.0)` |
+| 6 | `elec_clearing_norm` | 上一时刻电力市场出清价 | `(last_elec_clearing_price - elec_price_min) / (elec_price_max - elec_price_min)` |
+| 7 | `h2_clearing_norm` | 上一时刻氢能市场出清价 | `(last_h2_clearing_price - h2_price_min) / (h2_price_max - h2_price_min)` |
+| 8 | `sin(2πt / T)` | 时间周期编码 | `T = episode_length = 24` |
+| 9 | `cos(2πt / T)` | 时间周期编码 | `T = episode_length = 24` |
+| 10 | `tou_buy_norm` | 当前分时购电价 | `tou_buy[t] / max(tou_buy)`，当前 `max(tou_buy)=1.0` |
+
+说明：
+
+- `last_elec_clearing_price` 初始值为 `elec_price_init = 0.60`
+- `last_h2_clearing_price` 初始值为 `h2_price_init = 0.40`
+- 所有观测最后均经过 `np.nan_to_num(obs, nan=0.0, posinf=1.0, neginf=0.0)`
+
+## 3. 单个智能体动作空间
+
+当前动作向量为：
+
+```text
+a_i(t) = [a0, a1, a2, a3, a4, a5],   a_k ∈ [-1, 1]
+```
+
+环境在 `step()` 开始时先执行：
+
+```text
+raw_actions = clip(actions, -1.0, 1.0)
+```
+
+然后映射为物理量：
+
+| 索引 | 代码符号 | 含义 | 反归一化/缩放方式 |
+| --- | --- | --- | --- |
+| 0 | `P_el[i]` | 电解槽功率 | `P_el[i] = ((a0 + 1) / 2) * el_cap[i]`，再 clip 到 `[0, el_cap[i]]` |
+| 1 | `P_bat[i]` | 电池功率 | `P_bat[i] = a1 * bat_power[i]`，正值充电，负值放电 |
+| 2 | `lambda_elec_bid[i]` | 电力市场报价 | `((a2 + 1) / 2) * (elec_price_max - elec_price_min) + elec_price_min` |
+| 3 | `rho_elec_bid[i]` | 电力市场报量比例 | `rho_elec_bid[i] = (a3 + 1) / 2` |
+| 4 | `lambda_h2_bid[i]` | 氢能市场报价 | `((a4 + 1) / 2) * (h2_price_max - h2_price_min) + h2_price_min` |
+| 5 | `rho_h2_bid[i]` | 氢能市场报量比例 | `rho_h2_bid[i] = (a5 + 1) / 2` |
+
+### 3.1 电池动作的实际限幅
+
+`P_bat[i]` 还会根据当前 `soc[i]` 被再次裁剪：
+
+```text
+max_charge[i] = (soc_max - soc[i]) * bat_cap[i] / (bat_eff_c * dt)
+max_discharge[i] = (soc[i] - soc_min) * bat_cap[i] * bat_eff_d / dt
+P_bat[i] = clip(P_bat[i], -max_discharge[i], max_charge[i])
+```
+
+随后状态更新：
+
+```text
+charge[i] = max(0, P_bat[i])
+discharge[i] = max(0, -P_bat[i])
+delta_soc[i] = (bat_eff_c * charge[i] - discharge[i] / bat_eff_d) / bat_cap[i] * dt
+soc[i] = clip(soc[i] + delta_soc[i], soc_min, soc_max)
+```
+
+### 3.2 电力市场报量的实际含义
+
+先定义电力净需求：
+
+```text
+net_electric_demand[i] =le_now[i] + P_el[i] + max(0, P_bat[i]) - pv_now[i] - wt_now[i] - max(0, -P_bat[i])
+```
+
+则电力市场最大可报量为：
+
+```text
+Q_elec,max[i] = |net_electric_demand[i]| * dt
+Q_elec,bid[i] = rho_elec_bid[i] * Q_elec,max[i]
+```
+
+买卖方向不需要神经网络单独输出，由环境自动判定：
+
+- 若 `net_electric_demand[i] > 0`，则该智能体提交电力买单
+- 若 `net_electric_demand[i] < 0`，则该智能体提交电力卖单
+- 若 `net_electric_demand[i] = 0`，则不提交电力订单
+
+### 3.3 氢能市场报量的实际含义
+
+对消费者：
+
+```text
+E_thermal[i] = lh_now[i] * dt
+e_h2_load[i] = h2_thermal_share * E_thermal[i] / boiler_eff
+Q_h2,max[i] = e_h2_load[i]
+Q_h2,bid[i] = rho_h2_bid[i] * Q_h2,max[i]
+```
+
+对产氢者：
+
+```text
+e_h2_prod[i] = P_el[i] * el_eff[i] * dt
+h2_releasable[i] = max(0, h2_level[i] - h2_min[i])
+Q_h2,max[i] = e_h2_prod[i] + h2_releasable[i] * LHV_H2
+Q_h2,bid[i] = rho_h2_bid[i] * Q_h2,max[i]
+```
+
+氢能市场买卖方向同样由环境自动判定：
+
+- `producer` 只提交氢能卖单
+- `consumer` 只提交氢能买单
+
+## 4. 连续双边拍卖输入输出
+
+### 4.1 订单输入格式
+
+环境在每个时间步构造订单：
+
+```text
+order = {
+    "agent_id": i,
+    "side": "buy" or "sell",
+    "price": 报价,
+    "quantity": 报量
+}
+```
+
+其中：
+
+- `agent_id` 不由策略网络额外输出，直接使用环境中的智能体编号 `i`
+- 电力、氢能分别形成各自独立订单簿
+
+### 4.2 撮合规则
+
+`envs/microgrid/cda_market.py` 中的 `run_continuous_double_auction()` 采用连续双边拍卖的价格时间优先规则：
+
+1. 每个时间步内，订单按 `agent_id` 升序进入订单簿
+2. 买单按照价格从高到低、卖单按照价格从低到高维护优先级
+3. 新到买单若满足 `buy_price >= best_ask_price`，立即与最优卖单成交
+4. 新到卖单若满足 `best_bid_price >= sell_price`，立即与最优买单成交
+5. 成交量为双方剩余报量的最小值
+6. 成交价采用“簿内静态单”的价格：
+   - 买单主动成交时，`trade_price = resting_sell.price`
+   - 卖单主动成交时，`trade_price = resting_buy.price`
+7. 未成交剩余量继续留在该步的订单簿中
+
+### 4.3 撮合输出格式
+
+返回结果中最关键的字段为：
+
+```text
+{
+    "trades": [
+        {
+            "buyer_id": ...,
+            "seller_id": ...,
+            "price": ...,
+            "quantity": ...
+        },
+        ...
+    ],
+    "clearing_price": 最后一笔成交价,
+    "buy_matched": {agent_id: 成交量},
+    "sell_matched": {agent_id: 成交量},
+    "buy_cost": {agent_id: 成交总支付},
+    "sell_revenue": {agent_id: 成交总收入},
+    "agent_results": [
+        {
+            "agent_id": ...,
+            "side": "buy" or "sell",
+            "matched_quantity": ...,
+            "matched_price": 成交均价
+        },
+        ...
+    ]
+}
+```
+
+因此，当前环境已经满足你要求的输出形式：
+
+- 输入：`报量 + 报价 + agent_id`
+- 输出：`各 agent_id 对应的中标量 + 中标价格 + agent_id`
+
+环境还会在 `info` 中额外给出：
+
+- `elec_market_trades`
+- `h2_market_trades`
+- `elec_market_agent_results`
+- `h2_market_agent_results`
+
+## 5. 电力、氢能出清后的物理平衡
+
+### 5.1 电力侧
+
+电力市场成交后，残余与主网交互功率为：
+
+```text
+P_grid[i] =
+    net_electric_demand[i]
+    - elec_buy_matched[i] / dt
+    + elec_sell_matched[i] / dt
+```
+
+含义：
+
+- 内部电力买入越多，`P_grid[i]` 越小
+- 内部电力卖出越多，剩余外送电网功率越小（负值绝对值变小）
+
+### 5.2 氢能侧
+
+对消费者：
+
+```text
+e_h2_ext[i] = max(0, e_h2_load[i] - h2_buy_matched[i])
+```
+
+即 CDA 未满足部分由外部氢源补足。
+
+对生产者：
+
+```text
+h2_produced_kg[i] = e_h2_prod[i] / LHV_H2
+h2_sold_kg[i] = h2_sell_matched[i] / LHV_H2
+h2_level[i] = clip(h2_level[i] + h2_produced_kg[i] - h2_sold_kg[i], h2_min[i], h2_max[i])
+```
+
+## 6. 奖励函数构成
+
+当前环境是共享奖励：
+
+```text
+r_t = -(total_cost - market_bonus) / reward_scale
+```
+
+其中：
+
+```text
+total_cost = C_grid + C_h2 + C_gas + C_op
+market_bonus = cda_shaping_coef * (Q_elec,cda + Q_h2,cda)
+```
+
+各项定义如下。
+
+### 6.1 电网购售电成本 `C_grid`
+
+```text
+若 P_grid[i] > 0:
+    C_grid += P_grid[i] * tou_buy[t] * dt
+若 P_grid[i] < 0:
+    C_grid += P_grid[i] * tou_sell[t] * dt
+```
+
+注意：
+
+- `P_grid[i] < 0` 时表示向主网售电，此项为负值，相当于收益
+
+### 6.2 外部购氢成本 `C_h2`
+
+```text
+C_h2 = lambda_h2 * Σ_i e_h2_ext[i]
+```
+
+### 6.3 天然气供热成本 `C_gas`
+
+```text
+e_thermal_gas[i] = (1 - h2_thermal_share) * lh_now[i] * dt
+C_gas = price_gas * Σ_i e_thermal_gas[i]
+```
+
+### 6.4 设备运行成本 `C_op`
+
+```text
+C_op = Σ_i [ c_el * P_el[i] * dt + c_bat * |P_bat[i]| * dt ]
+```
+
+### 6.5 市场奖励项 `market_bonus`
+
+```text
+Q_elec,cda = Σ 电力市场成交量
+Q_h2,cda = Σ 氢能市场成交量
+market_bonus = cda_shaping_coef * (Q_elec,cda + Q_h2,cda)
+```
+
+### 6.6 回合末端价值 `terminal_value`（暂时消除）
+
+若 `done=True` 且 `terminal_value_coef > 0`，还会加上：
+
+```text
+terminal_value =
+    Σ_i [ (soc[i] - soc_init) * bat_cap[i] * avg_elec_price ]
+    + Σ_i [ (h2_level[i] - h2_init[i]) * LHV_H2 * lambda_h2 ]
+```
+
+其中：
+
+- `avg_elec_price = 0.50`
+- `h2_init[i] = h2_tank_cap[i] * h2_tank_init_ratio`
+
+最终附加到奖励中：
+
+```text
+r_t += terminal_value_coef * terminal_value / reward_scale
+```
+
+## 7. 当前参数取值
+
+### 7.1 市场相关参数
+
+| 参数 | 当前值 | 含义 |
+| --- | --- | --- |
+| `elec_price_min` | `0.15` | 电力市场最小报价 |
+| `elec_price_max` | `1.00` | 电力市场最大报价 |
+| `elec_price_init` | `0.60` | 电力市场初始出清价 |
+| `h2_price_min` | `0.05` | 氢能市场最小报价 |
+| `h2_price_max` | `1.20` | 氢能市场最大报价 |
+| `h2_price_init` | `0.40` | 氢能市场初始出清价 |
+| `lambda_h2` | `0.70` | 外部购氢单价 |
+| `price_gas` | `0.35` | 天然气供热单价 |
+| `h2_thermal_share` | `0.20` | 热负荷中由氢能承担的比例 |
+| `cda_shaping_coef` | `0.01` | 市场成交奖励系数 |
+| `reward_scale` | `10000.0` | 奖励缩放系数 |
+
+### 7.2 电池、储氢、设备参数
+
+| 参数 | 当前值 |
+| --- | --- |
+| `bat_eff_c` | `0.95` |
+| `bat_eff_d` | `0.95` |
+| `soc_min` | `0.1` |
+| `soc_max` | `0.9` |
+| `soc_init` | `0.1` |
+| `h2_tank_min_ratio` | `0.05` |
+| `h2_tank_max_ratio` | `0.95` |
+| `h2_tank_init_ratio` | `0.05` |
+| `LHV_H2` | `33.33` |
+| `boiler_eff` | `0.90` |
+| `c_el` | `0.005` |
+| `c_bat` | `0.002` |
+| `terminal_value_coef` | `1.0` |
+
+### 7.3 各智能体设备参数
+
+| `agent_id` | `agent_types[i]` | `pv_cap[i]` | `wt_cap[i]` | `bat_cap[i]` | `bat_power[i]` | `el_cap[i]` | `el_eff[i]` | `h2_tank_cap[i]` | `load_e_peak[i]` | `load_h_peak[i]` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 0 | `producer` | `5000.0` | `0.0` | `5000.0` | `2000.0` | `2000.0` | `0.70` | `0.0` | `3000.0` | `0.0` |
+| 1 | `producer` | `1000.0` | `4000.0` | `3000.0` | `1200.0` | `3000.0` | `0.65` | `500.0` | `2500.0` | `0.0` |
+| 2 | `consumer` | `0.0` | `3000.0` | `4000.0` | `1500.0` | `0.0` | `0.0` | `0.0` | `4000.0` | `2000.0` |
+| 3 | `consumer` | `2000.0` | `0.0` | `2000.0` | `800.0` | `0.0` | `0.0` | `0.0` | `3500.0` | `2500.0` |
+
+## 8. 与训练代码的接口关系
+
+训练代码读取环境时需要注意：
+
+- `obs_dim = MICROGRID_CONFIG["obs_dim"] = 11`
+- `action_dim = MICROGRID_CONFIG["action_dim"] = 6`
+- 全局状态维度：`state_dim = obs_dim * num_agents = 44`
+
+当前训练日志中已同步记录：
+
+- `train/elec_market_traded`
+- `train/h2_market_traded`
+- `train/cda_total_traded`
+
+因此，当前版本已经完成：
+
+1. 用代码符号写清楚单智能体状态空间、动作空间、奖励函数
+2. 明确写出动作到物理量的缩放关系
+3. 将环境改为“电力 + 氢能”双市场连续双边拍卖出清
+4. 输出各智能体在两个市场中的 `agent_id / matched_quantity / matched_price`

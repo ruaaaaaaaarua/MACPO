@@ -1,0 +1,7 @@
+[el_off + bat=-1.00] vcost=0.0188 vmin=0.9473 econ=5.18e+06 safe=True strict=False violating_hours=[19, 20]
+[el_off + bat=-0.75] vcost=0.0028 vmin=0.9490 econ=5.122e+06 safe=True strict=False violating_hours=[20]
+[el_off + bat=-0.60] vcost=0.0000 vmin=0.9504 econ=5.165e+06 safe=True strict=True violating_hours=[]
+[el_off + bat=-0.50] vcost=0.0000 vmin=0.9524 econ=5.112e+06 safe=True strict=True violating_hours=[]
+[el_off + bat=-0.40] vcost=0.0000 vmin=0.9516 econ=5.108e+06 safe=True strict=True violating_hours=[]
+[el_off + bat=-0.30] vcost=0.0000 vmin=0.9502 econ=5.104e+06 safe=True strict=True violating_hours=[]
+wrote out/ration_seed31.json

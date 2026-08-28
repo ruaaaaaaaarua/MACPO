@@ -1,0 +1,29 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.DS_Store
+.vscode/
+docker/*
+*.pickle
+results/
+tmp/
+*-checkpoint.py
+wandb/
+outputs/
+videos/
+multirun/
+result/generated/
+datasets/
+
+# Generated experiment files at this package root
+/returns_*.png
+/returns_*.npy
+/*.csv
+/*.html
+/*.json
+/*.out
+/*.log
+/nohup.out
+/plots_*/

@@ -1,0 +1,34 @@
+{
+  "environment": "env-v6-swiss",
+  "dataset": "aeonetos/Swiss-PDGs",
+  "dataset_case_count": 879,
+  "static_candidate_count": 1712,
+  "shortlist_count": 30,
+  "feasible": true,
+  "evaluation_seeds": [30, 31, 32],
+  "raw_daily_voltage_budget": 0.02,
+  "selection": {
+    "grid_id": "347_1",
+    "pcc_bus_ids": [168, 147, 160, 183],
+    "native_total_mw": 4.6951878242045915,
+    "native_total_mvar": 2.2739832496278245,
+    "max_transformer_mva": 12.648613521767274,
+    "base_voltage_min_pu": 0.9825789776518431,
+    "base_voltage_max_pu": 1.0,
+    "controllability_gap": 3.023029468905571
+  },
+  "nominal_daily_voltage_cost": {
+    "30": 0.0,
+    "31": 2.919003776211926,
+    "32": 0.0
+  },
+  "reference_daily_voltage_cost": {
+    "30": 0.0,
+    "31": 0.019362546502615926,
+    "32": 0.0
+  },
+  "economic_reward_scale_yuan": 3151704.8194007874,
+  "training_cost_scale": 0.02,
+  "training_cost_budget": 1.0,
+  "full_raw_report": "/root/autodl-tmp/env_v6_swiss_runs/calibration.json"
+}

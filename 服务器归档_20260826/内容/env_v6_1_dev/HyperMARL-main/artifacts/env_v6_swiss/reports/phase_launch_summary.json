@@ -1,0 +1,14 @@
+{
+  "environment": "env-v6-swiss",
+  "training_started": true,
+  "long_updates": 1000,
+  "smoke_updates": 100,
+  "smoke_all_passed": true,
+  "long_exit_codes": {
+    "v6_nocomm_gru_mappo": 0,
+    "v6_nocomm_gru_mappo_penalty": 0,
+    "v6_nocomm_gru_macpo": 0
+  },
+  "analysis_exit_code": 0,
+  "full_raw_report": "/root/autodl-tmp/env_v6_swiss_runs/phase_launch.json"
+}

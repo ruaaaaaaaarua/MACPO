@@ -1,0 +1,54 @@
+# Training artifacts
+wandb/
+logs/
+outputs/
+runs/
+archive/
+实验产物/
+result/generated/
+result/
+.jax_cache/
+.jax_compilation_cache_stable/
+.tmp/
+*.npy
+*.tar.gz
+*.tar
+*.zip
+
+# Generated files that should not live in source roots
+HyperMARL-main/returns_*.png
+HyperMARL-main/returns_*.npy
+HyperMARL-main/*.csv
+HyperMARL-main/*.html
+HyperMARL-main/*.json
+HyperMARL-main/*.out
+HyperMARL-main/*.log
+HyperMARL-main/nohup.out
+HyperMARL-main/plots_*/
+
+# Checkpoints and inference outputs
+checkpoints/
+checkpoint/
+infer_results*/
+**/models/
+
+# Python / IDE
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+*.swp
+*.swo
+.DS_Store
+
+# Secrets
+.env
+.env.*
+*.pem
+credentials.json

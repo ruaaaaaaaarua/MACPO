@@ -1,0 +1,31 @@
+# HyperMARL microgrid GPU training dependencies
+# Python 3.10+ is recommended. Requires NVIDIA GPU + CUDA 12.x.
+#
+# Install JAX GPU first, then install this file:
+#   pip install "jax[cuda12_pip]==0.4.25" \
+#     --extra-index-url https://pypi.org/simple \
+#     -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+#   pip install -r requirements-gpu.txt
+#
+# The removed CPU microgrid dependency file pinned:
+#   jax==0.4.25
+#   jaxlib==0.4.25
+# Do not install that CPU jaxlib in the GPU environment. The non-JAX
+# microgrid dependencies from that file are merged below.
+
+flax==0.8.4
+chex==0.1.86
+optax==0.2.2
+distrax==0.1.5
+orbax-checkpoint==0.5.15
+tensorflow-probability==0.24.0
+hydra-core==1.3.2
+omegaconf==2.3.0
+wandb==0.17.0
+matplotlib==3.9.0
+scipy==1.13.1
+numpy==1.26.4
+gymnasium==0.29.1
+gym==0.26.2
+SuperSuit==3.9.2
+pettingzoo==1.24.3

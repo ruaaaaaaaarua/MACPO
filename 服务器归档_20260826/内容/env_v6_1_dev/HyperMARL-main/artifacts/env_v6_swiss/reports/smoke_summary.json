@@ -1,0 +1,10 @@
+{
+  "updates": 100,
+  "all_variants_passed": true,
+  "variants": {
+    "v6_nocomm_gru_mappo": {"metrics_rows": 100, "checkpoint": "update_000100.msgpack", "pf_failure_rate": 0.0, "actor_obs_dim": 39},
+    "v6_nocomm_gru_mappo_penalty": {"metrics_rows": 100, "checkpoint": "update_000100.msgpack", "pf_failure_rate": 0.0, "actor_obs_dim": 39},
+    "v6_nocomm_gru_macpo": {"metrics_rows": 100, "checkpoint": "update_000100.msgpack", "pf_failure_rate": 0.0, "max_kl": 0.009998887777328491, "actor_obs_dim": 39}
+  },
+  "full_raw_reports": "/root/autodl-tmp/env_v6_swiss_runs/smoke"
+}

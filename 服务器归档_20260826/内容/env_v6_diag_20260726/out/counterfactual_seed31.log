@@ -1,0 +1,6 @@
+[baseline] vcost=0.6851 vmin=0.9362 vmax=1.0000 econ=4.629e+06 safe=False violating_hours=[17, 18, 19, 20]
+[electrolyser_off_peak] vcost=0.1663 vmin=0.9427 vmax=1.0000 econ=5.128e+06 safe=False violating_hours=[17, 18, 19, 20]
+[battery_discharge_peak] vcost=0.2079 vmin=0.9411 vmax=1.0000 econ=4.824e+06 safe=False violating_hours=[19, 20]
+[both_peak] vcost=0.0188 vmin=0.9473 vmax=1.0000 econ=5.18e+06 safe=True violating_hours=[19, 20]
+[both_wide_window] vcost=0.0540 vmin=0.9459 vmax=1.0000 econ=5.303e+06 safe=False violating_hours=[18, 19, 20]
+wrote out/counterfactual_seed31.json

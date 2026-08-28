@@ -1,0 +1,44 @@
+u001 mode=reward             accepted=True vcost=70.96 gap=69.96 maxdrop=948.78 kl=0.0098 econ=6.69e+06
+u002 mode=reward             accepted=True vcost=115.19 gap=114.19 maxdrop=1248.06 kl=0.0095 econ=6.32e+06
+u003 mode=reward             accepted=True vcost=60.94 gap=59.94 maxdrop=845.74 kl=0.0095 econ=6.44e+06
+u004 mode=reward             accepted=True vcost=49.31 gap=48.31 maxdrop=526.92 kl=0.0096 econ=6.6e+06
+u005 mode=reward             accepted=True vcost=63.80 gap=62.80 maxdrop=679.38 kl=0.0097 econ=6.77e+06
+u006 mode=reward             accepted=True vcost=113.40 gap=112.40 maxdrop=1130.35 kl=0.0096 econ=6.48e+06
+u007 mode=reward             accepted=True vcost=48.16 gap=47.16 maxdrop=657.03 kl=0.0096 econ=6.42e+06
+u008 mode=reward             accepted=True vcost=101.55 gap=100.55 maxdrop=1160.46 kl=0.0096 econ=6.46e+06
+u009 mode=reward             accepted=True vcost=62.02 gap=61.02 maxdrop=651.02 kl=0.0096 econ=6.54e+06
+u010 mode=constrained_reward accepted=True vcost=23.74 gap=22.74 maxdrop=328.22 kl=0.0097 econ=6.03e+06
+u011 mode=reward             accepted=True vcost=88.21 gap=87.21 maxdrop=885.33 kl=0.0096 econ=6.06e+06
+u012 mode=reward             accepted=True vcost=64.47 gap=63.47 maxdrop=851.28 kl=0.0096 econ=6.39e+06
+u013 mode=reward             accepted=True vcost=23.97 gap=22.97 maxdrop=415.23 kl=0.0097 econ=6.36e+06
+u014 mode=reward             accepted=True vcost=133.01 gap=132.01 maxdrop=1003.18 kl=0.0096 econ=5.86e+06
+u015 mode=reward             accepted=True vcost=68.17 gap=67.17 maxdrop=791.82 kl=0.0096 econ=5.75e+06
+u016 mode=reward             accepted=True vcost=48.09 gap=47.09 maxdrop=715.03 kl=0.0096 econ=5.97e+06
+u017 mode=reward             accepted=True vcost=58.94 gap=57.94 maxdrop=728.35 kl=0.0096 econ=6.28e+06
+u018 mode=reward             accepted=True vcost=79.22 gap=78.22 maxdrop=923.36 kl=0.0097 econ=6.3e+06
+u019 mode=reward             accepted=True vcost=120.27 gap=119.27 maxdrop=1340.13 kl=0.0096 econ=6.17e+06
+u020 mode=reward             accepted=True vcost=45.09 gap=44.09 maxdrop=558.21 kl=0.0097 econ=5.77e+06
+u021 mode=reward             accepted=True vcost=99.31 gap=98.31 maxdrop=1051.50 kl=0.0096 econ=5.83e+06
+u022 mode=reward             accepted=True vcost=119.27 gap=118.27 maxdrop=1279.52 kl=0.0097 econ=6.18e+06
+u023 mode=reward             accepted=True vcost=64.55 gap=63.55 maxdrop=900.20 kl=0.0097 econ=5.67e+06
+u024 mode=reward             accepted=True vcost=87.04 gap=86.04 maxdrop=895.27 kl=0.0097 econ=6.09e+06
+u025 mode=reward             accepted=True vcost=71.97 gap=70.97 maxdrop=676.79 kl=0.0097 econ=6.31e+06
+u026 mode=constrained_reward accepted=True vcost=126.07 gap=125.07 maxdrop=1422.56 kl=0.0097 econ=5.51e+06
+u027 mode=reward             accepted=True vcost=38.15 gap=37.15 maxdrop=482.07 kl=0.0097 econ=6.22e+06
+u028 mode=reward             accepted=True vcost=112.82 gap=111.82 maxdrop=1186.65 kl=0.0097 econ=5.77e+06
+u029 mode=reward             accepted=True vcost=74.47 gap=73.47 maxdrop=760.86 kl=0.0097 econ=5.97e+06
+u030 mode=constrained_reward accepted=True vcost=59.66 gap=58.66 maxdrop=608.96 kl=0.0097 econ=5.29e+06
+u031 mode=reward             accepted=True vcost=79.24 gap=78.24 maxdrop=824.62 kl=0.0097 econ=6.23e+06
+u032 mode=constrained_reward accepted=True vcost=31.66 gap=30.66 maxdrop=493.36 kl=0.0096 econ=5.02e+06
+u033 mode=constrained_reward accepted=True vcost=74.02 gap=73.02 maxdrop=747.62 kl=0.0097 econ=5.37e+06
+u034 mode=reward             accepted=True vcost=55.13 gap=54.13 maxdrop=599.57 kl=0.0098 econ=5.43e+06
+u035 mode=constrained_reward accepted=True vcost=36.97 gap=35.97 maxdrop=536.00 kl=0.0097 econ=5.47e+06
+u036 mode=reward             accepted=True vcost=59.58 gap=58.58 maxdrop=754.32 kl=0.0097 econ=5.48e+06
+u037 mode=reward             accepted=True vcost=113.43 gap=112.43 maxdrop=1115.80 kl=0.0097 econ=5.76e+06
+u038 mode=reward             accepted=True vcost=17.12 gap=16.12 maxdrop=286.69 kl=0.0097 econ=5.6e+06
+u039 mode=reward             accepted=True vcost=125.72 gap=124.72 maxdrop=1189.65 kl=0.0098 econ=5.42e+06
+u040 mode=reward             accepted=True vcost=64.84 gap=63.84 maxdrop=891.19 kl=0.0098 econ=5.72e+06
+mode counts: {'reward': 34, 'constrained_reward': 6}
+mappo u1 actor_loss=-0.0179 ok
+mappo u2 actor_loss=-0.0183 ok
+SMOKE DONE

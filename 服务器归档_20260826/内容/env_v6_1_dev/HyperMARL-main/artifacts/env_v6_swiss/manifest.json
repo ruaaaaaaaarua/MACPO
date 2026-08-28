@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-07-26T19:37:00+08:00",
+  "git_branch": "codex/env-v6-handoff-20260726",
+  "source_active_worktree": "/root/autodl-tmp/env-v2-wt/HyperMARL-main",
+  "handoff_worktree": "/root/autodl-tmp/env-v6-handoff-wt/HyperMARL-main",
+  "environment": "env-v6-swiss",
+  "dataset": "aeonetos/Swiss-PDGs",
+  "dataset_root": "/root/autodl-tmp/datasets/Swiss-PDGs/grids/matpower_data/MV",
+  "training_output_root": "/root/autodl-tmp/env_v6_swiss_runs",
+  "selected_network": {
+    "grid_id": "347_1",
+    "case_dir": "/root/autodl-tmp/datasets/Swiss-PDGs/grids/matpower_data/MV/347_1",
+    "pcc_bus_ids": [168, 147, 160, 183],
+    "pcc_injection_scale": 1.0,
+    "background_load_scale": 1.0,
+    "native_total_mw": 4.6951878242045915,
+    "native_total_mvar": 2.2739832496278245
+  },
+  "training": {
+    "variants": [
+      "v6_nocomm_gru_mappo",
+      "v6_nocomm_gru_mappo_penalty",
+      "v6_nocomm_gru_macpo"
+    ],
+    "training_seed": 30,
+    "evaluation_seeds": [30, 31, 32],
+    "updates": 1000,
+    "num_envs": 2,
+    "num_steps": 24,
+    "hidden_size": 128,
+    "macpo_max_kl": 0.01,
+    "raw_voltage_budget": 0.02,
+    "normalized_voltage_budget": 1.0,
+    "economic_reward_scale_yuan": 3151704.8194007874,
+    "communication": "none_at_actor; centralized_reward_and_cost_critics"
+  },
+  "reports": {
+    "calibration": "reports/calibration_summary.json",
+    "performance_gate": "reports/performance_gate.json",
+    "phase_launch": "reports/phase_launch_summary.json",
+    "behavior": "reports/behavior_summary.json",
+    "smoke": "reports/smoke_summary.json",
+    "training_metrics": [
+      "reports/long/v6_nocomm_gru_mappo.metrics.jsonl",
+      "reports/long/v6_nocomm_gru_mappo_penalty.metrics.jsonl",
+      "reports/long/v6_nocomm_gru_macpo.metrics.jsonl"
+    ]
+  },
+  "selected_network_files": [
+    "network/347_1/347_1_bus_data.csv",
+    "network/347_1/347_1_branch_data.csv",
+    "network/347_1/347_1_generator_data.csv"
+  ],
+  "full_reports_remain_at": "/root/autodl-tmp/env_v6_swiss_runs",
+  "sha256": {
+    "launch_env_v6_swiss.py": "60ba3a9a4bc88d96a768ef19d5bc9f0741a1d75b38a0ec9ca70b4efa6e063226",
+    "analyze_env_v6_swiss.py": "900eb8bf8aaa8651e43b5933d28de839063b1df8d5c716c87c995c89505093c7",
+    "benchmark_env_v6_rollout.py": "c2fa9872e1cad2934b9b09b36d0cb60cbb6c029f9b53a1c232993da47447b09b",
+    "safe_gru_trainer.py": "7f135fa19f789cb0f048b32ea2647b28159560d3e919883362f82a39d7d5cc61",
+    "power_flow.py": "401274a66573c1aa2655cab792e9dd659800f88bfddd2354f7e7e05ed20615b0",
+    "calibration.json": "b7cfbea6eed45e401ab747502f4ac53d2f0b72d177337fd153eba3d38d836a62",
+    "performance_gate.json": "fe7001b93e74339944c73ac616b15fef21dc8e7c2cf774bb778cb16d5317f585",
+    "phase_launch.json": "abf9045efdeea15986d5f12efa2263f15c12417c0dc3c2fcf3dd052948e3fb74",
+    "env_v6_behavior_report.json": "87531786d8b1ec524f6db78b3f91e79b8300ef2547062fdfc3ae46934e35686c",
+    "347_1_bus_data.csv": "433205c03e9c803deef6384c2da3c0487c2a98fdbe725aed2c369746c97b88b0",
+    "347_1_branch_data.csv": "be6b4c86fc3553162f81a9849d5fed5a18e4aa7cd07f4afca30633838b893626",
+    "347_1_generator_data.csv": "444fb1970d62eef6498e557305a10b3ef48e213b377077c90238ae8658390df1"
+  }
+}

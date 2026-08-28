@@ -1,0 +1,7 @@
+  deterministic: 20/50 days (0.33 days/s)
+  deterministic: 40/50 days (0.33 days/s)
+[deterministic] done in 152.28s
+  stochastic: 20/50 days (0.32 days/s)
+  stochastic: 40/50 days (0.32 days/s)
+[stochastic] done in 154.42s
+wrote out/wide_80.json

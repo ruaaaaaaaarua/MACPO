@@ -1,0 +1,4 @@
+[el_off + bat=-1.00] vcost=0.1068 vmin=0.9418 econ=3.69e+06 safe=False strict=False violating_hours=[20, 21]
+[el_off + bat=-0.40] vcost=0.0508 vmin=0.9443 econ=3.657e+06 safe=False strict=False violating_hours=[20, 21]
+[el_off + bat=+0.00] vcost=0.1751 vmin=0.9394 econ=3.642e+06 safe=False strict=False violating_hours=[20, 21, 22]
+wrote out/qprobe_pf1.0_seed187.json
