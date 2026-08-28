@@ -1,0 +1,34 @@
+eval env overrides: {'power_flow_vmin_pu': 0.95, 'power_flow_vmax_pu': 1.05}
+[day  0      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9736 vmax=1.0290 safe=True hours=[]
+[day  1       test] vcost=0.0000 [0.0000,0.0000] vmin=0.9603 vmax=1.0199 safe=True hours=[]
+[day  2      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9700 vmax=1.0230 safe=True hours=[]
+[day  3      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9739 vmax=1.0219 safe=True hours=[]
+[day  4      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9596 vmax=1.0164 safe=True hours=[]
+[day  5      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9812 vmax=1.0197 safe=True hours=[]
+[day  6      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9920 vmax=1.0143 safe=True hours=[]
+[day  7       test] vcost=0.0000 [0.0000,0.0000] vmin=0.9876 vmax=1.0231 safe=True hours=[]
+[day  8 validation] vcost=0.0000 [0.0000,0.0000] vmin=0.9966 vmax=1.0341 safe=True hours=[]
+[day  9      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9972 vmax=1.0243 safe=True hours=[]
+[day 10      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9960 vmax=1.0285 safe=True hours=[]
+[day 11      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9894 vmax=1.0231 safe=True hours=[]
+[day 12      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9966 vmax=1.0316 safe=True hours=[]
+[day 13      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9985 vmax=1.0247 safe=True hours=[]
+[day 14       test] vcost=0.0000 [0.0000,0.0000] vmin=0.9650 vmax=1.0001 safe=True hours=[]
+[day 15      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9547 vmax=1.0001 safe=True hours=[]
+[day 16      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9702 vmax=1.0089 safe=True hours=[]
+[day 17 validation] vcost=0.0000 [0.0000,0.0000] vmin=0.9588 vmax=1.0082 safe=True hours=[]
+[day 18      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9641 vmax=1.0122 safe=True hours=[]
+[day 19      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9646 vmax=1.0144 safe=True hours=[]
+[day 20      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9643 vmax=1.0112 safe=True hours=[]
+[day 21 validation] vcost=0.0000 [0.0000,0.0000] vmin=0.9649 vmax=1.0059 safe=True hours=[]
+[day 22      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9772 vmax=1.0149 safe=True hours=[]
+[day 23 validation] vcost=0.0000 [0.0000,0.0000] vmin=0.9653 vmax=1.0182 safe=True hours=[]
+[day 24       test] vcost=0.0000 [0.0000,0.0000] vmin=0.9519 vmax=1.0026 safe=True hours=[]
+[day 25      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9686 vmax=1.0028 safe=True hours=[]
+[day 26      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9772 vmax=1.0111 safe=True hours=[]
+[day 27      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9857 vmax=1.0143 safe=True hours=[]
+==      train: 20/20 safe days (100%), vcost mean 0.0000, worst vmin 0.9547, worst vmax 1.0316
+==       test: 4/4 safe days (100%), vcost mean 0.0000, worst vmin 0.9519, worst vmax 1.0231
+== validation: 4/4 safe days (100%), vcost mean 0.0000, worst vmin 0.9588, worst vmax 1.0341
+==        all: 28/28 safe days (100%), vcost mean 0.0000, worst vmin 0.9519, worst vmax 1.0341
+wrote /root/autodl-tmp/env_v6_1_runs/eval/b9_mappopen001_s31_final.json

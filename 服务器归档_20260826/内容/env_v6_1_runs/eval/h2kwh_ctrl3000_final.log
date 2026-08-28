@@ -1,0 +1,34 @@
+eval env overrides: {'power_flow_vmin_pu': 0.95, 'power_flow_vmax_pu': 1.05}
+[day  0      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9729 vmax=1.0140 safe=True hours=[]
+[day  1       test] vcost=0.0000 [0.0000,0.0000] vmin=0.9621 vmax=1.0074 safe=True hours=[]
+[day  2      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9721 vmax=1.0119 safe=True hours=[]
+[day  3      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9740 vmax=1.0079 safe=True hours=[]
+[day  4      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9662 vmax=1.0031 safe=True hours=[]
+[day  5      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9770 vmax=1.0070 safe=True hours=[]
+[day  6      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9703 vmax=1.0000 safe=True hours=[]
+[day  7       test] vcost=0.0000 [0.0000,0.0000] vmin=0.9776 vmax=1.0000 safe=True hours=[]
+[day  8 validation] vcost=0.0000 [0.0000,0.0000] vmin=0.9901 vmax=1.0049 safe=True hours=[]
+[day  9      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9860 vmax=1.0053 safe=True hours=[]
+[day 10      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9890 vmax=1.0119 safe=True hours=[]
+[day 11      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9771 vmax=1.0095 safe=True hours=[]
+[day 12      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9805 vmax=1.0148 safe=True hours=[]
+[day 13      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9843 vmax=1.0040 safe=True hours=[]
+[day 14       test] vcost=0.0000 [0.0000,0.0000] vmin=0.9696 vmax=1.0000 safe=True hours=[]
+[day 15      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9660 vmax=1.0000 safe=True hours=[]
+[day 16      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9776 vmax=1.0064 safe=True hours=[]
+[day 17 validation] vcost=0.0000 [0.0000,0.0000] vmin=0.9645 vmax=1.0001 safe=True hours=[]
+[day 18      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9699 vmax=1.0000 safe=True hours=[]
+[day 19      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9703 vmax=1.0000 safe=True hours=[]
+[day 20      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9686 vmax=1.0000 safe=True hours=[]
+[day 21 validation] vcost=0.0000 [0.0000,0.0000] vmin=0.9725 vmax=1.0001 safe=True hours=[]
+[day 22      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9751 vmax=1.0001 safe=True hours=[]
+[day 23 validation] vcost=0.0000 [0.0000,0.0000] vmin=0.9651 vmax=1.0047 safe=True hours=[]
+[day 24       test] vcost=0.0000 [0.0000,0.0000] vmin=0.9563 vmax=1.0000 safe=True hours=[]
+[day 25      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9722 vmax=1.0000 safe=True hours=[]
+[day 26      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9776 vmax=1.0001 safe=True hours=[]
+[day 27      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9691 vmax=1.0000 safe=True hours=[]
+==      train: 20/20 safe days (100%), vcost mean 0.0000, worst vmin 0.9660, worst vmax 1.0148
+==       test: 4/4 safe days (100%), vcost mean 0.0000, worst vmin 0.9563, worst vmax 1.0074
+== validation: 4/4 safe days (100%), vcost mean 0.0000, worst vmin 0.9645, worst vmax 1.0049
+==        all: 28/28 safe days (100%), vcost mean 0.0000, worst vmin 0.9563, worst vmax 1.0148
+wrote /root/autodl-tmp/env_v6_1_runs/eval/h2kwh_ctrl3000_final.json

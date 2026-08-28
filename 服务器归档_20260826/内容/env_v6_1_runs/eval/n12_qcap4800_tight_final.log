@@ -1,0 +1,33 @@
+[day  0      train] vcost=0.0003 [0.0000,0.0010] vmin=0.9495 vmax=1.0000 safe=True hours=[17]
+[day  1       test] vcost=0.0048 [0.0000,0.0143] vmin=0.9474 vmax=1.0000 safe=True hours=[17, 18]
+[day  2      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9518 vmax=1.0000 safe=True hours=[]
+[day  3      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9550 vmax=1.0000 safe=True hours=[]
+[day  4      train] vcost=0.0224 [0.0004,0.0482] vmin=0.9460 vmax=1.0000 safe=False hours=[7, 8, 17]
+[day  5      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9535 vmax=1.0000 safe=True hours=[]
+[day  6      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9583 vmax=1.0000 safe=True hours=[]
+[day  7       test] vcost=0.0000 [0.0000,0.0000] vmin=0.9582 vmax=1.0150 safe=True hours=[]
+[day  8 validation] vcost=0.0000 [0.0000,0.0000] vmin=0.9558 vmax=1.0149 safe=True hours=[]
+[day  9      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9530 vmax=1.0124 safe=True hours=[]
+[day 10      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9609 vmax=1.0217 safe=True hours=[]
+[day 11      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9573 vmax=1.0234 safe=True hours=[]
+[day 12      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9556 vmax=1.0250 safe=True hours=[]
+[day 13      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9582 vmax=1.0143 safe=True hours=[]
+[day 14       test] vcost=0.0000 [0.0000,0.0000] vmin=0.9524 vmax=1.0000 safe=True hours=[]
+[day 15      train] vcost=0.0078 [0.0000,0.0179] vmin=0.9463 vmax=1.0017 safe=True hours=[21]
+[day 16      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9574 vmax=1.0095 safe=True hours=[]
+[day 17 validation] vcost=0.0011 [0.0000,0.0021] vmin=0.9488 vmax=1.0127 safe=True hours=[21]
+[day 18      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9531 vmax=1.0119 safe=True hours=[]
+[day 19      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9538 vmax=1.0159 safe=True hours=[]
+[day 20      train] vcost=0.0003 [0.0000,0.0009] vmin=0.9495 vmax=1.0150 safe=True hours=[2]
+[day 21 validation] vcost=0.0000 [0.0000,0.0000] vmin=0.9563 vmax=1.0000 safe=True hours=[]
+[day 22      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9510 vmax=1.0000 safe=True hours=[]
+[day 23 validation] vcost=0.0000 [0.0000,0.0000] vmin=0.9543 vmax=1.0000 safe=True hours=[]
+[day 24       test] vcost=0.0439 [0.0184,0.0577] vmin=0.9456 vmax=1.0000 safe=False hours=[7, 8, 9, 10, 11, 16, 17]
+[day 25      train] vcost=0.0023 [0.0000,0.0068] vmin=0.9487 vmax=1.0000 safe=True hours=[7]
+[day 26      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9569 vmax=1.0000 safe=True hours=[]
+[day 27      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9592 vmax=1.0000 safe=True hours=[]
+==      train: 19/20 safe days (95%), vcost mean 0.0017, worst vmin 0.9460, worst vmax 1.0250
+==       test: 3/4 safe days (75%), vcost mean 0.0122, worst vmin 0.9456, worst vmax 1.0150
+== validation: 4/4 safe days (100%), vcost mean 0.0003, worst vmin 0.9488, worst vmax 1.0149
+==        all: 26/28 safe days (93%), vcost mean 0.0030, worst vmin 0.9456, worst vmax 1.0250
+wrote /root/autodl-tmp/env_v6_1_runs/eval/n12_qcap4800_tight_final.json

@@ -1,0 +1,1559 @@
+{
+  "variant": "v6q_nocomm_gru_macpo_softc8_knee955",
+  "checkpoint": "/root/autodl-tmp/env_v6_1_runs/n23_knee955/checkpoints/v6q_nocomm_gru_macpo_softc8_knee955/update_001000.msgpack",
+  "seeds_per_day": 3,
+  "raw_voltage_budget": 0.02,
+  "eval_env_overrides": {
+    "power_flow_vmin_pu": 0.95,
+    "power_flow_vmax_pu": 1.05
+  },
+  "by_split": {
+    "train": {
+      "days": 20,
+      "safe_days_all_seeds": 19,
+      "safe_day_rate": 0.95,
+      "vcost_mean_of_day_means": 0.0005083323977507548,
+      "vcost_max_day_mean": 0.010166647955015096,
+      "vmin_worst": 0.9460331438732874,
+      "vmax_worst": 1.028399438511131,
+      "econ_mean_of_day_means": 904844.4056345416
+    },
+    "test": {
+      "days": 4,
+      "safe_days_all_seeds": 2,
+      "safe_day_rate": 0.5,
+      "vcost_mean_of_day_means": 0.0250051861804604,
+      "vcost_max_day_mean": 0.0849028864171355,
+      "vmin_worst": 0.9445866832009837,
+      "vmax_worst": 1.018172306337094,
+      "econ_mean_of_day_means": 993945.1137200936
+    },
+    "validation": {
+      "days": 4,
+      "safe_days_all_seeds": 4,
+      "safe_day_rate": 1.0,
+      "vcost_mean_of_day_means": 0.0,
+      "vcost_max_day_mean": 0.0,
+      "vmin_worst": 0.9515019172712834,
+      "vmax_worst": 1.0178794391812536,
+      "econ_mean_of_day_means": 950241.348779587
+    },
+    "all": {
+      "days": 28,
+      "safe_days_all_seeds": 25,
+      "safe_day_rate": 0.8928571428571429,
+      "vcost_mean_of_day_means": 0.003935264024173454,
+      "vcost_max_day_mean": 0.0849028864171355,
+      "vmin_worst": 0.9445866832009837,
+      "vmax_worst": 1.028399438511131,
+      "econ_mean_of_day_means": 924058.3558103412
+    }
+  },
+  "days": [
+    {
+      "day": 0,
+      "split": "train",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.9570430101017767,
+      "vmax_worst": 1.0,
+      "econ_mean": 953819.6185844174,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 0,
+          "seed": 1000,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 1000583.1479740143,
+          "voltage_min_pu": 0.9601236001302762,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 0,
+          "seed": 1001,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 862546.2680462647,
+          "voltage_min_pu": 0.9570430101017767,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 0,
+          "seed": 1002,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 998329.4397329732,
+          "voltage_min_pu": 0.9598151786080094,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 9.42
+    },
+    {
+      "day": 1,
+      "split": "test",
+      "vcost_mean": 0.015117858304706097,
+      "vcost_min": 0.0,
+      "vcost_max": 0.032998675491042406,
+      "vmin_worst": 0.9464989780682027,
+      "vmax_worst": 1.0,
+      "econ_mean": 1005024.5202884674,
+      "safe_all_seeds": false,
+      "pf_failures": 0,
+      "violating_hours_union": [
+        17,
+        18,
+        19
+      ],
+      "runs": [
+        {
+          "day": 1,
+          "seed": 1100,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 997548.9974470139,
+          "voltage_min_pu": 0.9502933976076218,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 1,
+          "seed": 1101,
+          "steps": 24,
+          "daily_voltage_cost": 0.032998675491042406,
+          "economic_cost": 964924.8268890381,
+          "voltage_min_pu": 0.9464989780682027,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [
+            17,
+            18,
+            19
+          ],
+          "safe_day": false
+        },
+        {
+          "day": 1,
+          "seed": 1102,
+          "steps": 24,
+          "daily_voltage_cost": 0.012354899423075882,
+          "economic_cost": 1052599.7365293503,
+          "voltage_min_pu": 0.9480489995172152,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [
+            17,
+            18,
+            19
+          ],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 10.48
+    },
+    {
+      "day": 2,
+      "split": "train",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.9518391166469041,
+      "vmax_worst": 1.0,
+      "econ_mean": 1217177.8758109126,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 2,
+          "seed": 1200,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 986970.4347406864,
+          "voltage_min_pu": 0.9535556986722556,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 2,
+          "seed": 1201,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 1151078.647439146,
+          "voltage_min_pu": 0.9566085022702051,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 2,
+          "seed": 1202,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 1513484.545252905,
+          "voltage_min_pu": 0.9518391166469041,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.76
+    },
+    {
+      "day": 3,
+      "split": "train",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.9636715668315268,
+      "vmax_worst": 1.0001999145662415,
+      "econ_mean": 982970.614892133,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 3,
+          "seed": 1300,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 959405.3050726891,
+          "voltage_min_pu": 0.9636715668315268,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 3,
+          "seed": 1301,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 1166112.005648613,
+          "voltage_min_pu": 0.9636879917903296,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 3,
+          "seed": 1302,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 823394.5339550972,
+          "voltage_min_pu": 0.965347095004019,
+          "voltage_max_pu": 1.0001999145662415,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.64
+    },
+    {
+      "day": 4,
+      "split": "train",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.951029115829786,
+      "vmax_worst": 1.0,
+      "econ_mean": 1047504.3053447563,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 4,
+          "seed": 1400,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 991101.563585186,
+          "voltage_min_pu": 0.9538741784613175,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 4,
+          "seed": 1401,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 1064042.1032740115,
+          "voltage_min_pu": 0.951029115829786,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 4,
+          "seed": 1402,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 1087369.2491750717,
+          "voltage_min_pu": 0.952323202333704,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.63
+    },
+    {
+      "day": 5,
+      "split": "train",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.9676293002026012,
+      "vmax_worst": 1.0032310012084928,
+      "econ_mean": 768023.5598373413,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 5,
+          "seed": 1500,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 745605.9260177612,
+          "voltage_min_pu": 0.9682853890215564,
+          "voltage_max_pu": 1.0032310012084928,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 5,
+          "seed": 1501,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 839201.139339447,
+          "voltage_min_pu": 0.9676293002026012,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 5,
+          "seed": 1502,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 719263.6141548157,
+          "voltage_min_pu": 0.9684381367564815,
+          "voltage_max_pu": 1.0013916578643118,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.6
+    },
+    {
+      "day": 6,
+      "split": "train",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.9624170265436449,
+      "vmax_worst": 1.0,
+      "econ_mean": 812340.0204729615,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 6,
+          "seed": 1600,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 883716.0818896103,
+          "voltage_min_pu": 0.9624170265436449,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 6,
+          "seed": 1601,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 799692.3710703354,
+          "voltage_min_pu": 0.9664567120668408,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 6,
+          "seed": 1602,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 753611.6084589387,
+          "voltage_min_pu": 0.9644860500249419,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.64
+    },
+    {
+      "day": 7,
+      "split": "test",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.9669905291584454,
+      "vmax_worst": 1.018172306337094,
+      "econ_mean": 893672.6569570001,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 7,
+          "seed": 1700,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 854742.8313477326,
+          "voltage_min_pu": 0.9675663795145496,
+          "voltage_max_pu": 1.0146353247764375,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 7,
+          "seed": 1701,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 881534.272945404,
+          "voltage_min_pu": 0.9680941161941142,
+          "voltage_max_pu": 1.0151810295318522,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 7,
+          "seed": 1702,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 944740.8665778637,
+          "voltage_min_pu": 0.9669905291584454,
+          "voltage_max_pu": 1.018172306337094,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.67
+    },
+    {
+      "day": 8,
+      "split": "validation",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.966103623519066,
+      "vmax_worst": 1.0178794391812536,
+      "econ_mean": 739390.7705962826,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 8,
+          "seed": 1800,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 700546.1908362415,
+          "voltage_min_pu": 0.9692923098521982,
+          "voltage_max_pu": 1.017423272213564,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 8,
+          "seed": 1801,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 717676.361946106,
+          "voltage_min_pu": 0.966103623519066,
+          "voltage_max_pu": 1.0157836562880393,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 8,
+          "seed": 1802,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 799949.7590065002,
+          "voltage_min_pu": 0.9670001828073672,
+          "voltage_max_pu": 1.0178794391812536,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.76
+    },
+    {
+      "day": 9,
+      "split": "train",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.9705788769013485,
+      "vmax_worst": 1.0165929826663564,
+      "econ_mean": 795333.4613699773,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 9,
+          "seed": 1900,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 787782.7169173813,
+          "voltage_min_pu": 0.9743830324555259,
+          "voltage_max_pu": 1.0165929826663564,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 9,
+          "seed": 1901,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 773438.3177356682,
+          "voltage_min_pu": 0.9745199822886385,
+          "voltage_max_pu": 1.0146911749524243,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 9,
+          "seed": 1902,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 824779.3494568825,
+          "voltage_min_pu": 0.9705788769013485,
+          "voltage_max_pu": 1.016270562251145,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.78
+    },
+    {
+      "day": 10,
+      "split": "train",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.9783089584581592,
+      "vmax_worst": 1.028399438511131,
+      "econ_mean": 1007322.6320167873,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 10,
+          "seed": 2000,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 1013002.2881923676,
+          "voltage_min_pu": 0.9783089584581592,
+          "voltage_max_pu": 1.0231357507625707,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 10,
+          "seed": 2001,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 1156314.1942736665,
+          "voltage_min_pu": 0.9789392558779376,
+          "voltage_max_pu": 1.028399438511131,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 10,
+          "seed": 2002,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 852651.4135843278,
+          "voltage_min_pu": 0.9816634995442124,
+          "voltage_max_pu": 1.026614301624254,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.77
+    },
+    {
+      "day": 11,
+      "split": "train",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.9726767267392131,
+      "vmax_worst": 1.025118479276703,
+      "econ_mean": 866639.3898699601,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 11,
+          "seed": 2100,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 859314.3611023665,
+          "voltage_min_pu": 0.9745723023849797,
+          "voltage_max_pu": 1.025118479276703,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 11,
+          "seed": 2101,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 841204.4868727208,
+          "voltage_min_pu": 0.9765480634199663,
+          "voltage_max_pu": 1.0233522986607293,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 11,
+          "seed": 2102,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 899399.3216347933,
+          "voltage_min_pu": 0.9726767267392131,
+          "voltage_max_pu": 1.0250987669663203,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.76
+    },
+    {
+      "day": 12,
+      "split": "train",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.9694413698391697,
+      "vmax_worst": 1.0270414533754102,
+      "econ_mean": 653906.2455252409,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 12,
+          "seed": 2200,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 694284.8529317379,
+          "voltage_min_pu": 0.9694413698391697,
+          "voltage_max_pu": 1.0270057588855188,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 12,
+          "seed": 2201,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 597666.5397890806,
+          "voltage_min_pu": 0.9722244500870729,
+          "voltage_max_pu": 1.0270414533754102,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 12,
+          "seed": 2202,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 669767.3438549042,
+          "voltage_min_pu": 0.9698758327643965,
+          "voltage_max_pu": 1.0256957114525769,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.78
+    },
+    {
+      "day": 13,
+      "split": "train",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.9738946681716526,
+      "vmax_worst": 1.0138915278718594,
+      "econ_mean": 692095.3338040466,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 13,
+          "seed": 2300,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 685972.4159176941,
+          "voltage_min_pu": 0.9742905702947809,
+          "voltage_max_pu": 1.0111712909760187,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 13,
+          "seed": 2301,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 707274.5163043214,
+          "voltage_min_pu": 0.9771094000738922,
+          "voltage_max_pu": 1.0138915278718594,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 13,
+          "seed": 2302,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 683039.0691901244,
+          "voltage_min_pu": 0.9738946681716526,
+          "voltage_max_pu": 1.0105815384180832,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.71
+    },
+    {
+      "day": 14,
+      "split": "test",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.9551748328861559,
+      "vmax_worst": 1.0,
+      "econ_mean": 973346.1443130175,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 14,
+          "seed": 2400,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 924641.1108810902,
+          "voltage_min_pu": 0.9579292417508516,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 14,
+          "seed": 2401,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 923963.6850464344,
+          "voltage_min_pu": 0.9558954559069228,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 14,
+          "seed": 2402,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 1071433.637011528,
+          "voltage_min_pu": 0.9551748328861559,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.78
+    },
+    {
+      "day": 15,
+      "split": "train",
+      "vcost_mean": 0.010166647955015096,
+      "vcost_min": 0.003283066309063054,
+      "vcost_max": 0.020392634152349487,
+      "vmin_worst": 0.9460331438732874,
+      "vmax_worst": 1.0,
+      "econ_mean": 890420.0035722256,
+      "safe_all_seeds": false,
+      "pf_failures": 0,
+      "violating_hours_union": [
+        21
+      ],
+      "runs": [
+        {
+          "day": 15,
+          "seed": 2500,
+          "steps": 24,
+          "daily_voltage_cost": 0.020392634152349487,
+          "economic_cost": 811499.118342638,
+          "voltage_min_pu": 0.9460331438732874,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [
+            21
+          ],
+          "safe_day": false
+        },
+        {
+          "day": 15,
+          "seed": 2501,
+          "steps": 24,
+          "daily_voltage_cost": 0.006824243403632746,
+          "economic_cost": 924831.4509773254,
+          "voltage_min_pu": 0.9480381887447237,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [
+            21
+          ],
+          "safe_day": true
+        },
+        {
+          "day": 15,
+          "seed": 2502,
+          "steps": 24,
+          "daily_voltage_cost": 0.003283066309063054,
+          "economic_cost": 934929.4413967133,
+          "voltage_min_pu": 0.948608497381601,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [
+            21
+          ],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.94
+    },
+    {
+      "day": 16,
+      "split": "train",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.9601094435576794,
+      "vmax_worst": 1.0062568079877925,
+      "econ_mean": 1015332.7627219848,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 16,
+          "seed": 2600,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 976812.7984687805,
+          "voltage_min_pu": 0.9601094435576794,
+          "voltage_max_pu": 1.0062568079877925,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 16,
+          "seed": 2601,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 1076898.2010603638,
+          "voltage_min_pu": 0.9611629454552154,
+          "voltage_max_pu": 1.0055474466566032,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 16,
+          "seed": 2602,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 992287.2886368103,
+          "voltage_min_pu": 0.9607214400232115,
+          "voltage_max_pu": 1.0052824629791761,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.7
+    },
+    {
+      "day": 17,
+      "split": "validation",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.9515019172712834,
+      "vmax_worst": 1.0051274110063788,
+      "econ_mean": 1040474.7852408439,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 17,
+          "seed": 2700,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 1024597.5044234827,
+          "voltage_min_pu": 0.9523119676170747,
+          "voltage_max_pu": 1.0051274110063788,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 17,
+          "seed": 2701,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 1077076.0526394367,
+          "voltage_min_pu": 0.9518577319697409,
+          "voltage_max_pu": 1.0003633052420022,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 17,
+          "seed": 2702,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 1019750.7986596127,
+          "voltage_min_pu": 0.9515019172712834,
+          "voltage_max_pu": 1.0041319656446053,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.69
+    },
+    {
+      "day": 18,
+      "split": "train",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.953739056739967,
+      "vmax_worst": 1.0094816729524052,
+      "econ_mean": 968964.0328875225,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 18,
+          "seed": 2800,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 978515.8096412659,
+          "voltage_min_pu": 0.953739056739967,
+          "voltage_max_pu": 1.006949396802162,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 18,
+          "seed": 2801,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 858091.6878379822,
+          "voltage_min_pu": 0.9548574190956646,
+          "voltage_max_pu": 1.0064205132594206,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 18,
+          "seed": 2802,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 1070284.601183319,
+          "voltage_min_pu": 0.9549899405782846,
+          "voltage_max_pu": 1.0094816729524052,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.72
+    },
+    {
+      "day": 19,
+      "split": "train",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.9566001410137519,
+      "vmax_worst": 1.0141474675745503,
+      "econ_mean": 754318.4654017411,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 19,
+          "seed": 2900,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 766985.7822439193,
+          "voltage_min_pu": 0.9580311499032844,
+          "voltage_max_pu": 1.0102361850862651,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 19,
+          "seed": 2901,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 815552.8959854965,
+          "voltage_min_pu": 0.9570334972675382,
+          "voltage_max_pu": 1.0141474675745503,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 19,
+          "seed": 2902,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 680416.7179758071,
+          "voltage_min_pu": 0.9566001410137519,
+          "voltage_max_pu": 1.0132346762691382,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.7
+    },
+    {
+      "day": 20,
+      "split": "train",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.9541490162437516,
+      "vmax_worst": 1.0093651731940616,
+      "econ_mean": 722719.7283481648,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 20,
+          "seed": 3000,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 769954.0675616455,
+          "voltage_min_pu": 0.9556465965075615,
+          "voltage_max_pu": 1.006396076541372,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 20,
+          "seed": 3001,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 726726.0482415162,
+          "voltage_min_pu": 0.9541490162437516,
+          "voltage_max_pu": 1.0072305108008397,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 20,
+          "seed": 3002,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 671479.069241333,
+          "voltage_min_pu": 0.9560461302157218,
+          "voltage_max_pu": 1.0093651731940616,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.75
+    },
+    {
+      "day": 21,
+      "split": "validation",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.9584505563543751,
+      "vmax_worst": 1.0,
+      "econ_mean": 1121427.4712836544,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 21,
+          "seed": 3100,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 1271349.3528190614,
+          "voltage_min_pu": 0.9589069760602589,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 21,
+          "seed": 3101,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 988362.0180962502,
+          "voltage_min_pu": 0.9584505563543751,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 21,
+          "seed": 3102,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 1104571.0429356515,
+          "voltage_min_pu": 0.9589303620482215,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.71
+    },
+    {
+      "day": 22,
+      "split": "train",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.9588441852726435,
+      "vmax_worst": 1.0,
+      "econ_mean": 966642.4888560474,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 22,
+          "seed": 3200,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 1085668.9041541992,
+          "voltage_min_pu": 0.9590472570152628,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 22,
+          "seed": 3201,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 838583.8471339404,
+          "voltage_min_pu": 0.9588441852726435,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 22,
+          "seed": 3202,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 975674.7152800023,
+          "voltage_min_pu": 0.9632791238835778,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.62
+    },
+    {
+      "day": 23,
+      "split": "validation",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.9529952215170652,
+      "vmax_worst": 1.0,
+      "econ_mean": 899672.3679975668,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 23,
+          "seed": 3300,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 943766.5188572407,
+          "voltage_min_pu": 0.9533189492939648,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 23,
+          "seed": 3301,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 861423.5362071991,
+          "voltage_min_pu": 0.9529952215170652,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 23,
+          "seed": 3302,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 893827.0489282608,
+          "voltage_min_pu": 0.9540446382868529,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.62
+    },
+    {
+      "day": 24,
+      "split": "test",
+      "vcost_mean": 0.0849028864171355,
+      "vcost_min": 0.04703155911527379,
+      "vcost_max": 0.11828890077971133,
+      "vmin_worst": 0.9445866832009837,
+      "vmax_worst": 1.0,
+      "econ_mean": 1103737.1333218894,
+      "safe_all_seeds": false,
+      "pf_failures": 0,
+      "violating_hours_union": [
+        7,
+        8,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "runs": [
+        {
+          "day": 24,
+          "seed": 3400,
+          "steps": 24,
+          "daily_voltage_cost": 0.11828890077971133,
+          "economic_cost": 1015621.1156089783,
+          "voltage_min_pu": 0.9445866832009837,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [
+            7,
+            8,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "safe_day": false
+        },
+        {
+          "day": 24,
+          "seed": 3401,
+          "steps": 24,
+          "daily_voltage_cost": 0.04703155911527379,
+          "economic_cost": 1232931.2330940247,
+          "voltage_min_pu": 0.946458385812503,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [
+            7,
+            8,
+            17,
+            18,
+            19
+          ],
+          "safe_day": false
+        },
+        {
+          "day": 24,
+          "seed": 3402,
+          "steps": 24,
+          "daily_voltage_cost": 0.0893881993564214,
+          "economic_cost": 1062659.0512626648,
+          "voltage_min_pu": 0.9452239404499725,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [
+            7,
+            8,
+            17,
+            18,
+            19,
+            20
+          ],
+          "safe_day": false
+        }
+      ],
+      "wall_seconds": 8.71
+    },
+    {
+      "day": 25,
+      "split": "train",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.9530981849601314,
+      "vmax_worst": 1.0,
+      "econ_mean": 1090195.5597668965,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 25,
+          "seed": 3500,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 1088782.0825386047,
+          "voltage_min_pu": 0.9530981849601314,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 25,
+          "seed": 3501,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 1090460.9666862488,
+          "voltage_min_pu": 0.955581886633269,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 25,
+          "seed": 3502,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 1091343.630075836,
+          "voltage_min_pu": 0.9536482615688221,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.7
+    },
+    {
+      "day": 26,
+      "split": "train",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.9604251018936898,
+      "vmax_worst": 1.0,
+      "econ_mean": 1023771.8469767388,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 26,
+          "seed": 3600,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 972484.7564668655,
+          "voltage_min_pu": 0.9615756504398348,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 26,
+          "seed": 3601,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 1060436.3017176362,
+          "voltage_min_pu": 0.9604251018936898,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 26,
+          "seed": 3602,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 1038394.4827457143,
+          "voltage_min_pu": 0.9646622560207968,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.92
+    },
+    {
+      "day": 27,
+      "split": "train",
+      "vcost_mean": 0.0,
+      "vcost_min": 0.0,
+      "vcost_max": 0.0,
+      "vmin_worst": 0.9640086731964426,
+      "vmax_worst": 1.0,
+      "econ_mean": 867390.1666309776,
+      "safe_all_seeds": true,
+      "pf_failures": 0,
+      "violating_hours_union": [],
+      "runs": [
+        {
+          "day": 27,
+          "seed": 3700,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 864109.1496662427,
+          "voltage_min_pu": 0.966039401033269,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 27,
+          "seed": 3701,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 824438.1938187312,
+          "voltage_min_pu": 0.9640086731964426,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        },
+        {
+          "day": 27,
+          "seed": 3702,
+          "steps": 24,
+          "daily_voltage_cost": 0.0,
+          "economic_cost": 913623.156407959,
+          "voltage_min_pu": 0.9652839743885688,
+          "voltage_max_pu": 1.0,
+          "pf_failure_rate": 0.0,
+          "violating_hours": [],
+          "safe_day": true
+        }
+      ],
+      "wall_seconds": 8.74
+    }
+  ]
+}

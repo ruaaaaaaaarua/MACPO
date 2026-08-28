@@ -1,0 +1,33 @@
+[day  0      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9516 vmax=1.0000 safe=True hours=[]
+[day  1       test] vcost=0.0302 [0.0185,0.0369] vmin=0.9463 vmax=1.0000 safe=False hours=[16, 17, 18, 19]
+[day  2      train] vcost=0.0232 [0.0169,0.0343] vmin=0.9455 vmax=1.0000 safe=False hours=[9]
+[day  3      train] vcost=0.0062 [0.0029,0.0119] vmin=0.9479 vmax=1.0000 safe=True hours=[17, 18]
+[day  4      train] vcost=0.0510 [0.0410,0.0603] vmin=0.9461 vmax=1.0000 safe=False hours=[9, 16, 17, 18, 19, 20]
+[day  5      train] vcost=0.0040 [0.0019,0.0061] vmin=0.9485 vmax=1.0000 safe=True hours=[18, 20]
+[day  6      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9504 vmax=1.0000 safe=True hours=[]
+[day  7       test] vcost=0.0000 [0.0000,0.0000] vmin=0.9587 vmax=1.0110 safe=True hours=[]
+[day  8 validation] vcost=0.0000 [0.0000,0.0000] vmin=0.9658 vmax=1.0168 safe=True hours=[]
+[day  9      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9642 vmax=1.0108 safe=True hours=[]
+[day 10      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9611 vmax=1.0245 safe=True hours=[]
+[day 11      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9555 vmax=1.0214 safe=True hours=[]
+[day 12      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9666 vmax=1.0277 safe=True hours=[]
+[day 13      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9608 vmax=1.0124 safe=True hours=[]
+[day 14       test] vcost=0.0088 [0.0006,0.0131] vmin=0.9480 vmax=1.0000 safe=True hours=[6, 21]
+[day 15      train] vcost=0.0458 [0.0440,0.0484] vmin=0.9444 vmax=1.0000 safe=False hours=[19, 20, 21, 22]
+[day 16      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9530 vmax=1.0000 safe=True hours=[]
+[day 17 validation] vcost=0.1912 [0.1654,0.2346] vmin=0.9387 vmax=1.0000 safe=False hours=[20, 21, 22, 23]
+[day 18      train] vcost=0.0648 [0.0508,0.0818] vmin=0.9426 vmax=1.0000 safe=False hours=[6, 19, 20, 21, 22]
+[day 19      train] vcost=0.0133 [0.0110,0.0145] vmin=0.9469 vmax=1.0068 safe=True hours=[20, 21]
+[day 20      train] vcost=0.0297 [0.0251,0.0367] vmin=0.9462 vmax=1.0047 safe=False hours=[5, 19, 20, 21, 22, 23]
+[day 21 validation] vcost=0.0000 [0.0000,0.0000] vmin=0.9502 vmax=1.0000 safe=True hours=[]
+[day 22      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9596 vmax=1.0000 safe=True hours=[]
+[day 23 validation] vcost=0.0000 [0.0000,0.0000] vmin=0.9503 vmax=1.0000 safe=True hours=[]
+[day 24       test] vcost=0.8556 [0.7658,0.9430] vmin=0.9375 vmax=1.0000 safe=False hours=[6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+[day 25      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9551 vmax=1.0000 safe=True hours=[]
+[day 26      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9527 vmax=1.0000 safe=True hours=[]
+[day 27      train] vcost=0.0000 [0.0000,0.0000] vmin=0.9555 vmax=1.0000 safe=True hours=[]
+==      train: 15/20 safe days (75%), vcost mean 0.0119, worst vmin 0.9426, worst vmax 1.0277
+==       test: 2/4 safe days (50%), vcost mean 0.2237, worst vmin 0.9375, worst vmax 1.0110
+== validation: 3/4 safe days (75%), vcost mean 0.0478, worst vmin 0.9387, worst vmax 1.0168
+==        all: 20/28 safe days (71%), vcost mean 0.0473, worst vmin 0.9375, worst vmax 1.0277
+wrote /root/autodl-tmp/env_v6_1_runs/eval/n6_criticfit_final.json
