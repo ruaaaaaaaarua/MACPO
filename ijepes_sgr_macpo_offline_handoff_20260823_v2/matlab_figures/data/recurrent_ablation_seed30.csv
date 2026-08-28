@@ -1,0 +1,4 @@
+configuration,economic_cost_m_cny
+Full SGR-MACPO,3.45
+No GRU hidden state,5.40
+No previous-action input,7.86

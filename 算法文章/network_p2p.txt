@@ -1,0 +1,1225 @@
+      IEEE TRANSACTIONS ON SMART GRID, VOL. 16, NO. 6, NOVEMBER 2025                                                                                   5573
+
+
+
+
+      Network-Constrained P2P Trading: A Safety-Aware
+          Decentralized Multi-Agent Reinforcement
+                     Learning Approach
+                           Qianyi Ma , Graduate Student Member, IEEE, Zifa Liu , Senior Member, IEEE,
+                          Yujian Ye , Senior Member, IEEE, and Xiao Liu , Graduate Student Member, IEEE
+
+
+
+         Abstract—With increasingly predominant renewable energy                         determined by the joint behavior of individual operators.
+      sources and market deregulation in the distribution network,                       2) Given the short market clearing interval of five or fifteen
+      considerable research effort has been devoted to safe reinforce-                   minutes, the system operation conditions are varied and highly
+      ment learning (RL). Network-constrained peer-to-peer (P2P)
+      transaction is particularly challenging, as the system-wide global                 dynamic. 3) P2P Transaction introduces multiple participants
+      constraint is implicitly determined by the joint behavior of                       in network operation. These features pose challenges to coor-
+      individual agents. Existing safe RL methods are burdened of                        dinate participants’ compliance of the physical DN constraints
+      addressing this type of constraint. In this context, this paper                    and their economic objective at the same time [2]. It is critical
+      proposes a decentralized Multi-Agent Safety-Aware Learning                         to implement P2P trading without compromising network
+      (MASAL) method based on trust region concept. It treats system
+      operation safety as a prerequisite and realizes safety-aware                       security [3].
+      target. Furthermore, a system-wide safety condition classifica-                       Conventionally, optimization-based methods employed in
+      tion is proposed, categorizing trading policy optimization into                    network-constrained P2P can be broadly divided into three
+      five operation conditions. Endogenous and exogenous violations                     types: 1) Centralized approach [4] assumes the DN and
+      can be distinguished. Building on the classification of system                     all of the P2P participants are managed by a centralized
+      operation conditions, the method conducts preventive trading
+      policy under normal conditions, and responsive policy under                        coordinator. 2) Bi-level negotiation approach [5] executes P2P
+      critical conditions when exogenous violations occur. Case studies                  transaction at the lower level to obtain the equivalent load.
+      show that the proposed method outperforms state-of-the-art                         The trading adjustment and DN operation management are
+      safety layer method and Lagrangian relaxation method under                         conducted at the upper level. 3) Consensus-based distributed
+      normal and critical conditions. Numerical results also highlight                   approach [6], [7] decomposes the global optimal power flow
+      the effectiveness of the method in terms of interpretable trading
+      policies, scalability performance, and training robustness with                    problem into local subproblems through distributed algo-
+      multiple constraints.                                                              rithms, such as alternating direction method of multipliers.
+                                                                                         Apart from the optimization-based methods, [8] employs a
+        Index Terms—Safe multi-agent reinforcement learning, trust
+      region methods, peer-to-peer transaction, system-wide constraint.                  heuristic method for the household-level P2P trading in a low-
+                                                                                         voltage network, but it is not applicable to medium-voltage
+                                                                                         distribution networks. However, limited by the computational
+                                                                                         burden of multiple iterations, conventional methods struggle
+                                 I. I NTRODUCTION                                        to fully capture the P2P market dynamics.
+           EER-TO-PEER (P2P) energy trading in distribution                                 In this context, intelligent and autonomous decision-making
+      P    networks (DN) has three features: 1) The traditional
+      centralized DN operation is transitioning to a distributed and
+                                                                                         methods is urgently demanded. Specifically, deep reinforce-
+                                                                                         ment learning (DRL) has been considered an potential
+      cooperative approach [1], so the system-wide constraints are                       approach [9]. RL training is based on trial-and-error and
+                                                                                         interaction with an environment. It enables close-to-real-time
+         Received 22 September 2024; revised 8 May 2025; accepted 13                     decision-making in P2P market (typically on time scales of
+      July 2025. Date of publication 21 July 2025; date of current version               milliseconds), demonstrating fast response speed to dynamic
+      23 October 2025. This work was supported in part by the National Natural
+      Science Foundation of China under Grant 52477083 and Grant 52207082, and           operation conditions [10], [11].
+      in part by the Natural Science Foundation of Jiangsu Province under Grant             However, the vanilla DRL training relies on random explo-
+      BK20220842. Paper no. TSG-01625-2024. (Corresponding author: Yujian Ye.)           ration and it formalizes an unconstrained Markov Decision
+         Qianyi Ma and Zifa Liu are with the School of Electrical and Electronics
+      Engineering, North China Electric Power University, Beijing 102206, China          Process (MDP). It inevitably generates actions that violate
+      (e-mail: maqianyi@ncepu.edu.cn; tjubluesky@163.com).                               vital physical network constraints and may cause catastrophic
+         Yujian Ye is with the School of Electrical Engineering, Southeast University,   outcomes, such as P2P trading without network safety con-
+      Nanjing 210096, China (e-mail: yeyujian@seu.edu.cn).
+         Xiao Liu is with the School of Electrical and Computer                          cern in [12]. It triggers considerable research efforts devoted
+      Engineering, The University of Sydney, Sydney, NSW 2006, Australia                 to the safe RL for modern power systems [13]. Safe RL
+      (e-mail: xiao.liu1@sydney.edu.au).                                                 learns the policies that maximize reward and adheres to the
+         Color versions of one or more figures in this article are available at
+      https://doi.org/10.1109/TSG.2025.3589888.                                          safety constraints [14]. Based on whether they are coupled
+         Digital Object Identifier 10.1109/TSG.2025.3589888                              with the RL framework, existing safe RL methods can be
+                      1949-3053 
+                                c 2025 IEEE. All rights reserved, including rights for text and data mining, and training of artificial intelligence
+                             and similar technologies. Personal use is permitted, but republication/redistribution requires IEEE permission.
+                                             See https://www.ieee.org/publications/rights/index.html for more information.
+Authorized licensed use limited to: CHANGSHA UNIV OF SCIENCE AND TECHNOLOGY. Downloaded on August 26,2026 at 07:50:14 UTC from IEEE Xplore. Restrictions apply.
+      5574                                                                          IEEE TRANSACTIONS ON SMART GRID, VOL. 16, NO. 6, NOVEMBER 2025
+
+
+                                                                                                               TABLE I
+      coarsely categorized into two types [15]: Safety layer meth-                         C OMPARISONS OF S AFE RL IN E XISTING L ITERATURE
+      ods [16], [17] and safe policy optimization methods [18], [19],
+      [20], [21], [22], [23], [24], [25], [26], [27].
+         Safety layer methods in power system add a safety layer
+      to rectify unsafe actions as a check before interacting with
+      the environment, which are decoupling from the conventional
+      RL framework. One way to modify unsafe actions is action
+      projection. In [16], a quadratic programming (QP) layer
+      correcting the primitive action is embedded in the actor neural
+      network, which keeps the voltage magnitude within the safe
+      range. Reference [17] employs appliance-specific logic to
+      deal with local constraints in building energy management
+      (BEM), which are determined by individual agents such as
+      heating ventilation, and air conditioning (HVAC) and washing
+      machine.
+         Safety layer methods are usually used for constraints that the
+      safety cost value is a linear function dependent on the action.
+      Local constraints, such as state of charge of energy storage
+      (ES) corresponding to charging power, and room temperature
+      corresponding to HVAC operation setting point, are typical
+      examples. However, they have low adaptability in dynamic                   voltage exceeding the upper limit. 2) Exogenous violations
+      and intricate network-constrained P2P trading environments.                resulting from the DN, regardless of the trading intentions. For
+      The pre-trained safety examination process evaluating whether              instance, fluctuations in output from a utility-owned renew-
+      the original action is safe relies heavily on the parameterized            able energy station due to weather conditions can cause the
+      system model. It lacks universality and cannot be adaptive to              voltage violation. To earn profits within a secure distribution
+      various DN operation conditions.                                           system, it is pressingly needed for participants to distinguish
+         Coupled with the traditional RL framework, safe policy                  normal conditions when violations stem from endogenous
+      optimization methods deal with constraints by transforming                 transactions, and critical conditions when violations stem from
+      policy optimization criterion. They formulate Constrained                  exogenous DN.
+      Markov Decision Process (CMDP) instead of conventional                        Different from striking a balance between safety and
+      MDP to explicitly describe the constraint violation. To solve              non-safety performance, another popular approach is the
+      the CMDP, one popular method is reward shaping. It intro-                  trust region method. It directly addresses the constrained
+      duces an auxiliary penalty component in reward function                    optimization problem. It separately treats the economic
+      and reformulates an unconstrained problem. A direct way of                 objective and safety constraints. Reference [25] develops a
+      reward shaping is penalizing violation with a fixed penalty                trust-region-based multi-agent safe RL method for networked
+      factor [18], [19], which necessitates manually tuning penalty              microgrids (MGs), but it requires costly inter-agent com-
+      factors and expert knowledge. As an extension of reward                    munication to achieve the consensus. As a representative,
+      shaping, Lagrangian relaxation method is commonly used                     constrained policy optimization (CPO) algorithm is employed
+      to formulate penalty term. It balances the trade-off between               to optimize DN operation [26], [27]. Although this method
+      reward and safety cost [20], [21], [22], [23].                             succeeds in the context of single-agent systems, the coordi-
+         The Lagrangian relaxation method is applicable to con-                  nation of trading policies is challenging when extended to
+      straints that the safety cost value is explicitly dependent on the         decentralized multi-agent systems owing to conflicts among
+      action, such as local voltage-reactive power [24]. However, this           agents [28]. Detailed comparisons of safe RL methods are
+      method merely combines safety and non-safety performance                   listed in Table I.
+      metrics into the reward function, but the exact gradient of                   To the best of our knowledge, although research effort
+      safety violation cost is overlooked.                                       has been devoted to address the constraints explicitly deter-
+         Notably, the system-wide network constraint in P2P trans-               mined by actions, no safe RL method is developed for the
+      action is indirectly and implicitly impacted by the actions                complicated network constraint of P2P transaction. Most safe
+      (bidding of agents), which cannot be expressed as a function               RL methods are single-agent, which does not align with
+      of the actions. The nodal voltages are affected by decentralized           the autonomous nature of decentralized market participants.
+      bidding actions which intend to pursue high trading profits.               Therefore, this paper proposes a multi-agent deep reinforce-
+      To tackle the complex constraint, there is an urgent need to               ment learning (MADRL) method to deal with system-wide
+      utilize the safety cost gradient in guiding safe policy search.            global constraint indirectly impacted by joint trading action.
+         Furthermore, constraint violations can be categorized into              The key contributions are threefold:
+      two types based on their causes in a P2P energy trading                       1) A decentralized multi-agent safe policy learning method
+      problem: 1) Endogenous violations arising from transactions.               based on trust region concept is proposed. It addresses the
+      For example, a participant may increase the local generation               network-constrained P2P transaction of multiple microgrids
+      to sell energy, causing a large net injection that leads to                (MMGs) in repeated double auction (RDA) market. It
+
+Authorized licensed use limited to: CHANGSHA UNIV OF SCIENCE AND TECHNOLOGY. Downloaded on August 26,2026 at 07:50:14 UTC from IEEE Xplore. Restrictions apply.
+      MA et al.: NETWORK-CONSTRAINED P2P TRADING: A SAFETY-AWARE DECENTRALIZED MULTI-AGENT REINFORCEMENT LEARNING APPROACH                           5575
+
+
+
+      eliminates conflicts among agents and agents can reach a                   {1, . . . , Ns }. A buyer is a MG with energy deficit qb,t and is
+      consensus towards safe joint trading policy.                               ready to purchase energy at the bid price cb,t . A seller is a
+         2) A system-wide safety condition classification is proposed,           MG with energy surplus qs,t and is willing to sell energy at
+      categorizing trading policy optimization into five operation               the ask price cs,t . To incentivize MGs to trade with peers, the
+      conditions. Building on the classification, safety-aware pol-              bid and ask prices are bounded between the network tariff, as
+      icy update scheme is developed, which conducts preventive                  formulated in equation (1).
+      trading policy under normal conditions when endogenous vio-
+      lations occur, and responsive policy under critical conditions                           λFiT
+                                                                                                t   ≤ cs,t , cb,t ≤ λToU
+                                                                                                                     t   , s ∈ S, b ∈ B               (1)
+      when exogenous violations occur.                                           where λFiT     and λToU   are FiT and ToU price, respectively.
+                                                                                        t            t
+         3) Unlike striking a balance between safety and non-safety              Then, an auctioneer (DSO) collects the submitted information
+      performance through weight coefficients under Lagrangian                   of MMGs and records them in the buyer and seller order
+      relaxation methods, safety is treated as a prerequisite con-               books, ktb and kts . According to the principle of price first, the
+      straint, rather than merely an aspect of policy performance.               buyer/seller order book is sorted in a descending/ascending
+      The safety cost gradient is explicitly integrated in the policy            order, as indicated in equations (2) and (3).
+      update direction, guiding the safe P2P trading policy search.                                                                              
+         The remainder of this paper is organized as follows.                       ktb = cb,t , qb,t |c1,t ≥ · · · ≥ cb,t ≥ · · · ≥ cNb ,t , b ∈ B (2)
+                                                                                                                                                
+      Section II formulates the network-constrained P2P trading                     kts = cs,t , qs,t |c1,t ≤ · · · ≤ cs,t ≤ · · · ≤ cNS ,t , s ∈ S (3)
+      problem into a Constrained Cooperative Markov Game.
+      Section III introduces the proposed MASAL method and the                      Based on the buyer and seller order books, the auctioneer
+      system-wide safety condition classification. In Section IV,                plots the bidding and asking curves to find the intersection
+      numerical tests are performed. Finally, Section V draws the                point. When the bid price exceeds the ask price (Smat sellers
+      conclusions and identifies future directions.                              and Bmat buyers to the left of the intersection point), trading
+                                                                                 pairs will be matched. Subsequently, the trading energy and
+                                                                                 prices are calculated pairwise along the price curves, which
+       II. N ETWORK -C ONSTRAINED P2P E NERGY T RADING IN
+                                                                                 are given by equations (4) and (5).
+               R EPEATED D OUBLE AUCTION M ARKET                                                                      
+         We concentrate on a network-constrained P2P energy trad-                       pbs,t = psb,t = min qb,t , qs,t , s ∈ Smat , b ∈ Bmat (4)
+                                                                                                                   
+      ing problem of Distribution System Operator (DSO)-owned                           λbs,t = λsb,t = cb,t + cs,t /2, s ∈ S , b ∈ B
+                                                                                                                               mat        mat
+                                                                                                                                              (5)
+      MMGs in RDA market [29], [30]. The market horizon is
+      24 hours with an hourly time step. Specifically, the MG                       The unmatched quantities (Su sellers and Bu buyers to the
+      is comprised of the renewable energy source (RES), energy                  right of the intersection point) will be resolved by trading
+      storage (ES), micro turbine (MT) and demand response (DR),                 at the network tariff. Thus, it is assured that any imbalance
+      linked to a specific bus known as the Point of Common                      of MMGs is completely cleared. After clearing, the current
+      Coupling (PCC). Each MG can utilize an energy management                   auction period closes, and MGs reset the order information for
+      system to schedule its flexibility resources. The net load                 the next period. The above process will repeat itself until the
+      injection of the PCC is determined by the MG operator.                     trading day ends.
+      DSO, which is responsible for secure network operation, runs
+      the power flow to calculate the voltage magnitude. After                   B. Energy Management and Bidding Model of MMGs
+      observing 1) the physical information of voltage and local                    The objective function Hm,t of MG m consists of three parts:
+      demand and supply; 2) the market information of network                                                  U ; 2) P2P trading cost with other
+                                                                                 1) Negative utility function Cm,t
+      tariff and clearing outcomes, the MG adjusts its price-quantity                   P2P ; 3) Energy trading cost with the main grid Cgrid .
+                                                                                 MGs Cm,t                                                   m,t
+      strategy. Each MG has three ways to supply its load: from
+                                                                                                                               grid
+      local energy sources, from the other MGs and from the main                                     minHm,t = Cm,t U
+                                                                                                                       +Cm,t + Cm,t
+                                                                                                                                P2P
+                                                                                                                                                    (6a)
+                                                                                                       u
+      grid. It bids as a buyer or seller with price and quantity at each                                            2      
+                                                                                                                           MT MT 2
+                                                                                                                                   
+      time step. Buyer and seller MGs are paired based on RDA
+                                                                                              U
+                                                                                             Cm,t = αm   pm,t − pacL
+                                                                                                     dis L
+                                                                                                                 m,t    + αm  pm,t
+      mechanism. Then the matched order quantities are cleared                                                                  +βmMT pMT
+                                                                                                                                       m,t          (6b)
+      at the matched price, while unmatched portions are balanced
+                                                                                                                        
+                                                                                                                        L
+      through transactions with the upstream grid. All formulas in                                                 =          λM
+                                                                                                                               ι,t pι,t · m,t
+                                                                                                               P2P                  M
+                                                                                                              Cm,t                                  (6c)
+      this paper hold for ∀t.                                                                                             ι
+                                                                                                                                +
+                                                                                                  grid         grid −     ToU grid
+                                                                                                 Cm,t = λFiT
+                                                                                                         t    pm,t    + λ t   pm,t                  (6d)
+      A. Repeated Double Auction Mechanism
+         To clear the pairwise trading quantities and prices, and                where u is the vector of decision variables, including the
+      achieve the social welfare maximization, the RDA market                    actual power consumption pacL m,t , the power production of MT
+                                                                                 pMT                              power of ES pchm,t /pm,t and the
+                                                                                      , the charging/discharging                       dis
+      clearing mechanism is introduced. The RDA mechanism                         m,t
+      operates within predetermined intervals known as auction                   bidding price cm,t . The load of MG includes elastic load
+      period (1h) during the trading day. After submitting their order           and inelastic load [31]. The elastic load can be curtailed to
+      information at the beginning of each auction period, MGs are               earn more profits. pLm,t is the desired demand and αm    dis is the
+
+      divided into a set of buyers B = {1, . . . , Nb } and sellers S =          discomfort cost coefficient. Similar to [32], the DR discomfort
+
+Authorized licensed use limited to: CHANGSHA UNIV OF SCIENCE AND TECHNOLOGY. Downloaded on August 26,2026 at 07:50:14 UTC from IEEE Xplore. Restrictions apply.
+      5576                                                                                 IEEE TRANSACTIONS ON SMART GRID, VOL. 16, NO. 6, NOVEMBER 2025
+
+
+
+      cost is a quadratic function.αm  MT and β MT are the cost function                MG pbid                          load         bid
+                                                m                                             i(m),t and the load of DN Pi,t , where pi(m),t is obtained
+      parameters. For the P2P trading cost, ι is the index of matched                   by the MG solving problem (6). As given in Eq. (6k), pbid   i(m),t
+      peers. L denotes the corresponding maximum number of                              is determined by the active power of the ES, MT generation,
+      matched pairs. pM ι,t is the cleared trading quantity, and λι,t is
+                                                                    M
+                                                                                        RES output, and actual load consumption. The bus voltage
+      the clearing price with respect to the quantity. Total bidding                    magnitudes are limited by constraint (10).
+      quantity of a MG could be matched with multiple peers in
+      a time interval. The indicator m,t = 1 if m ∈ Bmat and                                                  Vi− ≤ Vi,t ≤ Vi+ , ∀i                     (10)
+                                                                  grid
+      m,t = −1 if m ∈ Smat . For the retail energy cost, pm,t is                       where [Vi− , Vi+ ] is the safe range of voltage.
+      the energy trading with the main grid, where [ · ]   +/−   denotes
+                                  grid
+      max/min{·, 0}. pMm,t  and  pm,t  are determined through the RDA-
+                                                                                        D. Constrained Cooperative Markov Game Formulation
+      based market clearing process.
+         The operation constraints of MT and curtailable load are                          Since the current bidding strategy of MMGs is influenced
+      presented by (6e) and (6f), respectively.                                         by the market clearing outcomes of the previous auction
+                                                                                        period, the decision-making of MGs apparently exhibits the
+                                           m,t ≤ pm
+                                      0 ≤ pMT     MT
+                                                                                 (6e)   Markov Property. Thus, we consider the P2P trading of
+                               εm         m,t ≤ pm,t
+                                  pm,t ≤ pacL
+                                l L              L
+                                                                                 (6f)   MMGs in RDA-based market as a decentralized Constrained
+                                                                                        Cooperative Markov Game with 24-hour intervals. It min-
+      where pMT
+              m represents the upper limit of MT generation, and                        imizes the MMGs’ joint energy costs while satisfying the
+      the coefficient εm
+                       l denotes the ratio of inelastic load.
+                                                                                        system-wide voltage constraint.
+        The operation constraints of ES m are outlined as follows.                         Each MG acts as an agent responsible for orchestrating
+                             m,t ≤ pm
+                        0 ≤ pch     es
+                                                                                 (6g)   its energy scheduling and bidding strategy. The RDA-
+                                                                                        based P2P market is assumed as the environment. The
+                   −pesm ≤ pm,t ≤ 0
+                             dis
+                                                                                 (6h)
+                                                                                        Constrained Cooperative Markov Game is defined by a tuple
+                   es
+                  Em,t+1  = Em,t
+                             es
+                                    m,t tηm + Pm,t t/ηm
+                                 + Pch     ch   dis     dis
+                                                                                 (6i)   M, S, O,A, T ,R, C, γ  where M agents with a set of state
+                       m ≤ Em,t ≤ Em
+                       es    es     es
+                                                                                 (6j)   S, a collection of observations O, a set of joint actions
+                                                                                        A =A1 × A2 × · · · Am , a joint reward function R, a cost
+      where pes
+              m denotes the active power limit of the ES. Constraints                   C ={Cm }, m = 1, . . . , M with safety bound d, a state transi-
+      (6g) and (6h) limits the maximum charging and discharging                         tion function T and a discount factor γ . The goal of agents is
+      power. The state-of-charge (SoC) transition between t and                         to find a joint policy that maximizes the expected joint reward
+      t + 1 is described in (6i), where ηmch /ηdis indicates the charg-
+                                               m                                        subject to a global constraint for expected cost function:
+      ing/discharging efficiency. The SoC level Em,t   es is restricted
+                                                es     es
+      within the range of energy capacity [m , Em ], as given in                                                  
+                                                                                          max J(π ) = Eτ ∼π             γ t R(st , at )
+      constraint (6j).                                                                    π∈   C
+                                                                                                                    t
+         The bidding quantity pbid
+                                 i,t should be equal to the difference                                                  
+      between local demand and generation as in Eq. (6k).                                   s.t. JCm (π ) = Eτ ∼π           γ t Cm (st , at ) ≤ d, m ∈ M(11)
+                   m,t = pm,t − pm,t − pm,t − pm,t + pm,t
+                  pbid    acL    RES    MT     dis    ch                                                                t
+                                                                                 (6k)
+                                                                                          The detailed components are specified as below.
+      where pRES
+             m,t denotes the RES power generation.                                        1) State and Observation: The environmental state st =
+                                                                                        {o1,t , . . . , oM,t } ∈ S consists of the observations of all agents.
+      C. Constraints of Distribution Network                                            The observation agent m can perceive is defined as
+         The DN can be described as an undirected graph G(W, E),                                                                                     
+      where W and E are the collections of nodes and branches,                                                      m,t , Em,t , λt , λt
+                                                                                                    om,t = pLm,t , pRES    es
+                                                                                                                                         , kt ,kt , V
+                                                                                                                                  FiT ToU b s
+                                                                                                                                                         (12)
+      respectively. i, j ∈ W are index of nodes and ij∈ E are index
+      of branches. The secure operation of DN is governed by                            which consists of three parts: 1) Local information of load
+      constraints (7)–(10):                                                             pLm,t , RES output pRES                              es
+                                                                                                                m,t and SoC of ES Em,t . 2) Market
+                                                                                     information of network tariff λt , λt and public orderbooks
+                                                                                                                           FiT    ToU
+             Pi,t =       |V i,t ||Vj,t | Gij cos θij,t + Bij sin θij,t , ∀i (7)        ktb ,kts . Align with the real-world trading condition in [33],
+                      j∈W                                                               the agent has full access to the orderbook information, aimed
+                                                                       
+             Qi,t =         |V i,t ||Vj,t | Gij sin θij,t − Bij cos θij,t , ∀i    (8)   at improving market responsiveness. 3) Grid information
+                    j∈W                                                                 of voltage magnitude matrix V. Note that V includes the
+                                                                                        voltage magnitude of the entire network, which is accessible
+                      i(m),t − Pi,t , ∀i, m ∈
+             Pi,t = pbid        load                  PCC
+                                                                                  (9)
+                                                                                        to the agents through the measurement and communication
+      where Pi,t , Qi,t represent the active and reactive power injected                devices such as phasor measurement units and wireless sensor
+      into node i, respectively; Vi,t is the voltage magnitude at node                  networks. The similar setting can be found in the real-world
+      i; Gij and Bij signify the conductance and susceptance of                         MG [34] and research work [35].
+      branch from node i to node j; and θij,t indicates the voltage                         2) Action: The action of agent m can be defined as
+      phase difference between nodes i and j. Equation (9) illustrates                                                                  
+      the net injection is difference between the bidding quantity of                                            m,t , am,t , am,t , am,t ∈ A
+                                                                                                         am,t = aC      MT ES         L
+                                                                                                                                                   (13)
+
+Authorized licensed use limited to: CHANGSHA UNIV OF SCIENCE AND TECHNOLOGY. Downloaded on August 26,2026 at 07:50:14 UTC from IEEE Xplore. Restrictions apply.
+      MA et al.: NETWORK-CONSTRAINED P2P TRADING: A SAFETY-AWARE DECENTRALIZED MULTI-AGENT REINFORCEMENT LEARNING APPROACH                                 5577
+
+
+
+      which comprises: aC   m,t ∈ [0, 1] denoting the bidding price
+      submitted to the auctioneer, normalized as a ratio of the
+      difference between ToU and FiT cm,t = λFiT    t   + aC      ToU −
+                                                            m,t (λt
+      λt ); am,t , am,t and am,t are actions controlling MT, ES and
+        FiT    MT   ES        L
+
+      flexible load, respectively.
+         3) State Transition: The SOC transition of ES is determined
+                      m,t ∈ [−1, 1], where the positive value indicates
+      by the action aES
+      charging and the negative value indicates discharging. The
+      manually exclusive variables pch          dis
+                                      m,t and pm,t are constrained by
+                                            es
+      the range of energy capacity [m , Em ], as shown below [12].
+                                      es
+
+                                            es
+                  m,t = min am,t pm , E m − Em,t /ηm t
+                 pch         ES es            es      ch
+                                                                         (14)
+                                                 dis
+                  m,t = max am,t pm , m − Em,t ηm /t
+                 pdis         ES es es       es
+                                                                         (15)
+
+        Then, the SoC transition can be expressed as (6i).
+        4) Reward: The joint reward is defined as the summation
+      of the negative energy cost of MGs in equation (6a):
+                                        M
+                                        
+                               Rt = −         Hm,t                       (16)
+                                        m=1
+
+         5) Cost: The DSO runs the power flow to derive the node
+      voltage profile. The cost function is designed as the total
+      penalization for voltage violations. Since the line capacity is
+      sufficient in DN, the line congestion is not considered. Similar
+                                                                                 Fig. 1. (a) Illustration of agents’ potential conflicts regarding energy profit
+      setting can be found in [36].                                              improvement and safety constraint satisfaction faced by current safe RL
+                      W
+                                       +             −                      methods. (b) Illustration of desirable safety-aware joint policy optimization
+                                                                                 method.
+               Cm,t =         Vi,t − Vi+ + Vi− − V i,t            (17)
+                        i=1
+
+      where [ · ]+/− denotes max/min{·, 0},the square brackets                   policy optimization should prioritize safety. Next, we will
+      represent the penalty level for voltage violation. Each DSO-               illustrate these challenges in Fig. 1 by taking a two-player P2P
+      owned agent has a local cost network to estimate the global                trading differential game with total energy profit f1 (a1 , a2 ) and
+      violation penalty C, so Cm,t = C, ∀m∈ M.                                   constraint function f2 (a1 , a2 ) < d as an example. Contours of
+                                                                                 the total energy profit and constraint value are plotted. The
+            III. P ROPOSED D ECENTRALIZED M ULTI -AGENT                          area within the constraint contour at value d is the safe region,
+                  S AFETY-AWARE L EARNING M ETHOD                                while policies outside this contour are unsafe. The x and y axes
+                                                                                 represent the agent’s actions, with positive values for selling
+         In this section, we propose a decentralized global constraint
+                                                                                 energy and negative values for buying energy.
+      multi-agent safety-aware learning (MASAL) method to solve
+                                                                                    It is assumed that the initial joint trading policy is in
+      the Constrained Cooperative Markov Game. To remedy the
+                                                                                 the second quadrant with a constraint value closed to the
+      poorly coordinated trading policy when agents update at
+                                                                                 upper limit d. When conducting simultaneous trading policy
+      the same time, the proposed method conducts policy update
+                                                                                 update to increase the profit as in Fig. (1a), agent 1 pro-
+      sequentially. To tackle the agents’ unawareness of the safety
+                                                                                 duces more surplus power and wishes to sell it (direction
+      level of policy update, an additional cost value network is
+                                                                                 1). Meanwhile, for the same purpose, agent 2 curtails its
+      introduced. This guarantees the performance in optimal trading
+                                                                                 energy consumption to become a seller as well (direction
+      policy search under the safety concern.
+                                                                                 2). However, extra energy is generated but energy deficit
+                                                                                 is vanished, so their trading policy updates are conflicting,
+      A. Challenges of Multi-Agent Safe Policy Optimization                      leading to a decreased total energy profit. More importantly,
+        Considering a P2P trading problem with decentralized                     as there is no violation penalty at the beginning, two agents
+      agents, it is challenging to find the coordinated policy owing to          remain unaware of initial joint trading policy’s large potential
+      conflicting interaction of agents. 1) Given the profit and safety          for DN constraint violation during update. This unawareness
+      violation cost determined by joint policy, an individual agent             endangers the safety of DN operation (direction 3). In contrast,
+      may struggle to distill its own contribution. 2) Even when                 the desirable update scheme should be safety-aware both
+      an agent successfully identifies its policy update direction, it           within and beyond the safe region as in Fig. (1b), so safety
+      may conflict with the other agents due to miscoordination.                 cost gradient value can be considered together with energy
+      3) Conditions where the goals of profit improvement and                    profit gradient. Safety awareness can give agents foresight,
+      constraint satisfaction conflict can occur. In such conditions,            preventing them from blindly searching for profit improvement
+
+Authorized licensed use limited to: CHANGSHA UNIV OF SCIENCE AND TECHNOLOGY. Downloaded on August 26,2026 at 07:50:14 UTC from IEEE Xplore. Restrictions apply.
+      5578                                                                           IEEE TRANSACTIONS ON SMART GRID, VOL. 16, NO. 6, NOVEMBER 2025
+
+
+
+      policy until violation happens. Also, sequentially updating                 a positive Aπ (s, a) and a negative AC π (s, a), thereby ensuring
+      individual policy would avoid the potential conflict among                  profit improvement and safety violation reduction at each
+      agents. For example, agent 1 generates extra energy as a seller             iteration. The miscoordination of agents is remedied.
+      (direction 4) first. And agent 2 imports more energy from                      Proof: Step 1: Definition of the Advantage Function
+      agent 1 as a buyer (direction 5) afterward. The derived joint                                                       
+                                                                                             Am 1:h s, am1:h = Qm1:h s, am1:h − V (s)          (20)
+      policy realizes profit improvement and constraint satisfaction                          π                 π                   π
+      concurrently (direction 6).                                                          m
+                                                                                  where Qπ 1:h (s, am1:h ) is the joint action value function for the
+                                                                                  subset m1:h and Vπ (s) is the state value under the policy π .
+      B. Multi-Agent Advantage Decomposition                                        Step 2: Recursive Expansion of the Q-Function
+         Different from [12], [37], we further evaluate the action’s                The Q-function satisfies recursive decomposition:
+      influence on system operation. Sequential update [38] is a
+                                                                                                    h
+                                                                                                          m               m              
+      promising way. It enables agents to consider the impact of                     Qm 1:h s, am1:h =   Qπ 1:j s, am1:j − Qπ 1:j s, am1:j−1 (21)
+                                                                                      π
+      the previous agents’ bidding decisions on the system safety                                         j=1
+      violation and trading profits. Therefore, the agents’ policy
+                                                                                     This step is justified by the property that the Q-function of
+      update can be efficiently coordinated. Let θ m , m ∈ M
+                                                                                  a subset of agents can be recursively expanded as a sum of
+      parameterize each agent’s policy neural network, thus the joint
+                                                                                  marginal contributions from individual agents.
+      policy π is parameterized by θ =(θ 1 , . . . ,θ M ).
+                                                                                     Step 3: Reformulating in Terms of Advantage Functions
+         We first define state-action value function for cost as
+                                                                                     Using the definition of the advantage function (20), each
+      QCπ (s, a) = Eτ ∼π [R(τπ )|s0 = s, a0 = a], denoting the                    term is rewritten in the sum as
+      expected cost from state s, taking action a under policy π.
+                                                                                                   m               m                
+      The state value function for cost is VπC (s) = Eτ ∼π [QC       π (s, a)],                  Qπ 1:j s, am1:j − Qπ 1:j−1 s, am1:j−1
+      denoting the expected cost from state s under policy π . On                                                    m                   
+                                                                                                                  = Aπ j s, am1:h−1 , amj     (22)
+      the other hand, the state-action and state value function for
+      reward can be written as Qπ and Vπ , respectively.                            Equation (22) aligns with the equation (18) in the
+         To evaluate unique contribution from a certain part of the               manuscript. Thus, substituting this into the summation as:
+      agents m1:h while marginalizing out the rest n1:k , we define
+      the multi-agent advantage function as                                                                   h
+                                                                                                                    m                   
+                                                                                               Am 1:h s, am1:h =   Aπ j s, am1:j−1 , amj            (23)
+                                                                                                π
+                                         
+                 Am  1:h s, an1:k , am1:h                                                                        j=1
+                   π
+                                                                
+                  Qnπ1:k ,m1:h s, an1:k , am1:h − Qnπ1:k s, an1:k        (18)    which completes the proof.
+
+      where m1:h represents an ordered subset of {m1 , . . . , mh } of
+                                                                                  C. Multi-Agent Safety-Aware Learning Algorithm
+      agents M and n1:k refers a disjointed subset {n1 , . . . , nk }.
+        n ,m                                                                         To stabilize trading policy with safety concern, a trust
+      Qπ1:k 1:h (s, an1:k , am1:h ) denotes the state-action value function
+                                                                n
+      of agents n1:k , m1:h taking action an1:k , am1:h , and Qπ1:k (s, an1:k )   region constraint is introduced to ensure the KL divergence
+      denotes the state-action value function of agents n1:k taking               between the new policy πk+1 and old policy πk does not
+                        m
+      action an1:k . Aπ 1:h (s, an1:k , am1:h ) evaluates the advantage of        exceed a preset threshold δ, thereby balancing exploration
+      agents m1:h taking actions am1:h under state s provided that                and exploitation [39]. Thus, the proposed algorithm solves the
+      agents n1:k taking actions an1:k . The definition holds for both            Constrained Markov Game by maximizing the reward within
+      cost advantage function AC                                                  a feasible policy set θ .
+                                        π and reward advantage function
+      Aπ . The multi-agent advantage functions build the theoretical                                    πk+1 = arg max J(π )
+      foundation for decomposing the joint trading profit and safety                                                π∈   θ
+
+      cost as a sum of sequentially-unfolding profit and safety cost                                         s.t. JC (π ) ≤ d
+      of individual agents as below.                                                                        DKL (π || πk ) ≤ δ
+                                                                                                             max
+                                                                                                                                                    (24)
+         Proposition 1 (Multi-Agent Advantage Decomposition).
+      Let π be a joint policy and m1:h be a random ordered agent                                                      KL (π || πk ) as it necessitates
+                                                                                     It is impractical to search for Dmax
+      subset. For any state s and joint action am1:h                              evaluating the KL-divergence for all states at each iteration.
+                                                                                  With stochastic sampling method, the expected KL-divergence
+                                 h
+                                       m                                        DKL (π || πk ) is used to substitute the maximal KL-
+                  Am 1:h s, am1:h =   Aπ j s, am1:j−1 , amj               (19)
+                   π                                                              divergence. To closely approximate (24), surrogate functions
+                                      j=1                                         from CPO [40] are used to substituted the objective and safety
+         Proposition 1 verifies that the sequential update is a valid             constraints.
+      method for seeking trading profit improvement joint actions                                                                      
+                                                                                                 πk+1 = arg max Es ∼ dπk Aπk (s, a)
+      with safety concern in a decentralized way. Specifically, con-                                         π∈ θ
+      sider agents taking actions sequentially in an arbitrary order                                                  a∼π
+                                                                                                                                   
+      m1:n to avoid the potential conflict. Considering the previous                          s.t. JC (πk ) + Es ∼ dπk AC    (s, a)   ≤d
+                                                                                                                          πk
+      agents’ actions, each agent chooses an action amh such
+             m                               C,m
+      that Aπ h (s, am1:h−1 , amh ) > 0 and Aπ h (s, am1:h−1 , amh ) < 0.                                        a∼π
+      According to proposition 1, the derived joint action ensures                                          DKL (π || πk ) ≤ δ                      (25)
+Authorized licensed use limited to: CHANGSHA UNIV OF SCIENCE AND TECHNOLOGY. Downloaded on August 26,2026 at 07:50:14 UTC from IEEE Xplore. Restrictions apply.
+      MA et al.: NETWORK-CONSTRAINED P2P TRADING: A SAFETY-AWARE DECENTRALIZED MULTI-AGENT REINFORCEMENT LEARNING APPROACH                           5579
+
+                                                                                                               
+                                                                                                                 T −1
+         To further reduce the computation burden in (25) caused                    As a result, the inequality b H2δ b ≤ λ holds and the update
+      by the policy with high-dimensional parameter spaces, we can               rule under infeasible condition is:
+      approximate (25) by using a first-order Taylor expansion for                                             
+                                                                                                                     2δ
+      the objective and global cost constraint, and a second-order                                 θk+1 = θk −        −1
+                                                                                                                         H−1 b              (33)
+      expansion for the KL divergence constraint as                                                               T
+                                                                                                                 b H b
+
+                         θk+1 = arg max gT (θ − θk )                                Eqs. (29) and (33) are employed to implement the MASAL.
+                                         θ
+                            s.t. c + b (θ − θk ) ≤ 0
+                                          T
+                                                                                 D. Extension to General System Operation Conditions
+                           1                                                        There is the other drawback we want to highlight in conven-
+                             (θ − θk )T H(θ − θk ) ≤ δ                   (26)
+                           2                                                     tional safe RL methods. They cannot distinguish whether the
+      where g  ∇θ E[Aπk (s, a)] denotes the gradient of the reward              safety violation is caused by the action. When the violation
+      objective, c  JC (πk ) − d denotes the difference between the             originates from exogenous environments rather than endoge-
+      safety cost’s expectation JC (πk ) and the safety bound d, b              nous actions, they cannot effectively conduct a responsive
+      ∇θ E[AC                                                                    policy.
+             πk (s, a)] denotes the gradient of global safety cost, and
+      H is the Hessian of KL divergence.                                            To extend the above method to general system operation
+         The above policy optimization problem (26) is convex since              conditions and realize safety-aware, the safety level of current
+      H is always positive semi-definite. It can be solved through               policy as well as next policy should be thoroughly considered.
+      the dual form as written in (27).                                          Three important metrics below are defined to comprehensively
+                                                                                 evaluate the safety level, serving as the foundation for system-
+                       1 T −1                           λδ                       wide safety condition classification.
+            max −        g H g − 2rT v + vT Sv + vT c −    (27)
+          λ≥0,v≥0     2λ                                2                           We define the safety cost function’s policy gradient estima-
+                                                                                 tion as the safety cost gradient in Eq. (34).
+      where r  gT H−1 b and S  bT H−1 b, solely to simplify the
+      notation.                                                                                                      
+                                                                                         
+                                                                                         b = ∇θ JC (πk ) = ∇θ E            γ t C st , at , st+1
+        Given that λ∗ , v∗ are the solution to the dual form, the                                                                                   (34)
+                                                                                                                       t
+      policy update direction is determined through the conjugate
+      gradient method, as in Eq. (28).                                              The safety margin, estimating the distance between the
+                                                                               safety cost and safety bound under the current policy, is
+                          xk = H−1 g − bv∗                   (28)                defined in Eq. (35). A positive and closed-to-zero value of
+                                                                                 
+                                                                                 c means a sufficient safety margin of current policy, while a
+         Then, the current policy can be updated according to (29).
+                                                                                 negative value of 
+                                                                                                   c means an already dangerous current policy.
+                                          α                                                                                 
+                             θk+1 = θk + ∗ xk                    (29)                                
+                                          λ                                             c = d−E
+                                                                                                       γ t C st , at , st+1   · (1 − γ ) (35)
+         To determine the step size α of the above update, backtrack-                                     t
+      ing line search starting at 1/λ∗ is used.                                     The safe recovery feasibility is defined in Eq. (36) to judge
+         When the convex optimization problem is infeasible, appro-              whether it is feasible to return to safe region from a dangerous
+      priate neural network parameters cannot be found to keep the               situation through policy update. A positive F means the KL
+      safety cost function below the preset safety bound and improve             divergence-constrained trust region does not intersect with
+      the reward at the same time. Consequently, we seek a semi-                 the safety bound. The non-intersection arises from two cases:
+      optimal policy that minimizes the safety cost. To achieve the              either the entire trust region is safe or the entire trust region
+      global minimum of the safety cost function, we disregard the               is dangerous. A negative F means that the KL divergence-
+      reward improvement direction’s effects during policy updates:              constrained trust region intersects with the safety bound, thus
+                                                                               dividing the trust region into safe and unsafe parts.
+                     θk+1 = arg min c + bT (θ − θk )
+                                     θ
+                                                                                                               
+                                                                                                               c2
+                             1                                                                           F=           − 2δ                   (36)
+                         s.t. (θ − θk )T H(θ − θk ) ≤ δ                  (30)                               bT H−1
+                                                                                                                   b
+                             2
+                                                                                    According to the above definitions, the conditions are
+         The dual form of (30) is L(x, λ) = c + bT x + λ( 12 xT Hx − δ).         introduced in order from the safest to the most dangerous.
+      Let x = θ − θk denotes the policy change. When the partial                    Normal Condition 1: If the safety margin     c > 0 and the
+      derivative of the dual function concerning the policy change               safety cost gradient  b ≤ 10−8 , it indicates a currently safe
+      is 0, the optimal update is achieved.                                      policy and a non-increasing safety cost. Even in the absence
+                            L                                                    of safety cost constraint, policy update solely based on KL
+                               = bT + λ(Hx) = 0                          (31)    divergence constraint will not pose a safety risk. The policy
+                            ∂x
+                                                                                 update under condition 1 is at an extremely high safety level.
+         The obtained solution x = − λ1 H−1 bT should satisfy the                   Normal Condition 2: If      c > 0 and the safe recovery
+      trust region constraint as below.                                          feasibility F > 0, it indicates a currently safe policy and that
+                                  1 T                                            the whole trust region is within the safety bound. The policy
+                                    x Hx ≤ δ                             (32)    update under condition 2 is at a high safety level.
+                                  2
+Authorized licensed use limited to: CHANGSHA UNIV OF SCIENCE AND TECHNOLOGY. Downloaded on August 26,2026 at 07:50:14 UTC from IEEE Xplore. Restrictions apply.
+      5580                                                                          IEEE TRANSACTIONS ON SMART GRID, VOL. 16, NO. 6, NOVEMBER 2025
+
+
+
+                                                                                 Trust Region Policy Optimization (TRPO) technique [39]:
+                                                                                                           
+                                                                                                                 2δ
+                                                                                               θk+1 = θk −            H−1
+                                                                                                                         g             (37)
+                                                                                                             gT H−1
+                                                                                                                    g
+
+                                                                                    Normal Condition 3: If the safety margin      c > 0 and the
+                                                                                 safe recovery feasibility F ≤ 0, it indicates the current policy
+                                                                                 is safe and the trust region is divided into safe and dangerous
+                                                                                 parts by the safety bound. The policy update under condition
+                                                                                 3 is at a medium safety level.
+                                                                                    Normal Condition 4: If    c ≤ 0 and F ≤ 0, it indicates a
+                                                                                 currently dangerous policy and the updated policy can return
+                                                                                 to safe region due to the intersection. The policy update under
+                                                                                 condition 4 is at a low safety level.
+                                                                                    When detecting system condition 3 or 4, improving trading
+                                                                                 profits may lead to violation, so P2P transaction should be
+                                                                                 restricted for compliance of network constraint. It is feasible
+                                                                                 to recover a currently dangerous policy to a safe one through
+                                                                                 policy update due to the trading capacity. The policy updates
+                                                                                 towards the joint direction of trading profit improvement and
+                                                                                 safety cost reduction, as in Eq. (29).
+                                                                                    Critical Condition 5: If the safety margin c ≤ 0 and the safe
+                                                                                 recovery feasibility F > 0, it indicates a currently dangerous
+                                                                                 policy and that the whole trust region is out of the safety
+                                                                                 bound. It is infeasible to find the policy region satisfying both
+                                                                                 KL divergence and safety constraints, so the updated policy
+                                                                                 cannot return to the safe region. Under this critical condition,
+                                                                                 we conduct responsive trading policy and seek safety cost
+                                                                                 minimization.
+                                                                                    When detecting system condition 5, the violation stems from
+                                                                                 exogenous DN operation rather than endogenous transaction,
+                                                                                 which cannot be completely eliminated through trading policy
+                                                                                 update. To achieve safety-aware policy search, the policy
+                                                                                 updates towards the steepest decrease in safety cost, as illus-
+                                                                                 trated in Eq. (33). The reward improvement is not considered
+                                                                                 under this condition.
+
+
+                                                                                                     IV. N UMERICAL R ESULTS
+                                                                                    The proposed Multi-Agent Safety-Aware Learning algo-
+                                                                                 rithm is validated via the IEEE 33-bus distribution system
+                                                                                 as depicted in Fig. 3. The MGs are positioned at bus 10,
+                                                                                 18, 22 and 25. RES output and load profile of MMGs are
+                                                                                 sourced from [41]. The dataset spans a period of ten days.
+                                                                                 To replicate real-world variability, randomness is incorporated
+                                                                                 into the energy demand and renewable generation during the
+                                                                                 training process. And a 20% prediction error is considered.
+                                                                                 The allowable range of voltage is [0.95,1.05]. Sourced from
+                                                                                 [42], the FiT and ToU rates are structured based on different
+                                                                                 time periods throughout the day, as shown in Table II. The
+                                                                                 GPU is NVIDIA GeForce RTX 4060, and the operating system
+                                                                                 is Ubuntu 20.04.
+      Fig. 2.   System-wide safety condition classification.                        To validate the efficiency of proposed MASAL algorithm,
+                                                                                 its performance is benchmarked against four baseline methods,
+         When detecting system condition 1 or 2, the DN has suffi-               including
+      cient flexibility resources to support the P2P transaction. Under             1)    Multi Agent        Proximal     Policy   Optimization
+      conditions when only the gradient of energy profits matters, the           (MAPPO) [43]: Voltage magnitude violation is not considered
+      policy update can straightforwardly employ the conventional                during in the trading.
+
+Authorized licensed use limited to: CHANGSHA UNIV OF SCIENCE AND TECHNOLOGY. Downloaded on August 26,2026 at 07:50:14 UTC from IEEE Xplore. Restrictions apply.
+      MA et al.: NETWORK-CONSTRAINED P2P TRADING: A SAFETY-AWARE DECENTRALIZED MULTI-AGENT REINFORCEMENT LEARNING APPROACH                           5581
+
+
+                                                                                                                  TABLE II
+      Algorithm 1 Multi-Agent Safety-Aware Learning (MASAL)
+                                               m                                           G RID P RICE S TRUCTURE W ITH T O U AND F I T R ATES
+       1: Initialize: Actor networks           θ0 , ∀m ∈ M , Global
+          V-value network    {φ0 }, Individual V-cost networks
+            φCm 0 , ∀m ∈ M , Replay buffer D
+       2: For k = 0 to K − 1 do
+       3:    Collect trajectories τπk = (st , at , rt , ct , st+1 ) by running
+             the joint policy
+       4:    Calculate reward and cost advantage functions:
+             Aπ , AC π
+       5:    Calculate reward gradient     g, safety cost gradient         b,
+             safety margin   c and safe recovery feasibility F
+       6:    Generate the random sequence for MMGs’ bidding
+       7:    For agent m = 1 to M do
+       8:       If condition 1 or condition 2 then 
+       9:           Update policy: θk+1 = θk − gT H2δ−1g H−1         g
+      10:       Elseif condition 3 or condition 4 then
+      11:           Get solution λ∗ , v∗ to the dual problem of
+                    Eq. (27)                                                      Fig. 3.   Physical topology for MMGs’ P2P transaction.
+      12:           Solve step size α by backtracking line search
+      13:           Update policy: θk+1 = θk + λα∗ H−1 (       g −  bv∗ )                                 TABLE III
+                                                                                   H YPER PARAMETERS R EGARDING TO A LGORITHM I MPLEMENTATIONS
+      14:       else                               
+      15:           Update policy: θk+1 = θk − bT H2δ−1b H−1         b
+      16:       End if
+      17:    End for
+      18:    Update individual cost value networks:
+                                                                 2 
+                        φCm = arg min E VφCm (st ) −        Cm,t
+                                        φ
+
+
+      19:    Update global reward value network:
+                                                   2 
+                       φR = arg min E VφR (st ) − 
+                                                  Rt
+                                        φ
+
+      20: End for
+
+
+
+         2) MAPPO-PF [18]: A violation penalty function with fixed
+      penalty factor is added to the reward.
+         3) MAPPO-SL [44]: A QP-based safety layer is used to
+      project dangerous actions to the closest (Euclidean distance)
+      safe ones. It contains two processes: The “Safety examination”
+      includes a pretrained NN serving as a regressor predicting the              operator, and a single-agent safe DRL algorithm is employed
+      state transition of voltage magnitudes. The “Safety projection”             to address the voltage constraint.
+      solves an QP problem with CVXPY.                                               6) Conventional Zero Intelligence (ZI) Strategy [45]: A
+                                                    2                             fundamental trading strategy in the RDA market. ZI selects
+                                argmin at − at                            (38)
+                                   at
+                                                                                  the price bid uniformly at random values between FiT and
+                             s.t. f (st−1 , at ) ≤ V                     (39)    ToU. Hyperparameters regarding to algorithm implementations
+                                                                                  are listed in Table III. The performance indicators of the
+          Let at denote the original joint action, and at = at + at              comparison contain two aspects: 1) The economic indicator,
+      denotes the joint action modified by the safety layer. The                  i.e., energy cost; 2) The operational/safety-related indicator,
+      objective (38) aims to find a perturbed joint action at that                i.e., the safety cost (constraint violation cost).
+      differs the least from the original joint action at . f (st−1 , at )
+      is the approximated value of maximum voltage deviation                      A. Performance Comparison Under Normal Conditions 1-4
+      max |Vi,t (st−1 , at )−1| and V is set as 0.05 p.u. in this study.            To compare the proposed MASAL and baseline methods
+        i
+          4) MAPPO-Lag [23]: A Lagrangian multiplier-based                        under normal conditions, the average performance of each
+      penalty is integrated in the joint reward.                                  method is assessed periodically (every 30 episodes) during
+          5) Constrained Policy Optimization (CPO) [27]: This base-               training as shown in Fig. 4. It can be observed that the
+      line method assumes that all MGs are managed by a single                    proposed algorithm achieves 0 safety violation during training
+
+Authorized licensed use limited to: CHANGSHA UNIV OF SCIENCE AND TECHNOLOGY. Downloaded on August 26,2026 at 07:50:14 UTC from IEEE Xplore. Restrictions apply.
+      5582                                                                           IEEE TRANSACTIONS ON SMART GRID, VOL. 16, NO. 6, NOVEMBER 2025
+
+
+                                                                                                             TABLE IV
+                                                                                   AVERAGE T RADING Q UANTITIES AND E NERGY C OSTS OF MMG S IN AN
+                                                                                                 O PERATIONAL DAY D URING T ESTING
+
+
+
+
+      Fig. 4. Training performance comparison under normal conditions in 33-bus
+      distribution system (a) Episode reward (b) Episode cost.
+                                                                                  Fig. 5.   Voltage magnitude at 12:00 under normal condition.
+
+                                                                                                               TABLE V
+                                                                                        T RADING O UTCOMES AT 12:00 U NDER N ORMAL C ONDITIONS
+      and outperforms the other methods. And the obtained reward is
+      98.64% of that obtained by MAPPO without safety constraint.
+      It results from integrating safety cost gradient into policy
+      update direction and conducting preventive trading policies
+      under the proposed MASAL method. MAPPO-Lag still leads
+      to violations from 1st to 6000th episode and eliminates
+      voltage violation after 6000-episode training. MAPPO-PF
+      cannot guarantee safety because the fixed penalty factor cannot
+      adapt to the constantly changing value of safety cost and
+      reward. Violation cost under MAPPO-SL method remains even                   Comparing the trading policies under MASAL with MAPPO-
+      19% higher than MAPPO at the end of training process.                       SL, some surplus power of MG1 is traded with MG4 instead
+      The reasons can be attributed to two main factors: First, the               of MG2. This is because the power flow from MG1 (node
+      safety layer method assumes a linear relationship between                   10) to MG2 (node 18) would cause the voltage, which is
+      the state transition of voltage magnitude and the action,                   already close to the upper limit, to exceed it. Meanwhile,
+      which is not applicable in the network-constrained P2P trading              selling MG1’s power to MG4 does not exacerbate this danger.
+      problem. The prediction error in the state transition of voltage            This indicates that MASAL can effectively capture the highly
+      magnitude renders the examination step of the safety layer                  non-linear and indirect relationship between trading policy and
+      method ineffective. Second, when the joint action is identified             safety violation cost. The safety-aware feature also enables
+      as dangerous, the action modification is performed at a                     MMG to adjust trading policies on the verge of violating
+      single time step, which can lead to time-coupling constraint                voltage constraints back to a relatively safe region.
+      violations.
+         Well-trained agents are employed to generate trading deci-               B. Performance Comparison Under Critical Conditions 5
+      sions over an operational day. Regarding the economic                          To assess the performance of the proposed method under
+      efficiency of learned MMG bidding policies during testing, as               critical conditions, we assume that the power generation of
+      shown in Table IV, energy costs of MMGs under MASAL                         the WT at node 14 has increased due to weather condi-
+      are 101.37% of that obtained by MAPPO without safety                        tions, leading to exogenous voltage violations. It cannot be
+      constraint, and the P2P traded quantity is the highest. The                 completely eliminated by adjusting the joint trading policy
+      reason is that the MMG might reschedule their supply and                    owing to limited trading capacity. Safety bound of MASAL is
+      demand for compliance of voltage constraints.                               reset as 1 with all the other parameters remaining unchanged.
+         Taking 12:00, when the voltage violation occurs, as an                   Fig. 6 depicts the training performance under critical condi-
+      example, the voltage magnitude in Fig. 5 and the trading                    tions. According to system safety classification in Section III,
+      outcomes in Table V are analyzed. The voltage at nodes 11, 12               condition 5 occurs a total of 196 times. During 8000 training
+      and 13 exceed the upper limit under MAPPO and MAPPO-SL.                     episodes the safety cost decreases almost monotonically and
+
+Authorized licensed use limited to: CHANGSHA UNIV OF SCIENCE AND TECHNOLOGY. Downloaded on August 26,2026 at 07:50:14 UTC from IEEE Xplore. Restrictions apply.
+      MA et al.: NETWORK-CONSTRAINED P2P TRADING: A SAFETY-AWARE DECENTRALIZED MULTI-AGENT REINFORCEMENT LEARNING APPROACH                            5583
+
+
+
+
+                                                                                    Fig. 8.    Voltage magnitude at 12:00 under critical condition.
+
+                                                                                                                TABLE VI
+                                                                                         T RADING O UTCOMES AT 12:00 U NDER C RITICAL C ONDITIONS
+
+
+
+
+      Fig. 6. Training performance comparison under critical conditions in 33-bus
+      distribution system (a) Episode reward (b) Episode cost.
+
+
+
+
+                                                                                    Fig. 9. Convergence performance of average bidding price under MASAL
+                                                                                    algorithm.
+
+
+      Fig. 7.   Cumulative violation cost under critical conditions.
+
+
+
+      gradually falls below the safety bound after 6000 episodes
+      under the proposed method. This is because the exogenous
+      violations from DN operation are effectively detected and then
+      responsive trading policies are conducted. Due to the safety-
+      aware nature, the reward occasionally decreases but ultimately
+      reaches 86.4% of that obtained by the MAPPO-SL. The safety
+      layer method does not work because the QP-based projection                    Fig. 10.    Normalized clearing price under MASAL algorithm.
+      problem has no feasible solution. Unlike normal conditions,
+      MAPPO-Lag cannot steadily decrease the safety cost under
+      critical conditions. The main reason is that integrates safety                the most voltage violation nodes. Comparing the trading
+      performance and profit performance metrics into the reward                    outcomes of MASAL with MAPPO-Lag, it can be seen that
+      function complicates the learning process.                                    MG4 chooses to purchase the deficient power from MG1
+         To evaluate the test performance of the three safe RL                      instead of MG2. This is because the power flow from MG2
+      methods, their trained online actor networks are loaded to                    (node 18) to MG4 (node 25) will further increase the voltage
+      derive the trading actions. Fig. 7 presents the cumulative                    magnitude of nodes 11-18. This indicates that even when
+      violation cost under critical conditions over the 30 evaluation               reward improvement and safety cost reduction cannot be
+      days. It can be observed that cumulative violation cost under                 simultaneously achieved, the proposed method can identify the
+      MASAL is the lowest. It is 56.15%, 85.10% lower than that                     occurrence of critical conditions and prioritize the reduction
+      under MAPPO-Lag, MAPPO-SL, respectively.                                      of safety cost.
+         Voltage magnitude and trading outcomes are illustrated
+      in Fig. 8 and Table VI, respectively. Trading policy under                    C. Bidding Action Analysis of MMG Agents
+      the proposed MASAL results in the fewest voltage violation                      Fig. 9 illustrates the convergence performance of average
+      nodes, followed by MAPPO-Lag, with MAPPO-SL causing                           bidding prices of agents per day under the MASAL algorithm.
+
+Authorized licensed use limited to: CHANGSHA UNIV OF SCIENCE AND TECHNOLOGY. Downloaded on August 26,2026 at 07:50:14 UTC from IEEE Xplore. Restrictions apply.
+      5584                                                                          IEEE TRANSACTIONS ON SMART GRID, VOL. 16, NO. 6, NOVEMBER 2025
+
+
+
+
+      Fig. 11. Number of agents bidding as buyer/seller and community net load
+      during the operational day.
+
+
+
+
+                                                                                 Fig. 13. Training performance comparison under critical conditions in 123-
+                                                                                 bus distribution system (a) Episode reward (b) Episode cost.
+
+                                                                                                             TABLE VII
+                                                                                               C OMPUTATIONAL C OMPLEXITY C OMPARISON
+
+
+
+
+      Fig. 12. Training performance comparison under normal conditions in 123-
+      bus distribution system (a) Episode reward (b) Episode cost.
+
+
+
+      It shows that each agent adjusts its bidding strategy to adapt
+      to the strategies of the other agents, and their joint bidding
+                                                                                 located at nodes (50, 53, 62, 76, 80, 89, 99, 106). Fig. 12
+      strategy stabilizes and converges around the 7000th episode.
+                                                                                 depicts the training performance comparison under normal
+      For a more in-depth analysis, Fig. 10 demonstrates the clearing
+                                                                                 conditions in 123-bus distribution system. The PV output at
+      price at the test stage. The P2P clearing price is transformed
+                                                                                 node 57 is artificially increased to create critical conditions,
+      into normalized clearing price λm   i,t − λn,t /(λn,t − λn,t ) for
+                                                 FiT    ToU    FiT
+                                                                                 and the corresponding training performance is shown in
+      clarity, where a normalized clearing price closer to 1 indicates
+                                                                                 Fig. 13. It can be seen that, in the case of a larger distribution
+      that the actual clearing price aligns more closely with ToU and
+                                                                                 system and a greater number of agents, the proposed MASAL
+      a value closer to 0 indicates alignment with FiT. Fig. 11 shows
+                                                                                 method still outperforms the other methods, demonstrating
+      the number of agents bidding as buyer/seller and community
+                                                                                 scalability.
+      net load during the operational day. At 1:00 and 3:00, the P2P
+                                                                                    Table VII compares the computational complexity of the
+      clearing price approaches the FiT, as the number of agents
+                                                                                 algorithms. It is assumed that there are M agents, and
+      bidding as sellers exceeds the number of agents bidding as
+                                                                                 each agent’s state and action spaces are denoted as Sm
+      buyers, indicating a buyer’s market. At 14:00 and 15:00, the
+                                                                                 and Am . And |Sm |/|Am | denotes the size of state/action
+      renewable energy generation in the MMG community is the
+                                                                                 space. The computational complexity of MASAL involves
+      highest, and all agents are bidding as sellers, resulting in
+                                                                                        steps: The gradient computation has a complexity
+                                                                                 several
+      no successful peer-matching. Between 16:00 and 18:00, the
+                                                                                 of O( m∈M |Sm | · |Am |). The second-order Taylor expansion
+      number of agents bidding as buyers exceeds those bidding
+                                                                                 requires a complexity of O(M 3 ). And the backtracking line
+      as sellers, creating a seller’s market, which leads to higher
+                                                                                 search involvestesting different step sizes, adding a com-
+      transaction prices, approaching the ToU rate.
+                                                                                 plexity of O(κ m∈M |Sm | · |Am |), where κ is the maximum
+                                                                                                                       the total complexity of
+                                                                                 number of line search iterations. Thus,
+      D. Scalability and Computational Performance Analysis                      MASAL is approximately O(M 2 · m∈M |Sm | · |Am |).
+         In the 123-bus system, eight PVs are assumed to be installed               Table VIII presents a summary of the computational time
+      at nodes (4, 27, 42, 57, 64, 70, 87, 97) [46]. Eight MGs are               for the algorithms investigated, covering a) total number of
+
+Authorized licensed use limited to: CHANGSHA UNIV OF SCIENCE AND TECHNOLOGY. Downloaded on August 26,2026 at 07:50:14 UTC from IEEE Xplore. Restrictions apply.
+      MA et al.: NETWORK-CONSTRAINED P2P TRADING: A SAFETY-AWARE DECENTRALIZED MULTI-AGENT REINFORCEMENT LEARNING APPROACH                             5585
+
+
+                                 TABLE VIII
+                       C OMPUTATIONAL T IME C OMPARISON
+
+
+
+
+                                                                                 Fig. 14. Training episode cost considering congestion of the primary feeder
+      episodes, b) total training time, and d) average test time, which          (scenario 1).
+      refers to the computational time needed to determine the joint
+      trading policy on a test day. Although the total training time of                                       TABLE IX
+      the MASAL algorithm is longer than that of other algorithms,                          T RADING O UTCOMES AT 18:00 C ONSIDERING L INE
+                                                                                                        C ONGESTION OF L INE 1-2
+      their average test times are quite similar.
+
+      E. Training Robustness for Changes in Participants’
+      Behavior
+         1) Role Switching between Buyers and Sellers: In P2P
+      energy trading, participants may alternate between being
+      buyers and sellers depending on their energy production and
+      consumption patterns. For example, the MG may act as a
+      seller during periods of excess solar energy production and                   Correspondingly, the apparent power flow matrix S is added
+      as a buyer when its demand exceeds its own generation                      into the observation as follows:
+      capacity. As shown in Fig. 11, the proposed framework can                                                                             
+                                                                                        om,t = pLm,t , pRES
+                                                                                                        m,t , E ES
+                                                                                                                   ,
+                                                                                                               m,t t λ    , λ   ,
+                                                                                                                       FiT ToU b s
+                                                                                                                              t   k ,k
+                                                                                                                                   t t , V, S  (43)
+      accommodate these dynamic role transitions, allowing agents
+      to switch their roles based on real-time energy availability.                And the cost function is designed as the summation of
+         2) Trading Frequency: Some participants may engage in                   penalties for voltage violations and line congestion as in (44).
+      the market more frequently, while others may only participate
+      occasionally based on specific needs. The proposed decen-                                     
+                                                                                                    W
+                                                                                                                         +              − 
+      tralized framework has training robustness for the trading                           Cm,t =               Vi,t − Vi+ +     −
+                                                                                                                                Vi − V i,t
+      frequency, as the agents who do not participant at a certain                                    i
+                                                                                                          E
+                                                                                                          
+      time step can bid zero quantity.                                                                                
+         3) Bidding Preferences: Participants’ bidding preferences                                   +       Sij  − Sij +                            (44)
+      include how aggressively or conservatively they set their                                            ij
+      prices, whether they prefer fixed or flexible pricing, and how                Then, to fully examine the impact of line congestion on
+      they respond to market signals like supply-demand imbalances               P2P transactions, experiments under two different congestion
+      or price volatility. For instance, participants with a strong              scenarios are conducted.
+      risk aversion may prefer stable pricing arrangements, such as                 Scenario 1: Due to the radial structure of the DN, the line
+      setting a personalized range of the bidding price. This can be             connected to the primary node, i.e., line 1-2, experience the
+      realized by modifying the action space, e.g., aC  1,t ∈ [0, 0.8]           highest line loading and are prone to congestion. The capacity
+      indicating that MG1 is unwilling to bid high prices in the P2P             of line 1-2 is set at 9.97 kVA. At 18:00, to meet the community
+      market.                                                                    net load through import from the upstream grid, line 1-2
+                                                                                 is congested. Fig. 14 shows the safety cost considering the
+      F. Discussion on Line Congestion                                           congestion of line 1-2 under the proposed MASAL method and
+        The proposed MASAL method is general to incorporate                      the unsafe MAPPO method. Table IX compares the trading
+      both voltage and line loading constraints. The line capacity               outcomes at 18:00 under the proposed MASAL method and
+      constraints can be written as (40)–(42):                                   the unsafe MAPPO method. It can be observed from Fig. 14
+                                                                               that even under the unsafe MAPPO method, the congestion
+                              Iij = Yij Vi − Vj               (40)               cost of line 1-2 gradually decreases during training. This is
+                                Sij = Vj Iij∗                            (41)    because, in order to increase energy profits (i.e., to raise
+                              −Sij ≤ Sij ≤ Sij                           (42)    the reward), the successfully matched P2P trading quantity
+                                                                                 increases, leading to a reduction in electricity purchases from
+      where Iij denotes the current from node i to node j, Iij∗ is its           the upstream network, thus alleviating the congestion on line
+      complex conjugate, Yij denotes the complex admittance of the               1-2. Compared with the unsafe method, the P2P trading
+      branch ij, Sij represents the apparent power flow from node i to           quantity is lower under the proposed MASAL method as the
+      node j and Sij represents the thermal capacity of the branch ij.           MGs reduce their power demand through internal scheduling.
+
+Authorized licensed use limited to: CHANGSHA UNIV OF SCIENCE AND TECHNOLOGY. Downloaded on August 26,2026 at 07:50:14 UTC from IEEE Xplore. Restrictions apply.
+      5586                                                                           IEEE TRANSACTIONS ON SMART GRID, VOL. 16, NO. 6, NOVEMBER 2025
+
+
+
+                                                                                  P2P transactions. The absolute value allows considering MGs
+                                                                                  with negative energy costs, i.e., energy profits. Equation (45)
+                                                                                  transforms the collective energy costs of the community into
+                                                                                  separable individual costs. As can be seen from the previous
+                                                                                  subsections, to meet the operational constraints, community
+                                                                                  energy profits may decline. Therefore, the community energy
+                                                                                  costs already incorporate the costs associated with voltage
+                                                                                  violations and line congestion, and these costs can be fairly
+                                                                                  allocated through proportional billing allocation.
+      Fig. 15. Training episode cost considering congestion caused by renewable
+      energy injection (scenario 2).
+                                                                                              V. C ONCLUSION AND F UTURE W ORK
+                                  TABLE X
+                T RADING O UTCOMES AT 21:00 C ONSIDERING L INE                       This paper proposes a novel decentralized multi-agent safe
+                          C ONGESTION OF L INE 13-14                              RL method to deal with system-wide global constraint indi-
+                                                                                  rectly affected by joint actions. Then, the system operation
+                                                                                  safety condition classification is proposed to realize safety-
+                                                                                  aware policy optimization. The method is used to solve
+                                                                                  network-constrained P2P energy trading problem in RDA
+                                                                                  market. Case study comparisons verify that 1) The proposed
+                                                                                  method conducts preventive trading policies and achieves 0
+                                                                                  violation under normal conditions during training, better than
+                                                                                  state-of-the-art safe RL methods. And the obtained reward is
+         Scenario 2: In scenarios of high renewable energy penetra-               98.64% of that obtained by MAPPO without safety constraint.
+      tion, lines of DN are prone to congestion due to reverse power              2) Under critical conditions, responsive trading policies are
+      flow. To simulate a high penetration scenario, it is assumed that           conducted. The proposed method makes the safety violation
+      the power output from the WT at node 14 increases. And the                  cost monotonically decreased, while the safety layer method
+      apparent power capacity of line 13-14 is set as 6.3kVA. It turns            and Lagrangian relaxation method fail. 3) The proposed
+      out that the reverse power flowing from node 14 to node 13                  method can generate interpretable bidding policies, scale to
+      exceeds the line capacity at 21:00. Fig. 15 displays the safety             larger distribution systems and more P2P participants, and han-
+      cost considering the congestion caused by the reverse power                 dle changes in participants’ behavior and multiple constraints
+      flow under the proposed MASAL method and the unsafe                         with robustness.
+      MAPPO method. It indicates that the participants conduct the                   The proposed MASAL method performs well under a
+      responsive trading policies and successfully eliminates the line            static distribution system topology; however, its performance
+      congestion. To make a specific comparison of how transactions               deteriorates when changes in topology occur. Furthermore,
+      are prioritized, Table X summarizes the trading outcomes at                 high variance in exogenous states can compromise both the
+      21:00. Since the power flowing from MG2 (located at node 18)                economic efficiency and safety guarantees of the system. To
+      to MG3 (located at node 22) will contribute to the congestion               address these limitations, our future research will focus on
+      of line 13-14, the energy sold from MG2 to MG3 is reduced                   developing a safe MADRL algorithm that is robust to changes
+      by 65.9% under the proposed method compared to the unsafe                   in system topology and can handle high variance in exogenous
+      method. Meanwhile, to reduce energy costs, the transaction of               states.
+      energy sold from MG4 to MG1 is cleared.
+
+                                                                                                              R EFERENCES
+      G. Discussion on Market Fairness
+                                                                                  [1] X. Wang, F. Li, L. Bai, and X. Fang, “DLMP of competitive markets
+         To maximize the social welfare, MMGs in the community                        in active distribution networks: Models, solutions, applications, and
+      engaged in the P2P trading is cooperative in this study. In this                visions,” Proc. IEEE, vol. 111, no. 7, pp. 725–743, Jul. 2023.
+      context, the above sections only investigate the community                  [2] X. Zhou, B. Wang, Q. Guo, H. Sun, Z. Pan, and N. Tian, “Bidirectional
+                                                                                      privacy-preserving network-constrained peer-to-peer energy trading
+      energy costs rather than individual ones. To fairly allocate                    based on secure multiparty computation and blockchain,” IEEE Trans.
+      the energy costs (including the constraint violation costs),                    Power Syst., vol. 39, no. 1, pp. 602–613, Jan. 2023.
+      a proportional billing allocation method [47] based on the                  [3] M. I. Azim, W. Tushar, T. K. Saha, C. Yuen, and D. Smith, “Peer-
+                                                                                      to-peer kilowatt and negawatt trading: A review of challenges and
+      concept of Nash equilibrium can be employed. Equation (45)                      recent advances in distribution networks,” Renew. Sustain. Energy Rev.,
+      describes the allocation method.                                                vol. 169, Nov. 2022, Art. no. 112908.
+                                                                                [4] L. Chen et al., “Peer-to-peer energy sharing with social attributes: A
+                             |Hm
+                               ind |                                                stochastic leader–follower game approach,” IEEE Trans. Ind. Informat.,
+        Hm = Hm − 
+                 ind
+                                             Hm −
+                                               ind
+                                                           Hm
+                           m∈M |Hm |
+                                     ind                                              vol. 17, no. 4, pp. 2545–2556, Apr. 2021.
+                                             m∈M            m∈M                   [5] M. Yan, M. Shahidehpour, A. Paaso, L. Zhang, A. Alabdulwahab, and
+                                                                          (45)        A. Abusorrah, “Distribution network-constrained optimization of peer-
+                                                                                      to-peer transactive energy trading among multi-microgrids,” IEEE Trans.
+      where Hm denotes the overall energy costs during the opera-                     Smart Grid, vol. 12, no. 2, pp. 1033–1047, Mar. 2021.
+                           ind denotes the individual energy costs                [6] X. Chang, Y. Xu, Q. Guo, H. Sun, and W. K. Chan, “A Byzantine-
+      tional day of MG m, Hm                                                          resilient distributed peer-to-peer energy management approach,” IEEE
+      of MG m before it joins the community and participates in                       Trans. Smart Grid, vol. 14, no. 1, pp. 623–634, Jan. 2023.
+Authorized licensed use limited to: CHANGSHA UNIV OF SCIENCE AND TECHNOLOGY. Downloaded on August 26,2026 at 07:50:14 UTC from IEEE Xplore. Restrictions apply.
+      MA et al.: NETWORK-CONSTRAINED P2P TRADING: A SAFETY-AWARE DECENTRALIZED MULTI-AGENT REINFORCEMENT LEARNING APPROACH                                        5587
+
+
+
+       [7] Y. Liu et al., “Fully decentralized P2P energy trading in active distribu-   [30] Z. Zhao, C. Feng, and A. L. Liu, “Comparisons of auction designs
+           tion networks with voltage regulation,” IEEE Trans. Smart Grid, vol. 14,          through multiagent learning in peer-to-peer energy trading,” IEEE Trans.
+           no. 2, pp. 1466–1481, Mar. 2023.                                                  Smart Grid, vol. 14, no. 1, pp. 593–605, Jan. 2023.
+       [8] J. Guerrero, A. C. Chapman, and G. Verbič, “Decentralized P2P energy        [31] A. Yu, X. Tang, Y. J. Zhang, and J. Huang, “Continuous group-wise
+           trading under network constraints in a low-voltage network,” IEEE                 double auction for prosumers in distribution-level markets,” IEEE Trans.
+           Trans. Smart Grid, vol. 10, no. 5, pp. 5163–5173, Sep. 2019.                      Smart Grid, vol. 12, no. 6, pp. 4822–4833, Nov. 2021.
+       [9] X. Chen et al., “Reinforcement learning for selective key applications       [32] X. Wei, J. Liu, Y. Xu, and H. Sun, “Virtual power plants peer-to-peer
+           in power systems: Recent advances and future challenges,” IEEE Trans.             energy trading in unbalanced distribution networks: A distributed robust
+           Smart Grid, vol. 13, no. 4, pp. 2935–2958, Jul. 2022.                             approach against communication failures,” IEEE Trans. Smart Grid,
+      [10] X. Liu et al., “Carbon-aware peer-to-peer energy trading in an unbal-             vol. 15, no. 2, pp. 2017–2029, Mar. 2024.
+           anced distribution network via a nash equilibrium discovery deep             [33] A. Sreekumar, A. Sakthivelu, R. Baltaduonis, L. Kiesling, S. Hoedl, and
+           reinforcement learning approach,” IEEE Trans. Smart Grid, vol. 16,                D. P. Chassin, “A real-time limit order book as a market mechanism for
+           no. 4, pp. 3392–3407, Jul. 2025.                                                  transactive energy systems,” in Proc. IEEE PES Gener. Meeting, 2023,
+      [11] Y. Ye, Y. Tang, H. Wang, X.-P. Zhang, and G. Strbac, “A scalable                  pp. 1–5.
+           privacy-preserving multi-agent deep reinforcement learning approach for      [34] (EPFL, Lausanne, Switzerland). Description of the Commelec
+           large-scale peer-to-peer transactive energy trading,” IEEE Trans. Smart           Framework. 2018. [Online]. Available: https://www.epfl.ch/labs/desl/
+           Grid, vol. 12, no. 6, pp. 5185–5200, Nov. 2021.                                   description-of-the-commelec-framework/
+      [12] D. Qiu, J. Wang, Z. Dong, Y. Wang, and G. Strbac„ “Mean-field multi-         [35] M. H. Ullah and J.-D. Park, “Peer-to-peer energy trading in transactive
+           agent reinforcement learning for peer-to-peer multi-energy trading,”              markets considering physical network constraints,” IEEE Trans. Smart
+           IEEE Trans. Power Syst., vol. 38, no. 5, pp. 4853–4866, Sep. 2022.                Grid, vol. 12, no. 4, pp. 3390–3403, Jul. 2021.
+      [13] P. Yu, Z. Wang, H. Zhang, and Y. Song, “Safe reinforcement learning          [36] L. Wang, Z. Zhu, C. Jiang, and Z. Li, “Bi-level robust optimization
+           for power system control: A review,” 2024, arXiv:2407.00681.                      for distribution system with multiple microgrids considering uncertainty
+      [14] T. Su, T. Wu, J. Zhao, A. Scaglione, and L. Xie, “A review of safe                distribution locational marginal price,” IEEE Trans. Smart Grid, vol. 12,
+           reinforcement learning methods for modern power systems,” 2024,                   no. 2, pp. 1104–1117, Mar. 2021.
+           arXiv:2407.00304.                                                            [37] Y. Zhou, Z. Ma, T. Wang, J. Zhang, X. Shi, and S. Zou, “Joint energy
+      [15] J. Hu et al., “Rethinking safe policy learning for complex constraints            and carbon trading for multi-microgrid system based on multi-agent
+           satisfaction: A glimpse in real-time security constrained economic                deep reinforcement learning,” IEEE Trans. Power Syst., vol. 39, no. 6,
+           dispatch integrating energy storage units,” IEEE Trans. Power Syst.,              pp. 7376–7388, Nov. 2024.
+           vol. 40, no. 1, pp. 1091–1104, Jan. 2025.                                    [38] Z. Zhu, X. Gao, S. Bu, K. W. Chan, B. Zhou, and S. Xia, “Cooperative
+      [16] Y. Gao and N. Yu, “Model-augmented safe reinforcement learning                    dispatch of renewable-penetrated microgrids alliances using risk-
+           for Volt-VAR control in power distribution networks,” Appl. Energy,               sensitive reinforcement learning,” IEEE Trans. Sustain. Energy, vol. 15,
+           vol. 313, May 2022, Art. no. 118762.                                              no. 4, pp. 2194–2208, Oct. 2024.
+      [17] H. Saberi, C. Zhang, and Z. Y. Dong, “A multi-agent deep constrained         [39] J. Schulman, S. Levine, P. Abbeel, M. Jordan, and P. Moritz, “Trust
+           Q-learning method for smart building energy management under uncer-               region policy optimization,” in Proc. Int. Conf. Mach. Learn., 2015,
+           tainties,” IEEE Trans. Smart Grid, vol. 15, no. 5, pp. 4649–4661,                 pp. 1889–1897.
+           Sep. 2024.                                                                   [40] J. Achiam, D. Held, A. Tamar, and P. Abbeel, “Constrained policy
+      [18] X. Liu, S. Li, and J. Zhu, “Optimal coordination for multiple network-            optimization,” in Proc. Int. Conf. Mach. Learn., 2017, pp. 22–31.
+           constrained VPPs via multi-agent deep reinforcement learning,” IEEE          [41] A. Ajoulabadi, S. N. Ravadanegh, and B. Mohammadi-Ivatloo, “Flexible
+           Trans. Smart Grid, vol. 14, no. 4, pp. 3016–3031, Jul. 2023.                      scheduling of reconfigurable microgrid-based distribution networks
+      [19] C. Feng and A. L. Liu, “Peer-to-peer energy trading of solar and energy           considering demand response program,” Energy, vol. 196, Apr. 2020,
+           storage: A networked multiagent reinforcement learning approach,”                 Art. no. 117024.
+           Appl. Energy, vol. 383, Apr. 2025, Art. no. 125283.                          [42] “Network prices.” Ausgrid.com. 2024. [Online]. Available: https://www.
+      [20] R. Yan, Q. Xing, and Y. Xu, “Multi-agent safe graph reinforcement                 ausgrid.com.au/Industry/Regulation/Network-prices
+           learning for PV inverters-based real-time decentralized Volt/Var control     [43] Y. Ye, H. Wang, T. Cui, X. Yang, S. Yang, and M. L. Zhang,
+           in zoned distribution networks,” IEEE Trans. Smart Grid, vol. 15, no. 1,          “Identifying generalizable equilibrium pricing strategies for charging
+           pp. 299–311, Jan. 2024.                                                           service providers in coupled power and transportation networks,” Adv.
+      [21] X. Shi, Y. Xu, G. Chen, and Y. Guo, “An augmented Lagrangian-                     Appl. Energy, vol. 12, Dec. 2023, Art. no. 100151.
+           based safe reinforcement learning algorithm for carbon-oriented optimal      [44] Y. Wang, D. Qiu, M. Sun, G. Strbac, and Z. Gao, “Secure energy
+           scheduling of EV aggregators,” IEEE Trans. Smart Grid, vol. 15, no. 1,            management of multi-energy microgrid: A physical-informed safe
+           pp. 795–809, Jan. 2024.                                                           reinforcement learning approach,” Appl. Energy, vol. 335, Apr. 2023,
+      [22] H. Yang, Y. Xu, H. Sun, Q. Guo, and Q. Liu, “Electric vehicles                    Art. no. 120759.
+           management in distribution network: A data-efficient bi-level safe deep      [45] P. Vytelingum, D. Cliff, and N. R. Jennings, “Strategic bidding in con-
+           reinforcement learning method,” IEEE Trans. Power Syst., vol. 15, no. 5,          tinuous double auctions,” Artif. Intell., vol. 172, no. 14, pp. 1700–1729,
+           pp. 4649–4661, Jan. 2025.                                                         2008.
+      [23] Z. Yan and Y. Xu, “Real-time optimal power flow: A lagrangian                [46] X. Wang, Z. Li, M. Shahidehpour, and C. Jiang, “Robust line hardening
+           based deep reinforcement learning approach,” IEEE Trans. Power Syst.,             strategies for improving the resilience of distribution systems with
+           vol. 35, no. 4, pp. 3270–3273, Jul. 2020.                                         variable renewable resources,” IEEE Trans. Sustain. Energy, vol. 10,
+      [24] W. Wang, N. Yu, Y. Gao, and J. Shi, “Safe off-policy deep reinforcement           no. 1, pp. 386–395, Jan. 2019.
+           learning algorithm for volt-var control in power distribution systems,”      [47] M. Hupez, J.-F. Toubeau, Z. De Grève, and F. Vallèe, “A new cooperative
+           IEEE Trans. Smart Grid, vol. 11, no. 4, pp. 3008–3018, Jul. 2020.                 framework for a fair and cost-optimal allocation of resources within a
+      [25] Q. Zhang, K. Dehghanpour, Z. Wang, F. Qiu, and D. Zhao, “Multi-agent              low voltage electricity community,” IEEE Trans. Smart Grid, vol. 12,
+           safe policy learning for power management of networked microgrids,”               no. 3, pp. 2201–2211, May 2021.
+           IEEE Trans. Smart Grid, vol. 12, no. 2, pp. 1048–1062, Mar. 2021.
+      [26] H. Li and H. He, “Learning to operate distribution networks with safe
+           deep reinforcement learning,” IEEE Trans. Smart Grid, vol. 13, no. 3,
+           pp. 1860–1872, May 2022.
+      [27] T. Qian, Z. Liang, S. Chen, Q. Hu, and Z. Wu, “A tri-level demand
+                                                                                                                 Qianyi Ma (Graduate Student Member, IEEE)
+           response framework for EVCS flexibility enhancement in coupled power
+                                                                                                                 received the B.Sc. degree in electrical engineer-
+           and transportation networks,” IEEE Trans. Smart Grid, vol. 16, no. 1,
+                                                                                                                 ing from North China Electric Power University,
+           pp. 598–611, Jan. 2025.
+                                                                                                                 Beijing, China, in 2022, where she is currently
+      [28] W. Tushar, T. K. Saha, C. Yuen, D. Smith, and H. V. Poor, “Peer-to-peer
+                                                                                                                 pursuing the Ph.D. degree. Her current research
+           trading in electricity networks: An overview,” IEEE Trans. Smart Grid,
+                                                                                                                 interests include the development and application of
+           vol. 11, no. 4, pp. 3185–3200, Jul. 2020.
+                                                                                                                 multiagent reinforcement learning in the electricity
+      [29] D. Qiu, J. Wang, J. Wang, and G. Strbac, “Multi-agent reinforce-
+                                                                                                                 market.
+           ment learning for automated peer-to-peer energy trading in double-side
+           auction market,” in Proc. 30th Int. Joint Conf. Artif. Intell., 2021,
+           pp. 2913–2920.
+
+Authorized licensed use limited to: CHANGSHA UNIV OF SCIENCE AND TECHNOLOGY. Downloaded on August 26,2026 at 07:50:14 UTC from IEEE Xplore. Restrictions apply.
+      5588                                                                             IEEE TRANSACTIONS ON SMART GRID, VOL. 16, NO. 6, NOVEMBER 2025
+
+
+
+                               Zifa Liu (Senior Member, IEEE) received the B.Sc.                         Xiao Liu (Graduate Student member, IEEE)
+                               and M.Sc. degrees in electrical engineering from                          received the B.S degree in electrical engineering
+                               Northeast Electric Power University, Jilin, China, in                     from the University of Idaho, Moscow, USA, in
+                               1995 and 2000, respectively, and the Ph.D. degree                         2019, and the M.E. degree in electrical engineering
+                               from Tianjin University, Tianjin, China, in 2005.                         from the University of Sydney, Sydney, Australia,
+                               Since 2006, he has been with North China Electrical                       in 2021, respectively, where he is currently pursu-
+                               Power University, Beijing, China, where he is cur-                        ing the Ph.D. degree in electrical engineering. His
+                               rently a Professor with the Department of Electrical                      current research interests include multiagent deep
+                               and Electronic Engineering. His research interests                        reinforcement and their application in electricity
+                               include grid planning, renewable energy access to                         market, virtual power plant, and power systems.
+                               the grid, comprehensive assessment, and distributed
+      generation technology.
+
+
+
+
+                                Yujian Ye (Senior Member, IEEE) received the
+                                B.Eng. (Hons.) degree in electrical and elec-
+                                tronic engineering from Northumbria University,
+                                Newcastle Upon Tyne, U.K., in 2011, and the M.Sc.
+                                degree (with distinction) in control systems and
+                                the Ph.D. degree from Imperial College London,
+                                London, U.K., in 2013 and 2017, respectively,
+                                where he performed Postdoctoral Research from
+                                2016 to 2020, and then joined Southeast University,
+                                Nanjing, China, with an Associate Professorship
+                                in 2021, where he is currently a Professor with
+      Young Endowed Chair Honor with the School of Electrical Engineering
+      and an Honorary Lecturer with Imperial College London. His current
+      research interests include development and application of novel data analytics
+      and artificial intelligence techniques in low-carbon energy-transportation-
+      information systems modeling, analysis and control, and optimization of
+      economics of power system operation and planning. He serves as an Associate
+      Editor for several prestigious and reputable international journals, including
+      IEEE T RANSACTIONS ON S MART G RID, IEEE P OWER E NGINEERING
+      L ETTERS, IEEE T RANSACTIONS ON I NDUSTRIAL I NFORMATICS, Protection
+      and Control of Modern Power Systems, and IEEE T RANSACTIONS ON
+      I NDUSTRY A PPLICATIONS. He also serves as the Subject Editor for Emerging
+      Technologies in Smart Grids for IET Smart Grid, and a Young Editorial Board
+      Member for Applied Energy and Cross-Disciplinary Journal Nexus.
+
+
+
+
+Authorized licensed use limited to: CHANGSHA UNIV OF SCIENCE AND TECHNOLOGY. Downloaded on August 26,2026 at 07:50:14 UTC from IEEE Xplore. Restrictions apply.
+

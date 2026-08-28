@@ -1,0 +1,6 @@
+Highlights
+
+- Recurrent constrained MARL couples electricity, hydrogen, and AC power flow.
+- A global voltage-cost trust region coordinates four decentralized actors.
+- Voltage cost falls 91.2% versus GRU-MAPPO over three evaluation days.
+- Hydrogen metrics expose the safety, economy, and delivery trade-off.

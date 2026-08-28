@@ -1,0 +1,12 @@
+{
+  "source": "E:\\电力系统科研\\多智能体强化学习微网\\服务器归档_20260826\\内容\\env_v6_swiss_runs\\long\\env_v6_behavior_report.json",
+  "authority": "Current manuscript values take precedence over server-side logs.",
+  "evaluation_seed_for_hourly_case": 32,
+  "raw_daily_voltage_budget": 0.02,
+  "files": [
+    "seed32_voltage_case.csv",
+    "hydrogen_service_days.csv",
+    "paper_main_results.csv",
+    "seed32_delivery_counterfactual.csv"
+  ]
+}

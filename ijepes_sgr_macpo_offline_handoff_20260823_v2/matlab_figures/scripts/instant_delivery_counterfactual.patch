@@ -1,0 +1,111 @@
+--- a/envs/microgrid/microgrid_env.py
++++ b/envs/microgrid/microgrid_env.py
+@@ -597,6 +597,10 @@
+         schedule = self.cfg.get("h2_market_schedule", list(range(self.T)))
+         self.h2_market_schedule = set(int(s) for s in schedule)
+         self.h2_delivery_lag = int(self.cfg.get("h2_delivery_lag", 0))
++        # Evaluation-only switch. The default leaves training unchanged.
++        self.h2_instant_delivery_counterfactual = bool(
++            self.cfg.get("h2_instant_delivery_counterfactual", False)
++        )
+         self.h2_cap_aware_buy_enable = bool(
+             self.cfg.get("h2_cap_aware_buy_enable", False)
+         )
+@@ -605,7 +609,8 @@
+             self.cfg.get("h2_planned_external_order_enable", False)
+         )
+         if self.h2_planned_external_order_enable and not (
+-            self.h2_market_lag_enable and self.h2_delivery_lag > 0
++            (self.h2_market_lag_enable and self.h2_delivery_lag > 0)
++            or self.h2_instant_delivery_counterfactual
+         ):
+             raise ValueError(
+                 "h2_planned_external_order_enable requires lagged H2 delivery"
+@@ -1322,6 +1327,7 @@
+             self.h2_delivery_reservation_enable
+             and self.h2_market_lag_enable
+             and self.h2_delivery_lag > 0
++            and not self.h2_instant_delivery_counterfactual
+         ):
+             h2_delivery_reserved_energy = self._pending_h2_reservation_energy()
+ 
+@@ -1519,6 +1525,7 @@
+             self.h2_traffic_enable
+             and self.h2_market_lag_enable
+             and self.h2_delivery_lag > 0
++            and not self.h2_instant_delivery_counterfactual
+         )
+         h2_order_delivery_horizon = (
+             self.h2_traffic_max_eta if h2_traffic_active else self.h2_delivery_lag
+@@ -1599,7 +1606,8 @@
+                 if net_demand >= 0.0 and h2_order_quantity[agent_id] > EPS:
+                     h2_order_side[agent_id] = "buy"
+                     delayed_delivery = (
+-                        self.h2_market_lag_enable and self.h2_delivery_lag > 0
++                        self.h2_market_lag_enable and self.h2_delivery_lag > 0
++                        and not self.h2_instant_delivery_counterfactual
+                     )
+                     deliverable_within_episode = (
+                         not delayed_delivery
+@@ -1615,7 +1623,11 @@
+                             h2_buy_clip_amount[agent_id] = raw_quantity
+                             h2_buy_horizon_clip_amount[agent_id] = raw_quantity
+                     elif self.h2_cap_aware_buy_enable:
+-                        if self.h2_market_lag_enable and self.h2_delivery_lag > 0:
++                        if (
++                            self.h2_market_lag_enable
++                            and self.h2_delivery_lag > 0
++                            and not self.h2_instant_delivery_counterfactual
++                        ):
+                             deliverable_within_episode = (
+                                 int(t) + int(h2_order_delivery_horizon) < int(self.T)
+                             )
+@@ -1641,6 +1653,7 @@
+                         if (
+                             self.h2_market_lag_enable
+                             and self.h2_delivery_lag > 0
++                            and not self.h2_instant_delivery_counterfactual
+                             and not deliverable_within_episode
+                         ):
+                             h2_buy_horizon_clip_amount[agent_id] = (
+@@ -1789,7 +1802,11 @@
+             for shipment in h2_transport_shipments:
+                 if float(shipment["net_quantity"]) > EPS:
+                     self.pending_h2_deliveries.append(dict(shipment))
+-        elif self.h2_market_lag_enable and self.h2_delivery_lag > 0:
++        elif (
++            self.h2_market_lag_enable
++            and self.h2_delivery_lag > 0
++            and not self.h2_instant_delivery_counterfactual
++        ):
+             for trade in routable_trades:
+                 delivered_qty = float(trade["quantity"]) * (
+                     1.0 - np.clip(self.h2_transport_loss, 0.0, 1.0)
+@@ -1813,11 +1830,17 @@
+         h2_no_lag_conservation_residual = np.zeros(
+             self.agent_num, dtype=np.float32
+         )
+-        lagged_delivery = self.h2_market_lag_enable and self.h2_delivery_lag > 0
++        lagged_delivery = (
++            self.h2_market_lag_enable
++            and self.h2_delivery_lag > 0
++            and not self.h2_instant_delivery_counterfactual
++        )
+         for agent_id in range(self.agent_num):
+             net_demand = float(net_h2_demand[agent_id])
+             h2_sold = float(h2_result["sell_matched"].get(agent_id, 0.0))
+             h2_bought = float(h2_result["buy_matched"].get(agent_id, 0.0))
++            if self.h2_instant_delivery_counterfactual:
++                h2_bought += float(h2_planned_external_order_energy[agent_id])
+             if net_demand < 0.0:
+                 e_h2_ext[agent_id] = net_demand + h2_sold
+             elif lagged_delivery:
+@@ -1842,7 +1865,7 @@
+ 
+         self.last_p_grid = p_grid.astype(np.float32)
+         self.last_e_h2_ext = e_h2_ext.astype(np.float32)
+-        if self.h2_market_lag_enable and self.h2_delivery_lag > 0:
++        if lagged_delivery:
+             delivered_energy, delivery_overflow_energy = self._deliver_pending_h2(
+                 current_t=int(t) + 1
+             )
